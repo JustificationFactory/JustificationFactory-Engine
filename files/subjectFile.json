@@ -10,7 +10,8 @@
       {
         "key":"Age",
         "type":"java.lang.Integer",
-        "value":42
+        "value":42,
+        "unit":"years"
       },
       {
         "key":"Sex",
@@ -35,7 +36,8 @@
       {
         "key":"IMC",
         "type":"java.lang.Double",
-        "value":23.45
+        "value":23.45,
+        "unit":"kg/m²"
       }
     ]
   },

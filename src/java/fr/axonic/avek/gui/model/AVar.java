@@ -1,14 +1,24 @@
 package fr.axonic.avek.gui.model;
 
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  * Created by Nathaël N on 29/06/16.
  */
 public class AVar {
-	private final String key;
-	private final String valueType;
-	private final Object value;
-	private final String unit;
+	@XmlElement
+	private String key;
 
+	@XmlElement(name="type")
+	private String valueType;
+
+	@XmlElement
+	private Object value;
+
+	@XmlElement(name="unit",required=false)
+	private String unit;
+
+	public AVar() {}
 	public AVar(String key, Class valueType, Object value) {
 		this(key, valueType, value, null);
 	}
