@@ -9,19 +9,15 @@
     <packaging>pom</packaging>
     <modules>
         <module>avek-engine</module>
-        <module>avek-gui</module>
-        <module>avek-model</module>
-        <module>avek-graph</module>
         <module>avek-engine-ws</module>
         <module>avek-bus</module>
         <module>avek-engine-instance</module>
         <module>avek-dao</module>
-        <!--<module>avek-jenkins</module>-->
     </modules>
 
     <properties>
-        <scmUrl>https://github.com/AVEK-project/AVEK.git</scmUrl>
-        <scmConnection>scm:git:ssh://git@github.com:AVEK-project/AVEK.git</scmConnection>
+        <scmUrl>https://github.com/JustificationFactory/JustificationFactory-Engine.git</scmUrl>
+        <scmConnection>scm:git:ssh://git@github.com:JustificationFactory/JustificationFactory-Engine.git</scmConnection>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jersey2.version>2.27</jersey2.version>
         <jaxrs.version>2.1</jaxrs.version>
@@ -144,20 +140,14 @@
         </plugins>
     </build>
     <organization><name>AXONIC</name></organization>
-    <developers>
-        <developer>
-            <name>Nathaël Noguès</name>
-            <email>nogues.nathael@etu.unice.fr</email>
-        </developer>
-    </developers>
     <contributors>
         <contributor>
             <name>Clément Duffau</name>
             <email>cduffau@axonic.fr</email>
         </contributor>
         <contributor>
-            <name>Mireille Blay-Fornarino</name>
-            <email>blay@unice.fr</email>
+            <name>Antoine Aubé</name>
+            <email>aaube@axonic.fr</email>
         </contributor>
     </contributors>
 </project>
