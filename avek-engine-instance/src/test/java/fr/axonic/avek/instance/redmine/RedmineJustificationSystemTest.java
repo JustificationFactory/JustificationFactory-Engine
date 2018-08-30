@@ -3,7 +3,6 @@ package fr.axonic.avek.instance.redmine;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.engine.support.Support;
-import fr.axonic.avek.engine.support.evidence.Document;
 import fr.axonic.avek.instance.JustificationSystemEnum;
 import fr.axonic.avek.instance.JustificationSystemFactory;
 import fr.axonic.validation.exception.VerificationException;
@@ -20,8 +19,8 @@ public class RedmineJustificationSystemTest {
     @Test
     public void shouldReturnST0001Pattern() throws VerificationException, WrongEvidenceException {
         List<Support> givenSupports = Arrays.asList(
-                new RedmineDocumentEvidence("SWAM_ST_0001", new Document("http://oneurl.com/SWAM_ST_0001")),
-                new RedmineDocumentApproval("SWAM_ST_0001_APPROVAL", new Document("http://oneurl.com/SWAM_ST_0001_APPROVAL"))
+                new RedmineDocumentEvidence("SWAM_ST_0001", new RedmineDocument("http://oneurl.com/SWAM_ST_0001")),
+                new RedmineDocumentApproval("SWAM_ST_0001_APPROVAL", new RedmineDocument("http://oneurl.com/SWAM_ST_0001_APPROVAL"))
         );
 
         JustificationSystem jpd = JustificationSystemFactory.create(JustificationSystemEnum.REDMINE);

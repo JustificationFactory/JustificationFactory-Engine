@@ -1,10 +1,10 @@
 package fr.axonic.avek.instance.redmine;
 
-import fr.axonic.avek.engine.support.evidence.Document;
+import fr.axonic.avek.engine.support.evidence.Evidence;
 
-public class RedmineDocumentEvidence extends RedmineEvidence {
+public class RedmineDocumentEvidence extends Evidence<RedmineDocument> {
 
-    public RedmineDocumentEvidence(String name, Document element) {
+    public RedmineDocumentEvidence(String name, RedmineDocument element) {
         super(name, element);
     }
 
