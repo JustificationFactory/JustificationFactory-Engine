@@ -1,11 +1,11 @@
 package fr.axonic.avek.bus;
 
 import fr.axonic.avek.engine.support.evidence.Document;
+import fr.axonic.avek.instance.redmine.RedmineDocument;
 import fr.axonic.avek.instance.redmine.RedmineDocumentApproval;
 import fr.axonic.avek.instance.redmine.RedmineDocumentEvidence;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -26,7 +26,7 @@ public class JustificationBusServiceImplementationTest extends JerseyTest {
     public void shouldAcceptRedmineEvidences() {
         TransmittedSupports supports = new TransmittedSupports();
         supports.setSupports(Arrays.asList(
-                new RedmineDocumentEvidence("DOC", new Document("DOC")),
+                new RedmineDocumentEvidence("DOC", new RedmineDocument("DOC")),
                 new RedmineDocumentApproval("DOC_APPROVAL", new Document("DOC_APPROVAL"))));
 
         Response ok = target("/bus/supports").request().post(Entity.json(supports));

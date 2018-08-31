@@ -2,12 +2,16 @@ package fr.axonic.avek.instance.redmine;
 
 import fr.axonic.avek.engine.support.evidence.Document;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@XmlRootElement
 public class RedmineDocument extends Document {
 
     private String reference;
+    private String documentType;
     private String name;
     private String author;
     private LocalDate releaseDate;
@@ -16,6 +20,11 @@ public class RedmineDocument extends Document {
         super(url);
     }
 
+    public RedmineDocument() {
+        // For serialization.
+    }
+
+    @XmlElement
     public String getReference() {
         return reference;
     }
@@ -24,6 +33,16 @@ public class RedmineDocument extends Document {
         this.reference = reference;
     }
 
+    @XmlElement
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    @XmlElement
     public String getName() {
         return name;
     }
@@ -32,6 +51,7 @@ public class RedmineDocument extends Document {
         this.name = name;
     }
 
+    @XmlElement
     public String getAuthor() {
         return author;
     }
@@ -40,6 +60,7 @@ public class RedmineDocument extends Document {
         this.author = author;
     }
 
+    @XmlElement
     public LocalDate getReleaseDate() {
         return releaseDate;
     }

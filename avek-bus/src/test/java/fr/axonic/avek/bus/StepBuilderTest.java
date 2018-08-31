@@ -6,11 +6,11 @@ import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.engine.support.evidence.Document;
 import fr.axonic.avek.instance.JustificationSystemEnum;
 import fr.axonic.avek.instance.JustificationSystemFactory;
+import fr.axonic.avek.instance.redmine.RedmineDocument;
 import fr.axonic.avek.instance.redmine.RedmineDocumentApproval;
 import fr.axonic.avek.instance.redmine.RedmineDocumentEvidence;
 import fr.axonic.validation.exception.VerificationException;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -152,7 +152,7 @@ public class StepBuilderTest {
     }
 
     private static RedmineDocumentEvidence evidence(String name, String version) {
-        Document document = new Document("http://aurl.com/" + name);
+         RedmineDocument document = new RedmineDocument("http://aurl.com/" + name);
         document.setVersion(version);
 
         return new RedmineDocumentEvidence(name, document);

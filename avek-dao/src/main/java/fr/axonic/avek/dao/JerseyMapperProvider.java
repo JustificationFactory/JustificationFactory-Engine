@@ -14,7 +14,7 @@ public class JerseyMapperProvider implements ContextResolver<ObjectMapper> {
     private static ObjectMapper apiMapper;
 
     static {
-        apiMapper=new ObjectMapper();
+        apiMapper = new ObjectMapper();
         AnnotationIntrospector aiJaxb = new JaxbAnnotationIntrospector(TypeFactory.defaultInstance());
         AnnotationIntrospector aiJackson = new JacksonAnnotationIntrospector();
         // first Jaxb, second Jackson annotations
@@ -22,8 +22,7 @@ public class JerseyMapperProvider implements ContextResolver<ObjectMapper> {
     }
 
     @Override
-    public ObjectMapper getContext(Class<?> type)
-    {
+    public ObjectMapper getContext(Class<?> type) {
         return apiMapper;
     }
 }

@@ -18,11 +18,13 @@ public interface JustificationDiagramService {
     @Path("/{justification_system_id}/justificationDiagram")
     Response clearSteps(@PathParam("justification_system_id") String justificationSystemId);
 
-
     @GET
     @Path("/type")
     @Produces(MediaType.APPLICATION_JSON)
     Response getTypeContent(@QueryParam("type") String type);
 
-
+    @GET
+    @Path("/{justification_system_id}/matrix")
+    @Produces(MediaType.APPLICATION_JSON)
+    Response getMatrixTransformation(@PathParam("justification_system_id") String justificationSystem);
 }

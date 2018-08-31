@@ -8,9 +8,6 @@ import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.engine.pattern.JustificationStep;
 import fr.axonic.avek.engine.pattern.Pattern;
 import fr.axonic.avek.engine.support.Support;
-import fr.axonic.avek.engine.support.conclusion.Conclusion;
-import fr.axonic.avek.instance.redmine.RedmineConclusion;
-import fr.axonic.avek.instance.redmine.RedmineDocumentEvidence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -22,16 +22,16 @@ import java.util.Map;
 @Path("/justification")
 public class JustificationDiagramServiceImpl implements JustificationDiagramService {
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(JustificationDiagramServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JustificationDiagramServiceImpl.class);
 
-    private Map<String, JustificationSystem> justificationSystems=JustificationSystemsBD.getInstance().getJustificationSystems();
+    private Map<String, JustificationSystem> justificationSystems = JustificationSystemsBD.getInstance().getJustificationSystems();
 
     @Override
     public Response constructStep(String argumentationSystem, String pattern, StepToCreate step) {
 
         try {
-            JustificationStep res = justificationSystems.get(argumentationSystem).constructStep(justificationSystems.get(argumentationSystem).getPatternsBase().getPattern(pattern),step.getSupports(),step.getConclusion());
-            LOGGER.info("Step created on "+argumentationSystem+" with pattern "+pattern);
+            JustificationStep res = justificationSystems.get(argumentationSystem).constructStep(justificationSystems.get(argumentationSystem).getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
+            LOGGER.info("Step created on " + argumentationSystem + " with pattern " + pattern);
             try {
                 JustificationSystemsDAO.saveJustificationSystem(argumentationSystem, justificationSystems.get(argumentationSystem));
             } catch (IOException e) {
@@ -40,7 +40,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
             }
             return Response.status(Response.Status.CREATED).entity(res).build();
         } catch (StepBuildingException | WrongEvidenceException | StrategyException e) {
-            LOGGER.error("Error during Step creation on "+argumentationSystem+" with pattern "+pattern);
+            LOGGER.error("Error during Step creation on " + argumentationSystem + " with pattern " + pattern);
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
         }
@@ -51,19 +51,18 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
     @Override
     public Response clearSteps(String argumentationSystemId) {
         JustificationSystemAPI argumentationSystem = justificationSystems.get(argumentationSystemId);
-        if(argumentationSystem==null){
-            LOGGER.warn("Unknown "+argumentationSystemId+", impossible to remove");
-            return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id "+argumentationSystemId).build();
-        }
-        else {
+        if (argumentationSystem == null) {
+            LOGGER.warn("Unknown " + argumentationSystemId + ", impossible to remove");
+            return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();
+        } else {
             argumentationSystem.getJustificationDiagram().getSteps().clear();
             try {
-                JustificationSystemsDAO.saveJustificationSystem(argumentationSystemId,argumentationSystem);
+                JustificationSystemsDAO.saveJustificationSystem(argumentationSystemId, argumentationSystem);
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
             }
-            LOGGER.info(argumentationSystemId+" Justification System Justification Diagram removed");
+            LOGGER.info(argumentationSystemId + " Justification System Justification Diagram removed");
             return Response.status(Response.Status.OK).build();
         }
     }
@@ -71,16 +70,26 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
     @Override
     public Response getTypeContent(String type) {
         try {
-            Class clas=Class.forName(type);
-            JerseyMapperProvider jerseyMapperProvider=new JerseyMapperProvider();
-            JsonSchema schema=jerseyMapperProvider.getContext(null).generateJsonSchema(clas);
+            Class clas = Class.forName(type);
+            JerseyMapperProvider jerseyMapperProvider = new JerseyMapperProvider();
+            JsonSchema schema = jerseyMapperProvider.getContext(null).generateJsonSchema(clas);
 
             return Response.status(Response.Status.OK).entity(jerseyMapperProvider.getContext(null).writerWithDefaultPrettyPrinter().writeValueAsString(schema)).build();
 
         } catch (ClassNotFoundException | JsonProcessingException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
+        }
+    }
 
+    @Override
+    public Response getMatrixTransformation(String argumentationSystemId) {
+        JustificationSystemAPI argumentationSystem = justificationSystems.get(argumentationSystemId);
+        if (argumentationSystem == null) {
+            LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
+            return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();
+        } else {
+            return Response.status(Response.Status.FOUND).entity(argumentationSystem.matrix()).build();
         }
     }
 }

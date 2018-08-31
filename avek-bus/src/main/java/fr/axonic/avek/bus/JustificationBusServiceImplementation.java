@@ -35,8 +35,8 @@ public class JustificationBusServiceImplementation implements JustificationBusSe
 
     @Override
     public Response transmitSupport(TransmittedSupports supports) {
+        System.out.println("transmitted");
         for (Support support : supports.getSupports()) {
-
             try {
                 stepBuilder.acknowledgeSupport(support);
             } catch (StepBuildingException | StrategyException e) {
