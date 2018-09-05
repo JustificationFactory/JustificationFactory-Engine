@@ -58,7 +58,8 @@ public class StepBuilder {
 
 
             try {
-                JustificationStep step = justificationSystem.constructStep(pattern, usefulSupports, null).clone();
+                JustificationStep res=justificationSystem.constructStep(pattern, usefulSupports, null);
+                JustificationStep step = res.clone();
                 LOGGER.info("Step {} has been built", step.getPatternId());
 
                 // TODO What is next with this step?

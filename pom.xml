@@ -23,6 +23,7 @@
         <jaxrs.version>2.1</jaxrs.version>
         <log4j.version>2.7</log4j.version>
         <asf.version>4.0.0-sprint5</asf.version>
+        <deployment.server>http://andromeda.axonic.lan:8080/manager/text</deployment.server>
     </properties>
 
     <scm>
