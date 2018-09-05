@@ -4,7 +4,7 @@
 
 <web-app>
 
-    <display-name>Archetype Created Web Application</display-name>
+    <display-name>Justification Factory web services</display-name>
 
     <servlet>
         <servlet-name>jersey-servlet</servlet-name>

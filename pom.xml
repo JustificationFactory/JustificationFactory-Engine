@@ -18,6 +18,9 @@
     <properties>
         <scmUrl>https://github.com/JustificationFactory/JustificationFactory-Engine.git</scmUrl>
         <scmConnection>scm:git:ssh://git@github.com:JustificationFactory/JustificationFactory-Engine.git</scmConnection>
+        <nexusUrl>http://matar.axonic.lan:8082/nexus</nexusUrl>
+        <nexusReleasesUrl>${nexusUrl}/content/repositories/releases/</nexusReleasesUrl>
+        <nexusSnapshotsUrl>${nexusUrl}/content/repositories/snapshots/</nexusSnapshotsUrl>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jersey2.version>2.27</jersey2.version>
         <jaxrs.version>2.1</jaxrs.version>
@@ -31,7 +34,23 @@
         <connection>${scmConnection}</connection>
         <developerConnection>${scmConnection}</developerConnection>
     </scm>
-
+    <distributionManagement>
+        <repository>
+            <id>deployment</id>
+            <layout>default</layout>
+            <name>Internal Releases</name>
+            <url>${nexusReleasesUrl}</url>
+        </repository>
+        <snapshotRepository>
+            <id>deployment</id>
+            <name>Internal Snapshots</name>
+            <url>${nexusSnapshotsUrl}</url>
+        </snapshotRepository>
+        <site>
+            <id>${project.artifactId}-site</id>
+            <url>${project.baseUri}</url>
+        </site>
+    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

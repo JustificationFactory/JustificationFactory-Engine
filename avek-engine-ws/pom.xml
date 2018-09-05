@@ -126,6 +126,15 @@
                     <server>AXONICTomcatServer</server>
                     <path>/jf</path>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>redeploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>redeploy-only</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
