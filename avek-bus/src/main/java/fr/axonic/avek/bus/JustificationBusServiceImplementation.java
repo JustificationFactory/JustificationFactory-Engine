@@ -1,16 +1,14 @@
 package fr.axonic.avek.bus;
 
+import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.exception.StepBuildingException;
 import fr.axonic.avek.engine.exception.StrategyException;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
-import fr.axonic.avek.engine.pattern.JustificationStep;
-import fr.axonic.avek.engine.pattern.Pattern;
 import fr.axonic.avek.engine.support.Support;
 import fr.axonic.avek.instance.JustificationSystemEnum;
 import fr.axonic.avek.instance.JustificationSystemFactory;
 import fr.axonic.validation.exception.VerificationException;
-import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,17 +23,14 @@ public class JustificationBusServiceImplementation implements JustificationBusSe
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationBusServiceImplementation.class);
 
-    private List<JustificationSystem> justificationSystems;
     private StepBuilder stepBuilder;
 
     public JustificationBusServiceImplementation() {
-        justificationSystems = getJustificationSystems();
-        stepBuilder = new StepBuilder(justificationSystems);
+        stepBuilder = new StepBuilder(SimpleJustificationSystemsDAO.getInstance());
     }
 
     @Override
     public Response transmitSupport(TransmittedSupports supports) {
-        System.out.println("transmitted");
         for (Support support : supports.getSupports()) {
             try {
                 stepBuilder.acknowledgeSupport(support);
@@ -44,12 +39,6 @@ public class JustificationBusServiceImplementation implements JustificationBusSe
                 return Response.serverError().build();
             }
         }
-
-        justificationSystems.forEach(system -> {
-            List<Pair<Pattern, JustificationStep>> pairs = system.matrix();
-
-            pairs.forEach(p -> System.out.println(p.getKey() + "\t::\t" + p.getValue()));
-        });
 
         return Response.ok().build();
     }

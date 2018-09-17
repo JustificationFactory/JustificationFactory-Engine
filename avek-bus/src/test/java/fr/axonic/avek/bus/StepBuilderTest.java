@@ -1,5 +1,8 @@
 package fr.axonic.avek.bus;
 
+import fr.axonic.avek.dao.JustificationSystemsDAO;
+import fr.axonic.avek.engine.JustificationSystem;
+import fr.axonic.avek.engine.JustificationSystemAPI;
 import fr.axonic.avek.engine.exception.StepBuildingException;
 import fr.axonic.avek.engine.exception.StrategyException;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
@@ -13,7 +16,10 @@ import fr.axonic.validation.exception.VerificationException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,11 +29,37 @@ import static org.junit.Assert.assertNotNull;
  */
 public class StepBuilderTest {
 
+    private JustificationSystemsDAO dao;
     private StepBuilder stepBuilder;
 
     @Before
     public void initialize() throws VerificationException, WrongEvidenceException {
-        stepBuilder = new StepBuilder(Collections.singletonList(JustificationSystemFactory.create(JustificationSystemEnum.REDMINE)));
+        dao = new JustificationSystemsDAO() {
+
+            private Map<String, JustificationSystem> content;
+
+            {
+                content = new HashMap<>();
+                content.put("REDMINE", JustificationSystemFactory.create(JustificationSystemEnum.REDMINE));
+            }
+
+            @Override
+            public Map<String, JustificationSystem> loadJustificationSystems() throws IOException {
+                return content;
+            }
+
+            @Override
+            public void saveJustificationSystem(String name, JustificationSystemAPI argumentationSystem) throws IOException {
+
+            }
+
+            @Override
+            public void removeJustificationSystem(String name) throws IOException {
+
+            }
+        };
+
+        stepBuilder = new StepBuilder(dao);
     }
 
     @Test
