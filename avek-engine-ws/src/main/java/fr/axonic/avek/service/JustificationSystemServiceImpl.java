@@ -1,27 +1,15 @@
 package fr.axonic.avek.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
-import fr.axonic.avek.ArtifactType;
-import fr.axonic.avek.dao.JustificationSystemsDAO;
-import fr.axonic.avek.dao.JerseyMapperProvider;
+import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
-import fr.axonic.avek.engine.pattern.Pattern;
-import fr.axonic.avek.engine.pattern.type.SupportType;
-import fr.axonic.avek.engine.pattern.type.Type;
-import fr.axonic.avek.engine.strategy.HumanStrategy;
-import fr.axonic.avek.engine.support.evidence.Evidence;
 
-import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by cduffau on 16/01/17.
@@ -37,7 +25,7 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
     public Response registerJustificationSystem(String name, JustificationSystem justificationSystem) {
         justificationSystems.put(name, justificationSystem);
         try {
-            JustificationSystemsDAO.saveJustificationSystem(name, justificationSystem);
+            SimpleJustificationSystemsDAO.getInstance().saveJustificationSystem(name, justificationSystem);
         } catch (IOException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(name).build();
@@ -59,7 +47,7 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
             return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id "+argumentationSystemId).build();
         }
         try {
-            JustificationSystemsDAO.removeJustificationSystem(argumentationSystemId);
+            SimpleJustificationSystemsDAO.getInstance().removeJustificationSystem(argumentationSystemId);
         } catch (IOException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();

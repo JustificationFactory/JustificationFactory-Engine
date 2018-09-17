@@ -3,7 +3,7 @@ package fr.axonic.avek.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import fr.axonic.avek.dao.JerseyMapperProvider;
-import fr.axonic.avek.dao.JustificationSystemsDAO;
+import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
 import fr.axonic.avek.engine.StepToCreate;
@@ -33,7 +33,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
             JustificationStep res = justificationSystems.get(argumentationSystem).constructStep(justificationSystems.get(argumentationSystem).getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
             LOGGER.info("Step created on " + argumentationSystem + " with pattern " + pattern);
             try {
-                JustificationSystemsDAO.saveJustificationSystem(argumentationSystem, justificationSystems.get(argumentationSystem));
+                SimpleJustificationSystemsDAO.getInstance().saveJustificationSystem(argumentationSystem, justificationSystems.get(argumentationSystem));
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
@@ -57,7 +57,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
         } else {
             argumentationSystem.getJustificationDiagram().getSteps().clear();
             try {
-                JustificationSystemsDAO.saveJustificationSystem(argumentationSystemId, argumentationSystem);
+                SimpleJustificationSystemsDAO.getInstance().saveJustificationSystem(argumentationSystemId, argumentationSystem);
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();

@@ -1,8 +1,7 @@
 package fr.axonic.avek.service;
 
-import fr.axonic.avek.dao.JustificationSystemsDAO;
+import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
-import fr.axonic.avek.engine.JustificationSystemAPI;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.instance.JustificationSystemEnum;
 import fr.axonic.avek.instance.JustificationSystemFactory;
@@ -25,7 +24,7 @@ public class JustificationSystemsBD {
     private JustificationSystemsBD() throws IOException, VerificationException, WrongEvidenceException {
         justificationSystems =new HashMap<>();
 
-        justificationSystems = JustificationSystemsDAO.loadJustificationSystems();
+        justificationSystems = SimpleJustificationSystemsDAO.getInstance().loadJustificationSystems();
         for(JustificationSystemEnum justificationSystemEnum : JustificationSystemEnum.values()){
             if(justificationSystems.get(justificationSystemEnum.name())==null) {
                 justificationSystems.put(justificationSystemEnum.name(), JustificationSystemFactory.create(justificationSystemEnum));
