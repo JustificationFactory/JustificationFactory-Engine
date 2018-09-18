@@ -13,6 +13,10 @@ public class CommonRedmineStrategy extends RedmineStrategy {
         super(name);
     }
 
+    public CommonRedmineStrategy() {
+
+    }
+
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
         Optional<RedmineDocumentEvidence> evidence = supportList.stream()

@@ -1,18 +1,24 @@
 package fr.axonic.avek.engine.pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.diagram.JustificationPatternDiagram;
 import fr.axonic.avek.engine.pattern.type.OutputType;
 
 import java.util.List;
 
+@JsonIgnoreProperties(value = {"objective"})
 public class DiagramPatternsBase extends PatternsBase {
 
-    public JustificationPatternDiagram jpd;
+    private JustificationPatternDiagram jpd;
 
     public DiagramPatternsBase(JustificationPatternDiagram jpd) {
         super(PatternsBaseType.PATTERN_DIAGRAM);
         this.jpd = jpd;
+    }
+
+    public DiagramPatternsBase() {
+        super(PatternsBaseType.PATTERN_DIAGRAM);
     }
 
     @Override

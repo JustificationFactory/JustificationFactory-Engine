@@ -57,7 +57,7 @@ public class SimpleJustificationSystemsDAO implements JustificationSystemsDAO {
         }
     }
 
-    public void removeJustificationSystem(String name) throws IOException {
+    public void removeJustificationSystem(String name) {
         File file = new File(String.format(destinationFilePattern, name));
         if (file.exists()) {
             file.delete();

@@ -7,12 +7,16 @@ import java.util.List;
 
 public class TopLevelRedmineStrategy extends RedmineStrategy {
 
-    private final String outputName;
+    private String outputName;
 
     public TopLevelRedmineStrategy(String name, String outputName) {
         super(name);
 
         this.outputName = outputName;
+    }
+
+    public TopLevelRedmineStrategy() {
+
     }
 
     @Override
@@ -22,5 +26,13 @@ public class TopLevelRedmineStrategy extends RedmineStrategy {
         conclusion.setName(outputName);
 
         return conclusion;
+    }
+
+    public String getOutputName() {
+        return outputName;
+    }
+
+    public void setOutputName(String outputName) {
+        this.outputName = outputName;
     }
 }

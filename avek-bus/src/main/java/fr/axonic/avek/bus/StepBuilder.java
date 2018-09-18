@@ -64,7 +64,6 @@ public class StepBuilder {
         for (Pattern pattern : patterns) {
             List<Support> usefulSupports = pattern.filterUsefulEvidences(knownSupports);
 
-
             try {
                 JustificationStep res = justificationSystem.constructStep(pattern, usefulSupports, null);
                 JustificationStep step = res.clone();

@@ -3,6 +3,7 @@ package fr.axonic.avek.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import fr.axonic.avek.dao.JerseyMapperProvider;
+import fr.axonic.avek.dao.JustificationSystemsDAOFactory;
 import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
@@ -33,7 +34,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
             JustificationStep res = justificationSystems.get(argumentationSystem).constructStep(justificationSystems.get(argumentationSystem).getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
             LOGGER.info("Step created on " + argumentationSystem + " with pattern " + pattern);
             try {
-                SimpleJustificationSystemsDAO.getInstance().saveJustificationSystem(argumentationSystem, justificationSystems.get(argumentationSystem));
+                JustificationSystemsDAOFactory.getInstance().makeDAO().saveJustificationSystem(argumentationSystem, justificationSystems.get(argumentationSystem));
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
@@ -57,7 +58,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
         } else {
             argumentationSystem.getJustificationDiagram().getSteps().clear();
             try {
-                SimpleJustificationSystemsDAO.getInstance().saveJustificationSystem(argumentationSystemId, argumentationSystem);
+                JustificationSystemsDAOFactory.getInstance().makeDAO().saveJustificationSystem(argumentationSystemId, argumentationSystem);
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();

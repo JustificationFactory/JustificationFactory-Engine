@@ -1,6 +1,6 @@
 package fr.axonic.avek.bus;
 
-import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
+import fr.axonic.avek.dao.JustificationSystemsDAOFactory;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.exception.StepBuildingException;
 import fr.axonic.avek.engine.exception.StrategyException;
@@ -26,7 +26,7 @@ public class JustificationBusServiceImplementation implements JustificationBusSe
     private StepBuilder stepBuilder;
 
     public JustificationBusServiceImplementation() {
-        stepBuilder = new StepBuilder(SimpleJustificationSystemsDAO.getInstance());
+        stepBuilder = new StepBuilder(JustificationSystemsDAOFactory.getInstance().makeDAO());
     }
 
     @Override
