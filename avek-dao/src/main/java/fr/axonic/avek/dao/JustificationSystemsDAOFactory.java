@@ -1,5 +1,7 @@
 package fr.axonic.avek.dao;
 
+import fr.axonic.avek.dao.implementations.MongoJustificationSystemsDAO;
+
 public class JustificationSystemsDAOFactory {
 
     private static final JustificationSystemsDAOFactory INSTANCE = new JustificationSystemsDAOFactory();
@@ -13,6 +15,6 @@ public class JustificationSystemsDAOFactory {
     }
 
     public JustificationSystemsDAO makeDAO() {
-        return SimpleJustificationSystemsDAO.getInstance();
+        return MongoJustificationSystemsDAO.getInstance();
     }
 }

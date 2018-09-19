@@ -1,17 +1,18 @@
-package fr.axonic.avek.bus;
+package fr.axonic.avek.bus.services;
 
 import fr.axonic.avek.dao.JustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.exception.AlreadyBuildingException;
 import fr.axonic.avek.engine.exception.StepBuildingException;
-import fr.axonic.avek.engine.exception.StrategyException;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.engine.pattern.JustificationStep;
 import fr.axonic.avek.engine.pattern.Pattern;
 import fr.axonic.avek.engine.support.Support;
+import org.glassfish.jersey.process.internal.RequestScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +20,23 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequestScoped
 public class StepBuilder {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StepBuilder.class);
 
-    private final JustificationSystemsDAO justificationSystemsDAO;
+    @Inject
+    private JustificationSystemsDAO justificationSystemsDAO;
+
     private final List<Support> knownSupports;
     private final List<JustificationStep> builtSteps;
 
     public StepBuilder(JustificationSystemsDAO justificationSystemsDAO) {
+        this();
         this.justificationSystemsDAO = justificationSystemsDAO;
+    }
+
+    public StepBuilder() {
         knownSupports = new ArrayList<>();
         builtSteps = new ArrayList<>();
     }
@@ -37,7 +45,7 @@ public class StepBuilder {
         return builtSteps;
     }
 
-    public void acknowledgeSupport(Support addedSupport) throws StepBuildingException, StrategyException {
+    public void acknowledgeSupport(Support addedSupport) throws StepBuildingException {
         LOGGER.info("Acknowledge support \"{}\", version \"{}\"", addedSupport.getName(), addedSupport.getElement().getVersion());
         knownSupports.add(addedSupport);
 
@@ -49,13 +57,20 @@ public class StepBuilder {
         }
     }
 
-    private void triggerStepsBuilding() throws StrategyException, StepBuildingException, IOException {
+    private void triggerStepsBuilding() throws StepBuildingException, IOException {
         for (Map.Entry<String, JustificationSystem> pair : justificationSystemsDAO.loadJustificationSystems().entrySet()) {
-            triggerOneSystemStepsBuilding(pair.getKey(), pair.getValue());
+            String name = pair.getKey();
+            JustificationSystem justificationSystem = pair.getValue();
+
+            if (justificationSystem == null || justificationSystem.getPatternsBase() == null || justificationSystem.getJustificationDiagram() == null) {
+                continue;
+            }
+
+            triggerOneSystemStepsBuilding(name, justificationSystem);
         }
     }
 
-    private void triggerOneSystemStepsBuilding(String justificationSystemName, JustificationSystem justificationSystem) throws StrategyException, StepBuildingException, IOException {
+    private void triggerOneSystemStepsBuilding(String justificationSystemName, JustificationSystem justificationSystem) throws StepBuildingException, IOException {
         List<Pattern> patterns = justificationSystem.getApplicablePatterns(knownSupports);
 
         LOGGER.info("{} patterns can be built with the {} known supports ({})", patterns.size(), knownSupports.size(),

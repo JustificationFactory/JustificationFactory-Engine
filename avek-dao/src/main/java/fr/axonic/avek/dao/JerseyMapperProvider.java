@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
 import javax.ws.rs.ext.ContextResolver;
@@ -19,6 +20,8 @@ public class JerseyMapperProvider implements ContextResolver<ObjectMapper> {
         AnnotationIntrospector aiJackson = new JacksonAnnotationIntrospector();
         // first Jaxb, second Jackson annotations
         apiMapper.setAnnotationIntrospector(AnnotationIntrospector.pair(aiJaxb, aiJackson));
+
+        apiMapper.registerModule(new JavaTimeModule());
     }
 
     @Override

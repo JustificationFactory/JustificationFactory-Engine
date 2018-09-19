@@ -1,4 +1,4 @@
-package fr.axonic.avek.bus;
+package fr.axonic.avek.bus.services;
 
 import fr.axonic.avek.engine.support.Support;
 

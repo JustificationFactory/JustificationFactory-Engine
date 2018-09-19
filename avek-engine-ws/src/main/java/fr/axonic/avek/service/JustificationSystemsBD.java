@@ -1,7 +1,6 @@
 package fr.axonic.avek.service;
 
 import fr.axonic.avek.dao.JustificationSystemsDAOFactory;
-import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.instance.JustificationSystemEnum;

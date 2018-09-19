@@ -4,12 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import fr.axonic.avek.dao.JerseyMapperProvider;
 import fr.axonic.avek.dao.JustificationSystemsDAOFactory;
-import fr.axonic.avek.dao.SimpleJustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
 import fr.axonic.avek.engine.StepToCreate;
 import fr.axonic.avek.engine.exception.StepBuildingException;
-import fr.axonic.avek.engine.exception.StrategyException;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.engine.pattern.JustificationStep;
 import org.slf4j.Logger;
@@ -40,13 +38,11 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
             }
             return Response.status(Response.Status.CREATED).entity(res).build();
-        } catch (StepBuildingException | WrongEvidenceException | StrategyException e) {
+        } catch (StepBuildingException | WrongEvidenceException e) {
             LOGGER.error("Error during Step creation on " + argumentationSystem + " with pattern " + pattern);
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
         }
-
-
     }
 
     @Override

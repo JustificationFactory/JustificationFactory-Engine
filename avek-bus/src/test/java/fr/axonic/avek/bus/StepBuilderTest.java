@@ -1,10 +1,10 @@
 package fr.axonic.avek.bus;
 
+import fr.axonic.avek.bus.services.StepBuilder;
 import fr.axonic.avek.dao.JustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
 import fr.axonic.avek.engine.exception.StepBuildingException;
-import fr.axonic.avek.engine.exception.StrategyException;
 import fr.axonic.avek.engine.exception.WrongEvidenceException;
 import fr.axonic.avek.engine.support.evidence.Document;
 import fr.axonic.avek.instance.JustificationSystemEnum;
@@ -16,8 +16,6 @@ import fr.axonic.validation.exception.VerificationException;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,17 +42,17 @@ public class StepBuilderTest {
             }
 
             @Override
-            public Map<String, JustificationSystem> loadJustificationSystems() throws IOException {
+            public Map<String, JustificationSystem> loadJustificationSystems() {
                 return content;
             }
 
             @Override
-            public void saveJustificationSystem(String name, JustificationSystemAPI argumentationSystem) throws IOException {
+            public void saveJustificationSystem(String name, JustificationSystemAPI argumentationSystem) {
 
             }
 
             @Override
-            public void removeJustificationSystem(String name) throws IOException {
+            public void removeJustificationSystem(String name) {
 
             }
         };
@@ -63,7 +61,7 @@ public class StepBuilderTest {
     }
 
     @Test
-    public void shouldNotBuildAnythingWithoutSupport() throws StrategyException, StepBuildingException {
+    public void shouldNotBuildAnythingWithoutSupport() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
 
         assertEquals(0, stepBuilder.getBuiltSteps().size());
@@ -71,7 +69,7 @@ public class StepBuilderTest {
 
 
     @Test
-    public void shouldNotBuildWithUnexpectedSupports() throws StrategyException, StepBuildingException {
+    public void shouldNotBuildWithUnexpectedSupports() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_CTR_0001", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_CTR_0001", "A"));
 
@@ -80,7 +78,7 @@ public class StepBuilderTest {
 
 
     @Test
-    public void shouldNotBuildWithSupportsWhenMissingDependency() throws StrategyException, StepBuildingException {
+    public void shouldNotBuildWithSupportsWhenMissingDependency() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0002", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0002", "A"));
 
@@ -89,7 +87,7 @@ public class StepBuilderTest {
 
 
     @Test
-    public void shouldBuildWithAdequateSupports() throws StrategyException, StepBuildingException {
+    public void shouldBuildWithAdequateSupports() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0001", "A"));
 
@@ -98,7 +96,7 @@ public class StepBuilderTest {
     }
 
     @Test
-    public void shouldBuildWithNotAdequateVersions() throws StrategyException, StepBuildingException {
+    public void shouldBuildWithNotAdequateVersions() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0001", "A"));
 
@@ -109,7 +107,7 @@ public class StepBuilderTest {
     }
 
     @Test
-    public void shouldBuildWithAdequateVersions() throws StrategyException, StepBuildingException {
+    public void shouldBuildWithAdequateVersions() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0001", "A"));
 
@@ -124,7 +122,7 @@ public class StepBuilderTest {
     }
 
     @Test
-    public void shouldBuildWithAdequateVersionsTwice() throws StrategyException, StepBuildingException {
+    public void shouldBuildWithAdequateVersionsTwice() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0001", "A"));
 
@@ -140,7 +138,7 @@ public class StepBuilderTest {
         assertEquals("C",stepBuilder.getBuiltSteps().get(0).getSupports().get(1).getElement().getVersion());
     }
     @Test
-    public void shouldNotBuildAPatternTwice() throws StrategyException, StepBuildingException {
+    public void shouldNotBuildAPatternTwice() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0001", "A"));
 
@@ -152,7 +150,7 @@ public class StepBuilderTest {
     }
 
     @Test
-    public void shouldBuildWithMoreThanEnoughSupports() throws StrategyException, StepBuildingException {
+    public void shouldBuildWithMoreThanEnoughSupports() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0002", "A"));
         stepBuilder.acknowledgeSupport(approval("SWAM_ST_0002", "A"));
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
@@ -164,7 +162,7 @@ public class StepBuilderTest {
     }
 
     @Test
-    public void shouldBuildEvenStepsWithoutSupport() throws StrategyException, StepBuildingException {
+    public void shouldBuildEvenStepsWithoutSupport() throws StepBuildingException {
         for (int i = 0; i < 14; i++) {
             stepBuilder.acknowledgeSupport(evidence("SWAM_ST_" + stNumber(i), "A"));
             stepBuilder.acknowledgeSupport(approval("SWAM_ST_" + stNumber(i), "A"));

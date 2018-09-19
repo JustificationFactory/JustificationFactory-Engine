@@ -1,4 +1,4 @@
-package fr.axonic.avek.dao;
+package fr.axonic.avek.dao.implementations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.ConnectionString;
@@ -7,6 +7,8 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.model.UpdateOptions;
+import fr.axonic.avek.dao.JerseyMapperProvider;
+import fr.axonic.avek.dao.JustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
 import org.bson.Document;
@@ -33,7 +35,11 @@ public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
     private final String databaseName;
     private final String collectionName;
 
-    private MongoJustificationSystemsDAO(String url, String databaseName, String collectionName) {
+    public MongoJustificationSystemsDAO() {
+        this("mongodb://localhost:27017", "jf", "justificationSystems");
+    }
+
+    public MongoJustificationSystemsDAO(String url, String databaseName, String collectionName) {
         this.url = url;
         this.databaseName = databaseName;
         this.collectionName = collectionName;

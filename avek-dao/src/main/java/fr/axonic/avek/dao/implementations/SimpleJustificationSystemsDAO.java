@@ -1,6 +1,8 @@
-package fr.axonic.avek.dao;
+package fr.axonic.avek.dao.implementations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.axonic.avek.dao.JerseyMapperProvider;
+import fr.axonic.avek.dao.JustificationSystemsDAO;
 import fr.axonic.avek.engine.JustificationSystem;
 import fr.axonic.avek.engine.JustificationSystemAPI;
 import org.slf4j.Logger;
@@ -16,7 +18,7 @@ public class SimpleJustificationSystemsDAO implements JustificationSystemsDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleJustificationSystemsDAO.class);
     private static final String DIR = "data";
 
-    private static final SimpleJustificationSystemsDAO INSTANCE = new SimpleJustificationSystemsDAO(DIR + "/%s.data");
+    private static final SimpleJustificationSystemsDAO INSTANCE = new SimpleJustificationSystemsDAO();
 
     public static SimpleJustificationSystemsDAO getInstance() {
         return INSTANCE;
@@ -24,7 +26,11 @@ public class SimpleJustificationSystemsDAO implements JustificationSystemsDAO {
 
     private String destinationFilePattern;
 
-    private SimpleJustificationSystemsDAO(String destinationFilePattern) {
+    public SimpleJustificationSystemsDAO() {
+        this(DIR + "/%s.data");
+    }
+
+    public SimpleJustificationSystemsDAO(String destinationFilePattern) {
         this.destinationFilePattern = destinationFilePattern;
     }
 
