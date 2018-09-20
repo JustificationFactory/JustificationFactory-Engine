@@ -1,24 +1,24 @@
-package fr.axonic.avek.service;
+package fr.axonic.avek.services;
 
-import fr.axonic.avek.engine.JustificationSystem;
+import fr.axonic.avek.databases.JustificationSystemsBD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import java.util.Map;
 
 @Path("/justification")
 public class JustificationConformanceServiceImpl implements JustificationConformanceService {
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(JustificationConformanceServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JustificationConformanceServiceImpl.class);
 
-    private Map<String, JustificationSystem> justificationSystems=JustificationSystemsBD.getInstance().getJustificationSystems();
-
+    @Inject
+    private JustificationSystemsBD justificationSystemsBD;
 
     @Override
     public Response checkJustificationSystemCompleteness(String name) {
-        boolean complete=justificationSystems.get(name).isComplete();
+        boolean complete = justificationSystemsBD.getJustificationSystems().get(name).isComplete();
         return Response.status(Response.Status.OK).entity(complete).build();
     }
 

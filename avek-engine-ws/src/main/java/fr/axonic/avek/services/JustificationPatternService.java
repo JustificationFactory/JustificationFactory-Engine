@@ -1,4 +1,4 @@
-package fr.axonic.avek.service;
+package fr.axonic.avek.services;
 
 import fr.axonic.avek.ArtifactType;
 import fr.axonic.avek.engine.pattern.Pattern;

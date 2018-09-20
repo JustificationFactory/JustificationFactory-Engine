@@ -1,10 +1,10 @@
-package fr.axonic.avek.service;
+package fr.axonic.avek.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import fr.axonic.avek.dao.JerseyMapperProvider;
-import fr.axonic.avek.dao.JustificationSystemsDAOFactory;
-import fr.axonic.avek.engine.JustificationSystem;
+import fr.axonic.avek.dao.JustificationSystemsDAO;
+import fr.axonic.avek.databases.JustificationSystemsBD;
 import fr.axonic.avek.engine.JustificationSystemAPI;
 import fr.axonic.avek.engine.StepToCreate;
 import fr.axonic.avek.engine.exception.StepBuildingException;
@@ -13,33 +13,37 @@ import fr.axonic.avek.engine.pattern.JustificationStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.Map;
 
 @Path("/justification")
 public class JustificationDiagramServiceImpl implements JustificationDiagramService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationDiagramServiceImpl.class);
 
-    private Map<String, JustificationSystem> justificationSystems = JustificationSystemsBD.getInstance().getJustificationSystems();
+    @Inject
+    private JustificationSystemsBD justificationSystemsBD;
+
+    @Inject
+    private JustificationSystemsDAO justificationSystemsDAO;
 
     @Override
     public Response constructStep(String argumentationSystem, String pattern, StepToCreate step) {
 
         try {
-            JustificationStep res = justificationSystems.get(argumentationSystem).constructStep(justificationSystems.get(argumentationSystem).getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
-            LOGGER.info("Step created on " + argumentationSystem + " with pattern " + pattern);
+            JustificationStep res = justificationSystemsBD.getJustificationSystems().get(argumentationSystem).constructStep(justificationSystemsBD.getJustificationSystems().get(argumentationSystem).getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
+            LOGGER.info("Step created on {} with pattern {}", argumentationSystem, pattern);
             try {
-                JustificationSystemsDAOFactory.getInstance().makeDAO().saveJustificationSystem(argumentationSystem, justificationSystems.get(argumentationSystem));
+                justificationSystemsDAO.saveJustificationSystem(argumentationSystem, justificationSystemsBD.getJustificationSystems().get(argumentationSystem));
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
             }
             return Response.status(Response.Status.CREATED).entity(res).build();
         } catch (StepBuildingException | WrongEvidenceException e) {
-            LOGGER.error("Error during Step creation on " + argumentationSystem + " with pattern " + pattern);
+            LOGGER.error("Error during Step creation on {} with pattern {}", argumentationSystem, pattern);
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
         }
@@ -47,19 +51,19 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
 
     @Override
     public Response clearSteps(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = justificationSystems.get(argumentationSystemId);
+        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
         if (argumentationSystem == null) {
-            LOGGER.warn("Unknown " + argumentationSystemId + ", impossible to remove");
+            LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();
         } else {
             argumentationSystem.getJustificationDiagram().getSteps().clear();
             try {
-                JustificationSystemsDAOFactory.getInstance().makeDAO().saveJustificationSystem(argumentationSystemId, argumentationSystem);
+                justificationSystemsDAO.saveJustificationSystem(argumentationSystemId, argumentationSystem);
             } catch (IOException e) {
                 LOGGER.error(e.toString());
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
             }
-            LOGGER.info(argumentationSystemId + " Justification System Justification Diagram removed");
+            LOGGER.info("{} Justification System Justification Diagram removed", argumentationSystemId);
             return Response.status(Response.Status.OK).build();
         }
     }
@@ -81,7 +85,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
 
     @Override
     public Response getMatrixTransformation(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = justificationSystems.get(argumentationSystemId);
+        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
         if (argumentationSystem == null) {
             LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();

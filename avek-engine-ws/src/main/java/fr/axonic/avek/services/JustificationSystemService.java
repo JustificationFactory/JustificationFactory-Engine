@@ -1,9 +1,6 @@
-package fr.axonic.avek.service;
+package fr.axonic.avek.services;
 
-import fr.axonic.avek.ArtifactType;
 import fr.axonic.avek.engine.JustificationSystem;
-import fr.axonic.avek.engine.StepToCreate;
-import fr.axonic.avek.engine.pattern.Pattern;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -16,7 +13,8 @@ public interface JustificationSystemService {
 
     /**
      * Add a new justification system
-     * @param name a justification system name
+     *
+     * @param name                a justification system name
      * @param justificationSystem a justification system
      * @return registered status
      */

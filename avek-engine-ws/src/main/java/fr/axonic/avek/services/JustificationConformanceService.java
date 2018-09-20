@@ -1,7 +1,10 @@
-package fr.axonic.avek.service;
+package fr.axonic.avek.services;
 
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -15,12 +18,12 @@ public interface JustificationConformanceService {
     @GET
     @Path("/operation/comparison/{justification_diagram_1_name}/{justification_diagram_2_name}")
     @Consumes(MediaType.APPLICATION_JSON)
-    Response compareJustificationDiagrams(@PathParam("{justification_diagram_1_name}") String justificationDiagram1Name,@PathParam("{justification_diagram_2_name}") String justificationDiagram2Name);
+    Response compareJustificationDiagrams(@PathParam("{justification_diagram_1_name}") String justificationDiagram1Name, @PathParam("{justification_diagram_2_name}") String justificationDiagram2Name);
 
     @GET
     @Path("/operation/derivation/{justification_diagram_1_name}/{justification_diagram_2_name}")
     @Consumes(MediaType.APPLICATION_JSON)
-    Response deriveJustificationDiagrams(@PathParam("{justification_diagram_1_name}") String justificationDiagram1Name,@PathParam("{justification_diagram_2_name}") String justificationDiagram2Name);
+    Response deriveJustificationDiagrams(@PathParam("{justification_diagram_1_name}") String justificationDiagram1Name, @PathParam("{justification_diagram_2_name}") String justificationDiagram2Name);
 
     @GET
     @Path("/operation/achievement/{justification_diagram_name}")
@@ -30,7 +33,7 @@ public interface JustificationConformanceService {
     @GET
     @Path("/operation/alignment/{justification_diagram_1_name}/{justification_diagram_2_name}")
     @Consumes(MediaType.APPLICATION_JSON)
-    Response alignJustificationDiagrams(@PathParam("{justification_diagram_1_name}") String justificationDiagram1Name,@PathParam("{justification_diagram_2_name}") String justificationDiagram2Name);
+    Response alignJustificationDiagrams(@PathParam("{justification_diagram_1_name}") String justificationDiagram1Name, @PathParam("{justification_diagram_2_name}") String justificationDiagram2Name);
 
 
 }
