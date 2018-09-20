@@ -32,3 +32,5 @@ target/
 /avek-jenkins/work/
 *.jks
 *.p12
+
+*/data/

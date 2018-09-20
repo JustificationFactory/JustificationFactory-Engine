@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>jf-webservices</artifactId>
+        <groupId>fr.axonic.jf</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <packaging>war</packaging>
+    <artifactId>jf-engine-ws</artifactId>
+    <name>Justification Factory :: Web Services :: Engine WS</name>
+
+    <properties>
+        <jetty.http.port>9999</jetty.http.port>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.axonic</groupId>
+            <artifactId>asf-validation-engine</artifactId>
+            <version>${asf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>${deployment.server}</url>
+                    <server>AXONICTomcatServer</server>
+                    <path>/jf</path>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>redeploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>redeploy-only</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <httpConnector>
+                        <port>${jetty.http.port}</port>
+                    </httpConnector>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                        <descriptor>${project.basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
+                    </webApp>
+                </configuration>
+            </plugin>
+
+            <!--<plugin>
+                <groupId>com.sebastian-daschner</groupId>
+                <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+                <version>0.16</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>analyze-jaxrs</goal>
+                        </goals>
+                        <configuration>
+                            <backend>swagger</backend>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+        </plugins>
+    </build>
+
+</project>
