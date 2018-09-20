@@ -1,11 +1,9 @@
 package fr.axonic.jf.services;
 
-
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -15,10 +13,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by cduffau on 17/03/17.
- */
-@Ignore
 public class JustificationSystemServiceImplTest extends JerseyTest {
 
     @Override
@@ -33,7 +27,7 @@ public class JustificationSystemServiceImplTest extends JerseyTest {
     public void testGetArgumentationSystems() {
         Response argumentationSystem = target("/justification/systems").request().get();
         assertNotNull(argumentationSystem);
-        assertEquals(Response.Status.OK, argumentationSystem.getStatusInfo());
+        assertEquals(200, argumentationSystem.getStatus());
 
         List systems = argumentationSystem.readEntity(List.class);
         assertNotNull(systems);
@@ -44,7 +38,7 @@ public class JustificationSystemServiceImplTest extends JerseyTest {
     public void testGetArgumentationSystem() {
         Response argumentationSystemResponse = target("/justification/CLINICAL_STUDIES").request().get();
         assertNotNull(argumentationSystemResponse);
-        assertEquals(Response.Status.OK, argumentationSystemResponse.getStatusInfo());
+        assertEquals(200, argumentationSystemResponse.getStatus());
 
         JustificationSystem justificationSystem = argumentationSystemResponse.readEntity(JustificationSystem.class);
         assertNotNull(justificationSystem);
@@ -56,7 +50,7 @@ public class JustificationSystemServiceImplTest extends JerseyTest {
 
         Response argSystem = target("/justification/system").request().post(Entity.json(argumentationSystem));
         assertNotNull(argSystem);
-        assertEquals(Response.Status.ACCEPTED, argSystem.getStatusInfo());
+        assertEquals(202, argSystem.getStatus());
 
         String system = argSystem.readEntity(String.class);
         assertNotNull(system);

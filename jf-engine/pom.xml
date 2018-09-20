@@ -13,10 +13,6 @@
     <artifactId>jf-engine</artifactId>
     <name>Justification Factory :: Engine</name>
 
-    <properties>
-        <jackson2.version>2.9.0</jackson2.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>fr.axonic</groupId>
@@ -28,36 +24,38 @@
             <artifactId>asf-validation-engine</artifactId>
             <version>${asf.version}</version>
         </dependency>
+
         <!-- JAX-RS -->
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
             <version>${jaxrs.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>${jackson2.version}</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson2.version}</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
-            <version>${jackson2.version}</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jaxrs</artifactId>
-            <version>${jackson2.version}</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>${jackson2.version}</version>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 </project>

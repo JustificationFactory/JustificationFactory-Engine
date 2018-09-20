@@ -30,7 +30,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@Ignore
 public class JustificationDiagramServiceImplTest extends JerseyTest {
 
     @Override
@@ -48,7 +47,7 @@ public class JustificationDiagramServiceImplTest extends JerseyTest {
 
         Response stepResponse = target("/justification/CLINICAL_STUDIES/1/step").request().post(Entity.json(stepToCreate));
         assertNotNull(stepResponse);
-        assertEquals(Response.Status.EXPECTATION_FAILED, stepResponse.getStatusInfo());
+        assertEquals(417, stepResponse.getStatus());
 
         List error = stepResponse.readEntity(List.class);
         assertNotNull(error);
@@ -70,7 +69,7 @@ public class JustificationDiagramServiceImplTest extends JerseyTest {
 
         Response stepResponse = target("/justification/CLINICAL_STUDIES/1/step").request().post(Entity.json(stepToCreate));
         assertNotNull(stepResponse);
-        assertEquals(Response.Status.CREATED, stepResponse.getStatusInfo());
+        assertEquals(201, stepResponse.getStatus());
 
         JustificationStep step = stepResponse.readEntity(JustificationStep.class);
         assertNotNull(step);
@@ -80,7 +79,7 @@ public class JustificationDiagramServiceImplTest extends JerseyTest {
     public void testGetTypeContent() {
         Response fields = target("/justification/type").queryParam("type", DocumentEvidence.class.getName()).request().get();
         assertNotNull(fields);
-        assertEquals(Response.Status.OK, fields.getStatusInfo());
+        assertEquals(200, fields.getStatus());
 
         String system = fields.readEntity(String.class);
         assertNotNull(system);

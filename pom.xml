@@ -19,17 +19,27 @@
     </modules>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Code repository -->
         <scmUrl>https://github.com/JustificationFactory/JustificationFactory-Engine.git</scmUrl>
         <scmConnection>scm:git:ssh://git@github.com:JustificationFactory/JustificationFactory-Engine.git</scmConnection>
+
+        <!-- Artifacts repository -->
         <nexusUrl>http://matar.axonic.lan:8082/nexus</nexusUrl>
         <nexusReleasesUrl>${nexusUrl}/content/repositories/releases/</nexusReleasesUrl>
         <nexusSnapshotsUrl>${nexusUrl}/content/repositories/snapshots/</nexusSnapshotsUrl>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jersey2.version>2.27</jersey2.version>
-        <jaxrs.version>2.1</jaxrs.version>
-        <log4j.version>2.7</log4j.version>
-        <asf.version>4.0.0-sprint5</asf.version>
+
+        <!-- Deployment server for the web services -->
         <deployment.server>http://andromeda.axonic.lan:8080/manager/text</deployment.server>
+
+        <!-- Dependencies versions -->
+        <log4j.version>2.11.1</log4j.version>
+        <jersey2.version>2.27</jersey2.version>
+        <jaxrs.version>2.1.1</jaxrs.version>
+        <jackson.version>2.9.6</jackson.version>
+        <!-- TODO Update the version of ASF!-->
+        <asf.version>4.0.0-sprint5</asf.version>
     </properties>
 
     <scm>

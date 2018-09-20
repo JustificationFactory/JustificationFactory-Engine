@@ -3,7 +3,6 @@ package fr.axonic.jf.services;
 import fr.axonic.jf.engine.pattern.Pattern;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.Application;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@Ignore
 public class JustificationPatternServiceImplTest extends JerseyTest {
 
     @Override
@@ -27,7 +25,7 @@ public class JustificationPatternServiceImplTest extends JerseyTest {
     public void testGetArgumentationSystemPattern() {
         Response argumentationSystem = target("/justification/CLINICAL_STUDIES/patterns/1").request().get();
         assertNotNull(argumentationSystem);
-        assertEquals(Response.Status.OK, argumentationSystem.getStatusInfo());
+        assertEquals(200, argumentationSystem.getStatus());
 
         Pattern pattern = argumentationSystem.readEntity(Pattern.class);
         assertNotNull(pattern);
@@ -38,7 +36,7 @@ public class JustificationPatternServiceImplTest extends JerseyTest {
     public void testGetArgumentationSystemPatterns() {
         Response argumentationSystem = target("/justification/CLINICAL_STUDIES/patterns").request().get();
         assertNotNull(argumentationSystem);
-        assertEquals(Response.Status.OK, argumentationSystem.getStatusInfo());
+        assertEquals(200, argumentationSystem.getStatus());
 
         List patterns = argumentationSystem.readEntity(List.class);
         assertNotNull(patterns);
