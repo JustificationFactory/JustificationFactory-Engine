@@ -6,7 +6,6 @@ import fr.axonic.jf.engine.constraint.pattern.intra.ReApplicablePatternConstrain
 import fr.axonic.jf.engine.diagram.JustificationDiagram;
 import fr.axonic.jf.engine.exception.AlreadyBuildingException;
 import fr.axonic.jf.engine.exception.StepBuildingException;
-import fr.axonic.jf.engine.exception.StrategyException;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.kernel.Assertion;
 import fr.axonic.jf.engine.pattern.*;
@@ -16,11 +15,6 @@ import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.engine.support.evidence.Element;
 import fr.axonic.jf.engine.support.evidence.Hypothesis;
-import fr.axonic.jf.engine.constraint.PatternConstraintException;
-import fr.axonic.jf.engine.constraint.graph.NoCycleConstraint;
-import fr.axonic.jf.engine.constraint.pattern.intra.ReApplicablePatternConstraint;
-import fr.axonic.jf.engine.exception.AlreadyBuildingException;
-import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.validation.exception.VerificationException;
 import javafx.util.Pair;
 import org.slf4j.Logger;
@@ -260,10 +254,14 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
 
     @Override
     @XmlTransient
-    public List<Pair<Pattern, JustificationStep>> matrix() {
+    public JustificationMatrix matrix() {
         List<Pair<Pattern, JustificationStep>> matrix = new ArrayList<>();
         justificationDiagram.getSteps().forEach(justificationStep -> matrix.add(new Pair<>(patternsBase.getPattern(justificationStep.getPatternId()), justificationStep)));
-        return matrix;
+
+        JustificationMatrix justificationMatrix = new JustificationMatrix();
+        justificationMatrix.setContent(matrix);
+
+        return justificationMatrix;
     }
 
     @Override
@@ -285,5 +283,4 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
                 }
         );
     }
-
 }

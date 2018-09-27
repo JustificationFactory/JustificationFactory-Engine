@@ -43,7 +43,7 @@ public interface JustificationSystemAPI<T extends PatternsBase> {
 
     boolean isComplete();
 
-    List<Pair<Pattern,JustificationStep>> matrix();
+    JustificationMatrix matrix();
 
     void resolveHypothesis(JustificationStep step, Hypothesis hypothesis, Support support) throws WrongEvidenceException, PatternConstraintException;
 
