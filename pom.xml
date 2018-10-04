@@ -23,7 +23,8 @@
 
         <!-- Code repository -->
         <scmUrl>https://github.com/JustificationFactory/JustificationFactory-Engine.git</scmUrl>
-        <scmConnection>scm:git:ssh://git@github.com:JustificationFactory/JustificationFactory-Engine.git</scmConnection>
+        <scmConnection>scm:git:git://github.com/JustificationFactory/JustificationFactory-Engine.git</scmConnection>
+        <scmDevConnection>scm:git:ssh://git@github.com:JustificationFactory/JustificationFactory-Engine.git</scmDevConnection>
 
         <!-- Artifacts repository -->
         <nexusUrl>http://matar.axonic.lan:8082/nexus</nexusUrl>
@@ -45,7 +46,7 @@
     <scm>
         <url>${scmUrl}</url>
         <connection>${scmConnection}</connection>
-        <developerConnection>${scmConnection}</developerConnection>
+        <developerConnection>${scmDevConnection}</developerConnection>
         <tag>master</tag>
     </scm>
 
