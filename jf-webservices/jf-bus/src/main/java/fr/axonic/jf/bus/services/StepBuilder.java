@@ -71,7 +71,15 @@ public class StepBuilder {
     }
 
     private void triggerOneSystemStepsBuilding(String justificationSystemName, JustificationSystem justificationSystem) throws StepBuildingException, IOException {
+        List<JustificationStep> steps = justificationSystem.getJustificationDiagram().getSteps();
+        LOGGER.info("Current system ({}): {}", steps.size(), steps.toString());
+
         List<Pattern> patterns = justificationSystem.getApplicablePatterns(knownSupports);
+
+        if (patterns.isEmpty()) {
+            LOGGER.info("No applicable pattern for {}. No action.", justificationSystemName);
+            return;
+        }
 
         LOGGER.info("{} patterns can be built with the {} known supports ({})", patterns.size(), knownSupports.size(),
                 patterns.stream().map(Pattern::getName).collect(Collectors.toList()));
@@ -106,10 +114,12 @@ public class StepBuilder {
             }
         }
 
+        justificationSystemsDAO.saveJustificationSystem(justificationSystemName, justificationSystem);
+        LOGGER.info("Saved justification system {}", justificationSystemName);
+
         if (!patterns.isEmpty()) {
+            LOGGER.info("Going to trigger the step building one more time for {}", justificationSystemName);
             triggerOneSystemStepsBuilding(justificationSystemName, justificationSystem);
-        } else {
-            justificationSystemsDAO.saveJustificationSystem(justificationSystemName, justificationSystem);
         }
     }
 }

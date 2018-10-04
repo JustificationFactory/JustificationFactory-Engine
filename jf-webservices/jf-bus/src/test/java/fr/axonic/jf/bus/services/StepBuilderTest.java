@@ -1,6 +1,5 @@
 package fr.axonic.jf.bus.services;
 
-import fr.axonic.jf.bus.services.StepBuilder;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
@@ -67,7 +66,6 @@ public class StepBuilderTest {
         assertEquals(0, stepBuilder.getBuiltSteps().size());
     }
 
-
     @Test
     public void shouldNotBuildWithUnexpectedSupports() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_CTR_0001", "A"));
@@ -76,7 +74,6 @@ public class StepBuilderTest {
         assertEquals(0, stepBuilder.getBuiltSteps().size());
     }
 
-
     @Test
     public void shouldNotBuildWithSupportsWhenMissingDependency() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0002", "A"));
@@ -84,7 +81,6 @@ public class StepBuilderTest {
 
         assertEquals(0, stepBuilder.getBuiltSteps().size());
     }
-
 
     @Test
     public void shouldBuildWithAdequateSupports() throws StepBuildingException {
@@ -117,8 +113,8 @@ public class StepBuilderTest {
 
         assertEquals(1, stepBuilder.getBuiltSteps().size());
         assertNotNull(stepBuilder.getBuiltSteps().get(0));
-        assertEquals("B",stepBuilder.getBuiltSteps().get(0).getSupports().get(0).getElement().getVersion());
-        assertEquals("B",stepBuilder.getBuiltSteps().get(0).getSupports().get(1).getElement().getVersion());
+        assertEquals("B", stepBuilder.getBuiltSteps().get(0).getSupports().get(0).getElement().getVersion());
+        assertEquals("B", stepBuilder.getBuiltSteps().get(0).getSupports().get(1).getElement().getVersion());
     }
 
     @Test
@@ -134,9 +130,10 @@ public class StepBuilderTest {
 
         assertEquals(1, stepBuilder.getBuiltSteps().size());
         assertNotNull(stepBuilder.getBuiltSteps().get(0));
-        assertEquals("C",stepBuilder.getBuiltSteps().get(0).getSupports().get(0).getElement().getVersion());
-        assertEquals("C",stepBuilder.getBuiltSteps().get(0).getSupports().get(1).getElement().getVersion());
+        assertEquals("C", stepBuilder.getBuiltSteps().get(0).getSupports().get(0).getElement().getVersion());
+        assertEquals("C", stepBuilder.getBuiltSteps().get(0).getSupports().get(1).getElement().getVersion());
     }
+
     @Test
     public void shouldNotBuildAPatternTwice() throws StepBuildingException {
         stepBuilder.acknowledgeSupport(evidence("SWAM_ST_0001", "A"));
@@ -182,7 +179,7 @@ public class StepBuilderTest {
     }
 
     private static RedmineDocumentEvidence evidence(String name, String version) {
-         RedmineDocument document = new RedmineDocument("http://aurl.com/" + name);
+        RedmineDocument document = new RedmineDocument("http://aurl.com/" + name);
         document.setVersion(version);
 
         return new RedmineDocumentEvidence(name, document);

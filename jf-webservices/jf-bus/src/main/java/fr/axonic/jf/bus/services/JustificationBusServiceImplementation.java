@@ -29,7 +29,10 @@ public class JustificationBusServiceImplementation implements JustificationBusSe
                 stepBuilder.acknowledgeSupport(support);
             } catch (StepBuildingException e) {
                 LOGGER.error("Error while transmitting supports", e);
-                return Response.serverError().build();
+                return Response.status(Response.Status.CONFLICT).build();
+            } catch (Exception e) {
+                LOGGER.error("Unexpected error", e);
+                return Response.status(400).build();
             }
         }
 

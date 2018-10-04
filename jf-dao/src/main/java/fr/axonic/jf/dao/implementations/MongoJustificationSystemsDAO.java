@@ -11,8 +11,6 @@ import fr.axonic.jf.dao.JerseyMapperProvider;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
-import fr.axonic.jf.dao.JerseyMapperProvider;
-import fr.axonic.jf.dao.JustificationSystemsDAO;
 import org.bson.Document;
 
 import java.io.IOException;
