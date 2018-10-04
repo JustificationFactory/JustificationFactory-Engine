@@ -46,6 +46,7 @@
         <url>${scmUrl}</url>
         <connection>${scmConnection}</connection>
         <developerConnection>${scmConnection}</developerConnection>
+        <tag>master</tag>
     </scm>
 
     <distributionManagement>
