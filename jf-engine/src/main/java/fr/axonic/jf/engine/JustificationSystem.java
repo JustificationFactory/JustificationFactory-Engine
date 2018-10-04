@@ -53,6 +53,23 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
         this.patternsBase = patternsBase;
     }
 
+    @XmlElement
+    private boolean isAutoSupportFillEnable() {
+        return autoSupportFillEnable;
+    }
+
+    private void setAutoSupportFillEnable(boolean autoSupportFillEnable) {
+        this.autoSupportFillEnable = autoSupportFillEnable;
+    }
+
+    @XmlElement
+    public boolean isVersioningEnable() {
+        return versioningEnable;
+    }
+
+    public void setVersioningEnable(boolean versioningEnable) {
+        this.versioningEnable = versioningEnable;
+    }
 
     @Override
     @XmlElement
