@@ -64,24 +64,6 @@
                             <skip>false</skip>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>mongo-import</id>
-                        <goals>
-                            <goal>mongo-import</goal>
-                        </goals>
-                        <configuration>
-                            <defaultImportDatabase>jf</defaultImportDatabase>
-
-                            <imports>
-                                <import>
-                                    <collection>justificationSystems</collection>
-                                    <file>src/test/resources/blank-justification-system.json</file>
-                                    <dropOnImport>false</dropOnImport>
-                                </import>
-                            </imports>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>stop</id>
                         <goals>

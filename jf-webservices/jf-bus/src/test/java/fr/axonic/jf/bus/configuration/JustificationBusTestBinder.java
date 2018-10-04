@@ -9,9 +9,19 @@ import org.glassfish.jersey.internal.inject.AbstractBinder;
 
 public class JustificationBusTestBinder extends AbstractBinder {
 
+    private JustificationSystemsDAO dao;
+
+    public JustificationBusTestBinder() {
+        dao = new MongoJustificationSystemsDAO();
+    }
+
     @Override
     protected void configure() {
-        bind(SimpleJustificationSystemsDAO.class).to(JustificationSystemsDAO.class);
+        bind(dao).to(JustificationSystemsDAO.class);
         bind(StepBuilder.class).to(StepBuilder.class);
+    }
+
+    public JustificationSystemsDAO getDao() {
+        return dao;
     }
 }
