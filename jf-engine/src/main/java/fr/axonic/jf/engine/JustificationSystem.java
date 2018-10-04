@@ -63,11 +63,11 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
     }
 
     @XmlElement
-    public boolean isVersioningEnable() {
+    private boolean isVersioningEnable() {
         return versioningEnable;
     }
 
-    public void setVersioningEnable(boolean versioningEnable) {
+    private void setVersioningEnable(boolean versioningEnable) {
         this.versioningEnable = versioningEnable;
     }
 
