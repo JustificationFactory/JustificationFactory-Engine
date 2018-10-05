@@ -1,5 +1,6 @@
 package fr.axonic.jf.bus.services;
 
+import fr.axonic.jf.bus.business.StepBuilder;
 import fr.axonic.jf.engine.exception.StepBuildingException;
 import fr.axonic.jf.engine.support.Support;
 import org.glassfish.jersey.process.internal.RequestScoped;

@@ -1,5 +1,6 @@
-package fr.axonic.jf.bus.services;
+package fr.axonic.jf.bus.business;
 
+import fr.axonic.jf.bus.business.supports.KnownSupportsDAO;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.exception.AlreadyBuildingException;
@@ -7,6 +8,7 @@ import fr.axonic.jf.engine.exception.StepBuildingException;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.pattern.JustificationStep;
 import fr.axonic.jf.engine.pattern.Pattern;
+import fr.axonic.jf.engine.pattern.PatternsBase;
 import fr.axonic.jf.engine.support.Support;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.slf4j.Logger;
@@ -28,16 +30,18 @@ public class StepBuilder {
     @Inject
     private JustificationSystemsDAO justificationSystemsDAO;
 
-    private final List<Support> knownSupports;
+    @Inject
+    private KnownSupportsDAO knownSupportsDAO;
+
     private final List<JustificationStep> builtSteps;
 
-    public StepBuilder(JustificationSystemsDAO justificationSystemsDAO) {
+    public StepBuilder(JustificationSystemsDAO justificationSystemsDAO, KnownSupportsDAO knownSupportsDAO) {
         this();
         this.justificationSystemsDAO = justificationSystemsDAO;
+        this.knownSupportsDAO = knownSupportsDAO;
     }
 
     public StepBuilder() {
-        knownSupports = new ArrayList<>();
         builtSteps = new ArrayList<>();
     }
 
@@ -47,13 +51,12 @@ public class StepBuilder {
 
     public void acknowledgeSupport(Support addedSupport) throws StepBuildingException {
         LOGGER.info("Acknowledge support \"{}\", version \"{}\"", addedSupport.getName(), addedSupport.getElement().getVersion());
-        knownSupports.add(addedSupport);
 
         try {
+            knownSupportsDAO.saveSupport(addedSupport);
             triggerStepsBuilding();
         } catch (IOException e) {
-            e.printStackTrace();
-            // TODO
+            LOGGER.error("Error while building steps", e);
         }
     }
 
@@ -66,13 +69,15 @@ public class StepBuilder {
                 continue;
             }
 
-            triggerOneSystemStepsBuilding(name, justificationSystem);
+            triggerOneSystemStepsBuilding(name, (JustificationSystem<? extends PatternsBase>) justificationSystem);
         }
     }
 
-    private void triggerOneSystemStepsBuilding(String justificationSystemName, JustificationSystem justificationSystem) throws StepBuildingException, IOException {
+    private void triggerOneSystemStepsBuilding(String justificationSystemName, JustificationSystem<? extends PatternsBase> justificationSystem) throws StepBuildingException, IOException {
         List<JustificationStep> steps = justificationSystem.getJustificationDiagram().getSteps();
-        LOGGER.info("Current system ({}): {}", steps.size(), steps.toString());
+        LOGGER.info("Current system ({}): {}", steps.size(), steps);
+
+        List<Support> knownSupports = knownSupportsDAO.loadSupports();
 
         List<Pattern> patterns = justificationSystem.getApplicablePatterns(knownSupports);
 
@@ -94,13 +99,18 @@ public class StepBuilder {
                 JustificationStep step = res.clone();
                 LOGGER.info("Step {} has been built", step.getPatternId());
 
-                // TODO What is next with this step?
                 Optional<JustificationStep> justificationStep = builtSteps.stream().filter(s -> s.getId().equals(step.getId())).findFirst();
 
                 justificationStep.ifPresent(existingStep -> {
                     List<Support> supports = new ArrayList<>(existingStep.getSupports());
                     supports.removeAll(step.getSupports());
-                    knownSupports.removeAll(supports);
+
+                    try {
+                        knownSupportsDAO.removeAllSupports(supports);
+                    } catch (IOException e) {
+                        LOGGER.error("Failed to remove supports", e);
+                    }
+
                     builtSteps.remove(existingStep);
                 });
 
@@ -108,9 +118,9 @@ public class StepBuilder {
             } catch (WrongEvidenceException e) {
                 LOGGER.error("Unexpected wrong support", e);
             } catch (AlreadyBuildingException e) {
-                LOGGER.warn("Already built exception", e);
+                LOGGER.warn("Already built", e);
             } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
+                LOGGER.error("Failed to clone", e);
             }
         }
 

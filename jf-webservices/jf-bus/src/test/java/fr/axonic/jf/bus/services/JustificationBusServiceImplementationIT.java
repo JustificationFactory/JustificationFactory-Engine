@@ -25,7 +25,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class JustificationBusServiceImplementationTestIT extends JerseyTest {
+public class JustificationBusServiceImplementationIT extends JerseyTest {
 
     private JustificationBusTestBinder binder;
 

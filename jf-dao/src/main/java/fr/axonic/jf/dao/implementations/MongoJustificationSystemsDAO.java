@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * TODO Make better use of the fact that the Justification Systems are easily translatable into JSON.
+ */
 public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
 
     private static final ObjectMapper MAPPER = new JerseyMapperProvider().getContext(null);

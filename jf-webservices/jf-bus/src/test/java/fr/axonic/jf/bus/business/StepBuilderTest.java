@@ -1,5 +1,6 @@
-package fr.axonic.jf.bus.services;
+package fr.axonic.jf.bus.business;
 
+import fr.axonic.jf.bus.business.supports.ListKnownSupportsDAO;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
@@ -56,7 +57,7 @@ public class StepBuilderTest {
             }
         };
 
-        stepBuilder = new StepBuilder(dao);
+        stepBuilder = new StepBuilder(dao, new ListKnownSupportsDAO());
     }
 
     @Test
