@@ -5,8 +5,6 @@ import fr.axonic.jf.dao.JerseyMapperProvider;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
-import fr.axonic.jf.dao.JerseyMapperProvider;
-import fr.axonic.jf.dao.JustificationSystemsDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,12 +17,6 @@ public class SimpleJustificationSystemsDAO implements JustificationSystemsDAO {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleJustificationSystemsDAO.class);
     private static final String DIR = "data";
-
-    private static final SimpleJustificationSystemsDAO INSTANCE = new SimpleJustificationSystemsDAO();
-
-    public static SimpleJustificationSystemsDAO getInstance() {
-        return INSTANCE;
-    }
 
     private String destinationFilePattern;
 

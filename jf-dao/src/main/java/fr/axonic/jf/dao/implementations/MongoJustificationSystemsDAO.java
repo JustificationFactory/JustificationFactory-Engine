@@ -16,27 +16,26 @@ import org.bson.Document;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
 
     private static final ObjectMapper MAPPER = new JerseyMapperProvider().getContext(null);
     private static final String NAME_FIELD = "name";
     private static final String SYSTEM_FIELD = "system";
-
-    // TODO Get these variables from environment?
-    private static final MongoJustificationSystemsDAO INSTANCE =
-            new MongoJustificationSystemsDAO("mongodb://localhost:27017", "jf", "justificationSystems");
-
-    public static MongoJustificationSystemsDAO getInstance() {
-        return INSTANCE;
-    }
+    private static final String JUSTIFICATION_SYSTEMS_DATABASE_URL =
+            Optional.ofNullable(System.getenv("jsDatabaseUrl")).orElse("mongodb://localhost:27017");
+    private static final String JUSTIFICATION_SYSTEMS_DATABASE_NAME =
+            Optional.ofNullable(System.getenv("jsDatabaseName")).orElse("jf");
+    private static final String JUSTIFICATION_SYSTEMS_COLLECTION =
+            Optional.ofNullable(System.getenv("jsDatabaseCollection")).orElse("justificationSystems");
 
     private final String url;
     private final String databaseName;
     private final String collectionName;
 
     public MongoJustificationSystemsDAO() {
-        this("mongodb://localhost:27017", "jf", "justificationSystems");
+        this(JUSTIFICATION_SYSTEMS_DATABASE_URL, JUSTIFICATION_SYSTEMS_DATABASE_NAME, JUSTIFICATION_SYSTEMS_COLLECTION);
     }
 
     public MongoJustificationSystemsDAO(String url, String databaseName, String collectionName) {
