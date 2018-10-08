@@ -43,7 +43,7 @@
                 <executions>
                     <execution>
                         <id>redeploy</id>
-                        <phase>deploy</phase>
+                        <!--<phase>deploy</phase>-->
                         <goals>
                             <goal>redeploy-only</goal>
                         </goals>
