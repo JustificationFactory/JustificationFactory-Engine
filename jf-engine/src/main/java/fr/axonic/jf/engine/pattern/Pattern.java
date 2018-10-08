@@ -89,7 +89,6 @@ public class Pattern extends JustificationStepAPI<InputType,OutputType> {
 		}
 		List<InputType> inputTypesRes=new ArrayList<>(this.supports);
 		inputTypesRes.removeAll(usedInputTypeList);
-		LOGGER.info(inputTypesRes.toString());
 		return inputTypesRes;
 	}
 

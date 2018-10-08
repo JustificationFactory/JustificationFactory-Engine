@@ -175,8 +175,8 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
             List<Support> usefulEvidences = filterUsefulSupports(pattern, evidences, conclusion);
             JustificationStep step = pattern.createStep(usefulEvidences, conclusion.clone());
             justificationDiagram.addStep(step);
-            LOGGER.info("Supports : " + usefulEvidences);
-            LOGGER.info("Conclusion : " + step.getConclusion());
+            LOGGER.debug("Supports : " + usefulEvidences);
+            LOGGER.debug("Conclusion : " + step.getConclusion());
             postStepCreated(step);
             return step;
         } catch (CloneNotSupportedException e) {
@@ -230,7 +230,6 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
                 }
             }
         }
-        LOGGER.info(collected.toString());
         if (collected.size() != inputTypes.size()) {
             throw new StepBuildingException("Impossible to auto fill all supports");
         }
