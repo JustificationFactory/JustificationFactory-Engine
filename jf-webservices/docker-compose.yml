@@ -3,10 +3,6 @@ services:
   justification-systems-database:
     image: mongo
     container_name: justification-systems-database
-    expose:
-      - "27017"
-    ports:
-      - "27017:27017"
 
   justification-bus:
     image: jf-bus
