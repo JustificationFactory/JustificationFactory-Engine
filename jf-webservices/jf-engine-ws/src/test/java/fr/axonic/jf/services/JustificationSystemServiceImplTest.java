@@ -35,7 +35,7 @@ public class JustificationSystemServiceImplTest extends JerseyTest {
 
     @Test
     public void testGetArgumentationSystem() {
-        Response argumentationSystemResponse = target("/justification/CLINICAL_STUDIES").request().get();
+        Response argumentationSystemResponse = target("/justification/system/CLINICAL_STUDIES").request().get();
         assertNotNull(argumentationSystemResponse);
         assertEquals(200, argumentationSystemResponse.getStatus());
 
