@@ -30,6 +30,7 @@
     </dependencies>
 
     <build>
+        <finalName>jf-engine-ws</finalName>
         <plugins>
             <plugin>
             <groupId>org.apache.tomcat.maven</groupId>
