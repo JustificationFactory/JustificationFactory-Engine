@@ -11,6 +11,8 @@ echo "mvn clean package ..."
 mvn clean package
 echo "mvn clean package done"
 
+./build-docker-images.sh
+
 echo "mvn compile..."
 mvn compile
 echo "mvn compile done"
