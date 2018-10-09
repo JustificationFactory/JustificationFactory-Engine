@@ -15,18 +15,18 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimpleJustificationSystemsDAO implements JustificationSystemsDAO {
+public class FileJustificationSystemsDAO implements JustificationSystemsDAO {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SimpleJustificationSystemsDAO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileJustificationSystemsDAO.class);
     private static final String DIR = "data";
 
     private String destinationFilePattern;
 
-    public SimpleJustificationSystemsDAO() {
+    public FileJustificationSystemsDAO() {
         this(DIR + "/%s.data");
     }
 
-    public SimpleJustificationSystemsDAO(String destinationFilePattern) {
+    public FileJustificationSystemsDAO(String destinationFilePattern) {
         this.destinationFilePattern = destinationFilePattern;
         AxonicJustificationSystemsBD.initializeJustificationsSystems(this);
     }
