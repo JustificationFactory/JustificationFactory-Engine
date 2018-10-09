@@ -2,11 +2,6 @@
 
 start_time=$(date +%s%N)
 
-echo -n "rm -rf */target"
-rm -rf */target
-rm -rf */temp
-echo " done"
-
 echo "mvn clean package ..."
 mvn clean package
 echo "mvn clean package done"

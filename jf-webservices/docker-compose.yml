@@ -5,24 +5,12 @@ services:
     container_name: justification-systems-database
 
   justification-bus:
-    image: jf-bus
-    container_name: justification-bus
+    image: jf-stack
+    container_name: justification-stack
     expose:
       - "8080"
     ports:
       - "8080:8080"
-    environment:
-      - jsDatabaseUrl=mongodb://justification-systems-database:27017
-    depends_on:
-      - justification-systems-database
-
-  justification-engine:
-    image: jf-engine-ws
-    container_name: justification-engine
-    expose:
-      - "8080"
-    ports:
-      - "8081:8080"
     environment:
       - jsDatabaseUrl=mongodb://justification-systems-database:27017
     depends_on:
