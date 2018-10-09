@@ -14,9 +14,9 @@ This works as a key/value database which values are the justification systems an
 ### Types of existing Justification Systems DAO
 
 There is some implementation of this DAO:
-* **MapJustificationSystemsDAO**: stores the pairs in a hashmap.
-* **FileJustificationSystem**: stores the pairs in the host file system.
-* **MongoJustificationSystemsDAO**: stores the pairs in a MongoDB database.
+* **[MapJustificationSystemsDAO](src/main/java/fr/axonic/jf/dao/implementations/MapJustificationSystemsDAO.java)**: stores the pairs in a hashmap.
+* **[FileJustificationSystem](src/main/java/fr/axonic/jf/dao/implementations/FileJustificationSystemsDAO.java)**: stores the pairs in the host file system.
+* **[MongoJustificationSystemsDAO](src/main/java/fr/axonic/jf/dao/implementations/MongoJustificationSystemsDAO.java)**: stores the pairs in a MongoDB database.
 
 #### MongoJustificationSystemsDAO
 
