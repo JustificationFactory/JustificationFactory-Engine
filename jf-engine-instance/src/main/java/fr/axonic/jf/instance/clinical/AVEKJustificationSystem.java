@@ -37,6 +37,11 @@ public class AVEKJustificationSystem extends JustificationSystem<ListPatternsBas
 
     public AVEKJustificationSystem() throws VerificationException, WrongEvidenceException {
         super(getAXONICPatternsBase());
+        try {
+            fillSomeSteps(this,2);
+        } catch (StrategyException | StepBuildingException e) {
+            e.printStackTrace();
+        }
     }
 
     private static ListPatternsBase getAXONICPatternsBase(){
@@ -134,7 +139,7 @@ public class AVEKJustificationSystem extends JustificationSystem<ListPatternsBas
             Support evStimulation0 = rtStimulation.create(stimulation0);
             Support evSubject0 = rtSubject.create(subject0);
             Support evActor = rtActor.create(new Actor("Chloé", Role.SENIOR_EXPERT));
-            justificationSystem.constructStep(justificationSystem.getPatternsBase().getPattern("0"), Arrays.asList(evStimulation0, evSubject0, evActor), experimentation0);
+            justificationSystem.constructStep(justificationSystem.getPatternsBase().getPattern("1"), Arrays.asList(evStimulation0, evSubject0, evActor), experimentation0);
 
         }
         if (number >= 2) {
@@ -146,7 +151,7 @@ public class AVEKJustificationSystem extends JustificationSystem<ListPatternsBas
             Conclusion<EstablishedEffect> effect0 = new EstablishEffectConclusion("Effect 0", new EstablishedEffect(null, new AList<>()));
             Support experimentationRole = rtExperimentation.create(experimentation0);
             Support evResults = rtResults.create(results0);
-            justificationSystem.constructStep(justificationSystem.getPatternsBase().getPattern("1"), Arrays.asList(experimentationRole, evResults), effect0);
+            justificationSystem.constructStep(justificationSystem.getPatternsBase().getPattern("2"), Arrays.asList(experimentationRole, evResults), effect0);
         }
     }
 }
