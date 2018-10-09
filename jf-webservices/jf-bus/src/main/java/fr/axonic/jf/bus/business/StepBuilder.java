@@ -61,7 +61,7 @@ public class StepBuilder {
     }
 
     private void triggerStepsBuilding() throws StepBuildingException, IOException {
-        for (Map.Entry<String, JustificationSystem> pair : justificationSystemsDAO.loadJustificationSystems().entrySet()) {
+        for (Map.Entry<String, JustificationSystem> pair : justificationSystemsDAO.getJustificationSystems().entrySet()) {
             String name = pair.getKey();
             JustificationSystem justificationSystem = pair.getValue();
 

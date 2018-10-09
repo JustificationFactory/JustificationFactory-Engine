@@ -30,7 +30,7 @@ public interface JustificationSystemService {
 
 
     @DELETE
-    @Path("/{justification_system_id}")
+    @Path("/system/{justification_system_id}")
     Response removeJustificationSystem(@PathParam("justification_system_id") String justificationSystemId);
 
     @GET
@@ -39,7 +39,7 @@ public interface JustificationSystemService {
     Response getJustificationSystems();
 
     @GET
-    @Path("/{justification_system_id}")
+    @Path("/system/{justification_system_id}")
     @Produces(MediaType.APPLICATION_JSON)
     Response getJustificationSystem(@PathParam("justification_system_id") String justificationSystemId);
 }

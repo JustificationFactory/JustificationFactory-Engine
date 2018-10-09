@@ -20,18 +20,18 @@ public class MongoJustificationSystemsDAOIT {
     public void initialize() throws IOException {
         dao = new MongoJustificationSystemsDAO();
 
-        dao.loadJustificationSystems().keySet().forEach(dao::removeJustificationSystem);
+        dao.getJustificationSystems().keySet().forEach(dao::removeJustificationSystem);
     }
 
     @Test
     public void shouldAddOneSystem() throws VerificationException, WrongEvidenceException, IOException {
         JustificationSystem js = JustificationSystemFactory.create(JustificationSystemEnum.REDMINE);
 
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
 
         dao.saveJustificationSystem("REDMINE", js);
 
-        assertEquals(1, dao.loadJustificationSystems().size());
+        assertEquals(1, dao.getJustificationSystems().size());
     }
 
     @Test
@@ -39,12 +39,12 @@ public class MongoJustificationSystemsDAOIT {
         JustificationSystem js1 = JustificationSystemFactory.create(JustificationSystemEnum.REDMINE);
         JustificationSystem js2 = JustificationSystemFactory.create(JustificationSystemEnum.JENKINS);
 
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
 
         dao.saveJustificationSystem("REDMINE", js1);
         dao.saveJustificationSystem("JENKINS", js2);
 
-        assertEquals(2, dao.loadJustificationSystems().size());
+        assertEquals(2, dao.getJustificationSystems().size());
     }
 
     @Test
@@ -52,38 +52,38 @@ public class MongoJustificationSystemsDAOIT {
         JustificationSystem js1 = JustificationSystemFactory.create(JustificationSystemEnum.REDMINE);
         JustificationSystem js2 = JustificationSystemFactory.create(JustificationSystemEnum.JENKINS);
 
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
 
         dao.saveJustificationSystem("REDMINE", js1);
 
-        assertEquals(1, dao.loadJustificationSystems().size());
+        assertEquals(1, dao.getJustificationSystems().size());
 
         dao.saveJustificationSystem("REDMINE", js2);
 
-        assertEquals(1, dao.loadJustificationSystems().size());
+        assertEquals(1, dao.getJustificationSystems().size());
     }
 
     @Test
     public void shouldDeleteSystem() throws VerificationException, WrongEvidenceException, IOException {
         JustificationSystem js = JustificationSystemFactory.create(JustificationSystemEnum.REDMINE);
 
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
 
         dao.saveJustificationSystem("REDMINE", js);
 
-        assertEquals(1, dao.loadJustificationSystems().size());
+        assertEquals(1, dao.getJustificationSystems().size());
 
         dao.removeJustificationSystem("REDMINE");
 
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
     }
 
     @Test
     public void shouldNotDeleteIfNotExist() throws IOException {
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
 
         dao.removeJustificationSystem("REDMINE");
 
-        assertEquals(0, dao.loadJustificationSystems().size());
+        assertEquals(0, dao.getJustificationSystems().size());
     }
 }

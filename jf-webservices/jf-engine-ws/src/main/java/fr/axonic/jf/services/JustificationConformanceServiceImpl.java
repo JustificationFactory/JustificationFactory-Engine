@@ -1,6 +1,6 @@
 package fr.axonic.jf.services;
 
-import fr.axonic.jf.databases.JustificationSystemsBD;
+import fr.axonic.jf.dao.JustificationSystemsDAO;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 
 @Path("/justification")
 @RequestScoped
@@ -16,11 +17,17 @@ public class JustificationConformanceServiceImpl implements JustificationConform
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationConformanceServiceImpl.class);
 
     @Inject
-    private JustificationSystemsBD justificationSystemsBD;
+    private JustificationSystemsDAO justificationSystemsDAO;
 
     @Override
     public Response checkJustificationSystemCompleteness(String name) {
-        boolean complete = justificationSystemsBD.getJustificationSystems().get(name).isComplete();
+        boolean complete = false;
+        try {
+            complete = justificationSystemsDAO.getJustificationSystem(name).isComplete();
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(name).build();
+        }
         return Response.status(Response.Status.OK).entity(complete).build();
     }
 

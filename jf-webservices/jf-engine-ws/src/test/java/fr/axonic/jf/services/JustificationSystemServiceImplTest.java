@@ -19,7 +19,6 @@ public class JustificationSystemServiceImplTest extends JerseyTest {
     protected Application configure() {
         ResourceConfig config = new ResourceConfig(JustificationSystemServiceImpl.class);
         config.register(new JustificationWSTestBinder());
-
         return config;
     }
 

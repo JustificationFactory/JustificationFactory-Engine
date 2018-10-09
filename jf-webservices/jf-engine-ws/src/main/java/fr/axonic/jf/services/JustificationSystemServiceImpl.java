@@ -1,9 +1,11 @@
 package fr.axonic.jf.services;
 
 import fr.axonic.jf.dao.JustificationSystemsDAO;
-import fr.axonic.jf.databases.JustificationSystemsBD;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
+import fr.axonic.jf.engine.exception.WrongEvidenceException;
+import fr.axonic.jf.engine.pattern.ListPatternsBase;
+import fr.axonic.validation.exception.VerificationException;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,22 +26,21 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationSystemServiceImpl.class);
 
-    @Inject
-    private JustificationSystemsBD justificationSystemsBD;
 
     @Inject
     private JustificationSystemsDAO justificationSystemsDAO;
 
     @Override
     public Response registerJustificationSystem(String name, JustificationSystem justificationSystem) {
-        justificationSystemsBD.getJustificationSystems().put(name, justificationSystem);
         try {
+            if(justificationSystem==null){
+                justificationSystem=new JustificationSystem<>(new ListPatternsBase());
+            }
             justificationSystemsDAO.saveJustificationSystem(name, justificationSystem);
-        } catch (IOException e) {
+        } catch (IOException | WrongEvidenceException | VerificationException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(name).build();
         }
-
         LOGGER.info("{} Justification System added", name);
 
         return Response.status(Response.Status.ACCEPTED).entity(name).build();
@@ -53,15 +54,14 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
 
     @Override
     public Response removeJustificationSystem(String argumentationSystemId) {
-        if (justificationSystemsBD.getJustificationSystems().remove(argumentationSystemId) == null) {
-            LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
-            return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();
-        }
         try {
             justificationSystemsDAO.removeJustificationSystem(argumentationSystemId);
+
         } catch (IOException e) {
             LOGGER.error(e.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
+            LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
+            return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();
+            //return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
         }
         LOGGER.info("{} Justification System removed", argumentationSystemId);
         return Response.status(Response.Status.OK).build();
@@ -69,7 +69,13 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
 
     @Override
     public Response getJustificationSystems() {
-        Set<String> argumentationSystemsID = justificationSystemsBD.getJustificationSystems().keySet();
+        Set<String> argumentationSystemsID = null;
+        try {
+            argumentationSystemsID = justificationSystemsDAO.getJustificationSystems().keySet();
+        } catch (IOException e) {
+            LOGGER.warn("No argumentation systems");
+            return Response.status(Response.Status.NOT_FOUND).entity("No justification systems").build();
+        }
         if (argumentationSystemsID.isEmpty()) {
             LOGGER.warn("No argumentation systems");
             return Response.status(Response.Status.NOT_FOUND).entity("No justification systems").build();
@@ -80,7 +86,13 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
 
     @Override
     public Response getJustificationSystem(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
+        JustificationSystemAPI argumentationSystem = null;
+        try {
+            argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+        } catch (IOException e) {
+            LOGGER.warn("Unknown {}, impossible to provide", argumentationSystemId);
+            return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();
+        }
         if (argumentationSystem == null) {
             LOGGER.warn("Unknown {}, impossible to provide", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();

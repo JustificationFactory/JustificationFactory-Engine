@@ -1,7 +1,7 @@
 package fr.axonic.jf.services;
 
 import fr.axonic.jf.ArtifactType;
-import fr.axonic.jf.databases.JustificationSystemsBD;
+import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
 import fr.axonic.jf.engine.pattern.ListPatternsBase;
@@ -10,7 +10,6 @@ import fr.axonic.jf.engine.pattern.type.SupportType;
 import fr.axonic.jf.engine.pattern.type.Type;
 import fr.axonic.jf.engine.strategy.HumanStrategy;
 import fr.axonic.jf.engine.support.evidence.Evidence;
-import fr.axonic.jf.ArtifactType;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
@@ -19,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,18 +30,30 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationPatternServiceImpl.class);
 
     @Inject
-    private JustificationSystemsBD justificationSystemsBD;
+    private JustificationSystemsDAO justificationSystemsDAO;
 
     @Override
     public Response registerPattern(String argumentationSystemId, Pattern pattern) {
-        JustificationSystem<ListPatternsBase> argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
+        JustificationSystem<ListPatternsBase> argumentationSystem = null;
+        try {
+            argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
+        }
         argumentationSystem.getPatternsBase().addPattern(pattern);
         return Response.status(Response.Status.ACCEPTED).entity(pattern.getId()).build();
     }
 
     @Override
     public Response getJustificationSystemPatterns(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
+        JustificationSystemAPI argumentationSystem = null;
+        try {
+            argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
+        }
         if (argumentationSystem == null) {
             LOGGER.warn("Unknown {}, impossible to provide", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();
@@ -52,7 +64,13 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Override
     public Response getJustificationSystemPattern(String argumentationSystemId, String pattern) {
-        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
+        JustificationSystemAPI argumentationSystem = null;
+        try {
+            argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
+        }
         if (argumentationSystem == null) {
             LOGGER.warn("Unknown {}, impossible to provide", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();
@@ -82,7 +100,13 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Override
     public Response getArtifactTypesUsable(String argumentationSystem) {
-        List<Pattern> patterns = justificationSystemsBD.getJustificationSystems().get(argumentationSystem).getPatternsBase().getPatterns();
+        List<Pattern> patterns = null;
+        try {
+            patterns = justificationSystemsDAO.getJustificationSystem(argumentationSystem).getPatternsBase().getPatterns();
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
+        }
         Set<Type> humanClasses = new HashSet<>();
         Set<Type> computedClasses = new HashSet<>();
         for (Pattern pattern : patterns) {

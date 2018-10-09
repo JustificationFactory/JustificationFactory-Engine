@@ -1,7 +1,6 @@
 package fr.axonic.jf.bus.services;
 
 import fr.axonic.jf.bus.configuration.JustificationBusTestBinder;
-import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.support.evidence.Document;
 import fr.axonic.jf.instance.JustificationSystemEnum;
@@ -15,7 +14,6 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
@@ -41,7 +39,7 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
 
     @Before
     public void initialize() throws IOException, VerificationException, WrongEvidenceException {
-        for (String name : binder.getDao().loadJustificationSystems().keySet()) {
+        for (String name : binder.getDao().getJustificationSystems().keySet()) {
             binder.getDao().removeJustificationSystem(name);
         }
 

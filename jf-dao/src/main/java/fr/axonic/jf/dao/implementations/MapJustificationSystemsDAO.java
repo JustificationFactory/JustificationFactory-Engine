@@ -4,6 +4,7 @@ import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,8 +17,13 @@ public class MapJustificationSystemsDAO implements JustificationSystemsDAO {
     }
 
     @Override
-    public Map<String, JustificationSystem> loadJustificationSystems() {
+    public Map<String, JustificationSystem> getJustificationSystems() {
         return justificationSystems;
+    }
+
+    @Override
+    public JustificationSystem getJustificationSystem(String name) throws IOException {
+        return justificationSystems.get(name);
     }
 
     @Override

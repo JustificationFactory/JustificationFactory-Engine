@@ -17,7 +17,6 @@ import fr.axonic.jf.instance.clinical.evidence.SubjectEvidence;
 import fr.axonic.validation.exception.VerificationException;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;

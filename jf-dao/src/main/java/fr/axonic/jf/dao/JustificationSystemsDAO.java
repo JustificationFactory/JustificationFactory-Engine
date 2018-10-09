@@ -10,7 +10,8 @@ import java.util.Map;
 @Resource
 public interface JustificationSystemsDAO {
 
-    Map<String, JustificationSystem> loadJustificationSystems() throws IOException;
+    Map<String, JustificationSystem> getJustificationSystems() throws IOException;
+    JustificationSystem getJustificationSystem(String name) throws IOException;
     void saveJustificationSystem(String name, JustificationSystemAPI argumentationSystem) throws IOException;
     void removeJustificationSystem(String name) throws IOException;
 }

@@ -4,10 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import fr.axonic.jf.dao.JerseyMapperProvider;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
-import fr.axonic.jf.databases.JustificationSystemsBD;
 import fr.axonic.jf.engine.JustificationSystemAPI;
 import fr.axonic.jf.engine.StepToCreate;
 import fr.axonic.jf.engine.exception.StepBuildingException;
+import fr.axonic.jf.engine.exception.StrategyException;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.pattern.JustificationStep;
 import org.glassfish.jersey.process.internal.RequestScoped;
@@ -25,8 +25,6 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationDiagramServiceImpl.class);
 
-    @Inject
-    private JustificationSystemsBD justificationSystemsBD;
 
     @Inject
     private JustificationSystemsDAO justificationSystemsDAO;
@@ -35,39 +33,42 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
     public Response constructStep(String argumentationSystem, String pattern, StepToCreate step) {
 
         try {
-            JustificationStep res = justificationSystemsBD.getJustificationSystems().get(argumentationSystem).constructStep(justificationSystemsBD.getJustificationSystems().get(argumentationSystem).getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
+            JustificationSystemAPI js = justificationSystemsDAO.getJustificationSystem(argumentationSystem);
+            JustificationStep res = js.constructStep(js.getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
             LOGGER.info("Step created on {} with pattern {}", argumentationSystem, pattern);
-            try {
-                justificationSystemsDAO.saveJustificationSystem(argumentationSystem, justificationSystemsBD.getJustificationSystems().get(argumentationSystem));
-            } catch (IOException e) {
-                LOGGER.error(e.toString());
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
-            }
+            justificationSystemsDAO.saveJustificationSystem(argumentationSystem, js);
             return Response.status(Response.Status.CREATED).entity(res).build();
-        } catch (StepBuildingException | WrongEvidenceException e) {
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystem).build();
+        } catch (StepBuildingException | WrongEvidenceException | StrategyException e) {
             LOGGER.error("Error during Step creation on {} with pattern {}", argumentationSystem, pattern);
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
         }
+
     }
 
     @Override
     public Response clearSteps(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
-        if (argumentationSystem == null) {
-            LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
-            return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();
-        } else {
-            argumentationSystem.getJustificationDiagram().getSteps().clear();
-            try {
+
+        try {
+            JustificationSystemAPI argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+            if (argumentationSystem == null) {
+                LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
+                return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();
+            } else {
+                argumentationSystem.getJustificationDiagram().getSteps().clear();
                 justificationSystemsDAO.saveJustificationSystem(argumentationSystemId, argumentationSystem);
-            } catch (IOException e) {
-                LOGGER.error(e.toString());
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
+                LOGGER.info("{} Justification System Justification Diagram removed", argumentationSystemId);
+                return Response.status(Response.Status.OK).build();
             }
-            LOGGER.info("{} Justification System Justification Diagram removed", argumentationSystemId);
-            return Response.status(Response.Status.OK).build();
+
+        } catch (IOException e) {
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
         }
+
     }
 
     @Override
@@ -87,7 +88,14 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
 
     @Override
     public Response getMatrixTransformation(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = justificationSystemsBD.getJustificationSystems().get(argumentationSystemId);
+        JustificationSystemAPI argumentationSystem = null;
+        try {
+            argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+        } catch (IOException e) {
+            LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
+            LOGGER.error(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
+        }
         if (argumentationSystem == null) {
             LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();

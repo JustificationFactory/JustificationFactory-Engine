@@ -1,5 +1,6 @@
 package fr.axonic.jf.services;
 
+import fr.axonic.jf.dao.AxonicJustificationSystemsBD;
 import fr.axonic.jf.engine.pattern.Pattern;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -17,7 +18,6 @@ public class JustificationPatternServiceImplTest extends JerseyTest {
     protected Application configure() {
         ResourceConfig config = new ResourceConfig(JustificationPatternServiceImpl.class);
         config.register(new JustificationWSTestBinder());
-
         return config;
     }
 

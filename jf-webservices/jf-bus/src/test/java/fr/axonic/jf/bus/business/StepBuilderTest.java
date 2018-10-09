@@ -16,6 +16,7 @@ import fr.axonic.validation.exception.VerificationException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,8 +43,13 @@ public class StepBuilderTest {
             }
 
             @Override
-            public Map<String, JustificationSystem> loadJustificationSystems() {
+            public Map<String, JustificationSystem> getJustificationSystems() {
                 return content;
+            }
+
+            @Override
+            public JustificationSystem getJustificationSystem(String name) throws IOException {
+                return content.get(name);
             }
 
             @Override

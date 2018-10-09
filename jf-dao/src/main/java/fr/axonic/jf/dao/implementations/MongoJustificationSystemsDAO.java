@@ -7,21 +7,27 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.model.UpdateOptions;
+import fr.axonic.jf.dao.AxonicJustificationSystemsBD;
 import fr.axonic.jf.dao.JerseyMapperProvider;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
 import org.bson.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 /**
  * TODO Make better use of the fact that the Justification Systems are easily translatable into JSON.
  */
 public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MongoJustificationSystemsDAO.class);
 
     private static final ObjectMapper MAPPER = new JerseyMapperProvider().getContext(null);
     private static final String NAME_FIELD = "name";
@@ -45,10 +51,11 @@ public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
         this.url = url;
         this.databaseName = databaseName;
         this.collectionName = collectionName;
+        AxonicJustificationSystemsBD.initializeJustificationsSystems(this);
     }
 
     @Override
-    public Map<String, JustificationSystem> loadJustificationSystems() throws IOException {
+    public Map<String, JustificationSystem> getJustificationSystems() throws IOException {
         Map<String, JustificationSystem> systems = new HashMap<>();
 
         MongoClient client = makeMongoClient();
@@ -65,6 +72,25 @@ public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
         }
 
         return systems;
+    }
+
+    @Override
+    public JustificationSystem getJustificationSystem(String name) throws IOException {
+        MongoClient client = makeMongoClient();
+        MongoCollection<Document> collection = fetchCollection(client);
+        JustificationSystem js=null;
+        try {
+            collection.find().forEach((Consumer<? super Document>) document -> LOGGER.info("collect "+ document.toJson()));
+            Document document=collection.find(new Document().append(NAME_FIELD,name)).limit(1).first();
+            LOGGER.info("aa"+document);
+            if(document!=null){
+                js = MAPPER.readValue(document.getString(SYSTEM_FIELD), JustificationSystem.class);
+            }
+        }
+        finally {
+            client.close();
+        }
+        return js;
     }
 
     @Override
