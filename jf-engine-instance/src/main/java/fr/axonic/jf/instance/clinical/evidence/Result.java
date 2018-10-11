@@ -8,12 +8,20 @@ public class Result extends Element {
 
     private AList<AString> filePaths;
 
+    public Result(){
+
+    }
+
     public Result(AList<AString> filePaths) {
         this.filePaths = filePaths;
     }
 
     public AList<AString> getFilePaths() {
         return filePaths;
+    }
+
+    private void setFilePaths(AList<AString> filePaths) {
+        this.filePaths = filePaths;
     }
 
     @Override
