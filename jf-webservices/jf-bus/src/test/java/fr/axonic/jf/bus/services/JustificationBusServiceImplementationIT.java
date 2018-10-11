@@ -1,6 +1,8 @@
 package fr.axonic.jf.bus.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import fr.axonic.jf.bus.configuration.JustificationBusTestBinder;
+import fr.axonic.jf.dao.JerseyMapperProvider;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.support.evidence.Document;
 import fr.axonic.jf.instance.JustificationSystemEnum;
@@ -8,6 +10,10 @@ import fr.axonic.jf.instance.JustificationSystemFactory;
 import fr.axonic.jf.instance.redmine.RedmineDocument;
 import fr.axonic.jf.instance.redmine.RedmineDocumentApproval;
 import fr.axonic.jf.instance.redmine.RedmineDocumentEvidence;
+import fr.axonic.jf.instance.school.documents.ProjectGradeDocument;
+import fr.axonic.jf.instance.school.evidences.ContinuousIntegrationSystemEvidence;
+import fr.axonic.jf.instance.school.evidences.ProjectGradeEvidence;
+import fr.axonic.jf.instance.school.evidences.ReadResearchArticlesEvidence;
 import fr.axonic.validation.exception.VerificationException;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -57,6 +63,32 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
 
         assertNotNull(ok);
         assertEquals(200, ok.getStatus());
+    }
+
+    @Test
+    public void shouldAcceptSchoolEvidences() {
+        TransmittedSupports supports = new TransmittedSupports();
+        supports.setSupports(Arrays.asList(
+                new ContinuousIntegrationSystemEvidence(new Document("http://ci.com")),
+                new ProjectGradeEvidence(new ProjectGradeDocument("http://grade.edu", 18)),
+                new ReadResearchArticlesEvidence(new Document("http://edu.gouv"))
+        ));
+
+        Response ok = target("/bus/supports").request().post(Entity.json(supports));
+
+        assertNotNull(ok);
+        assertEquals(200, ok.getStatus());
+    }
+
+    public static void main(String[] args) throws JsonProcessingException {
+        TransmittedSupports supports = new TransmittedSupports();
+        supports.setSupports(Arrays.asList(
+                new ContinuousIntegrationSystemEvidence(new Document("http://link-to-our-student-ci.io"))/*,
+                new ProjectGradeEvidence(new ProjectGradeDocument("http://grade.edu", 18)),
+                new ReadResearchArticlesEvidence(new Document("http://edu.gouv"))*/
+        ));
+
+        System.out.println(new JerseyMapperProvider().getContext(null).writeValueAsString(supports));
     }
 
     @Test

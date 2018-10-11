@@ -25,13 +25,11 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JustificationDiagramServiceImpl.class);
 
-
     @Inject
     private JustificationSystemsDAO justificationSystemsDAO;
 
     @Override
     public Response constructStep(String argumentationSystem, String pattern, StepToCreate step) {
-
         try {
             JustificationSystemAPI js = justificationSystemsDAO.getJustificationSystem(argumentationSystem);
             JustificationStep res = js.constructStep(js.getPatternsBase().getPattern(pattern), step.getSupports(), step.getConclusion());
@@ -46,12 +44,10 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
         }
-
     }
 
     @Override
     public Response clearSteps(String argumentationSystemId) {
-
         try {
             JustificationSystemAPI argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
             if (argumentationSystem == null) {
@@ -63,23 +59,20 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
                 LOGGER.info("{} Justification System Justification Diagram removed", argumentationSystemId);
                 return Response.status(Response.Status.OK).build();
             }
-
         } catch (IOException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
         }
-
     }
 
     @Override
     public Response getTypeContent(String type) {
         try {
-            Class clas = Class.forName(type);
+            Class clazz = Class.forName(type);
             JerseyMapperProvider jerseyMapperProvider = new JerseyMapperProvider();
-            JsonSchema schema = jerseyMapperProvider.getContext(null).generateJsonSchema(clas);
+            JsonSchema schema = jerseyMapperProvider.getContext(null).generateJsonSchema(clazz);
 
             return Response.status(Response.Status.OK).entity(jerseyMapperProvider.getContext(null).writerWithDefaultPrettyPrinter().writeValueAsString(schema)).build();
-
         } catch (ClassNotFoundException | JsonProcessingException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.EXPECTATION_FAILED).entity(e.getStackTrace()).build();
@@ -88,7 +81,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
 
     @Override
     public Response getMatrixTransformation(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = null;
+        JustificationSystemAPI argumentationSystem;
         try {
             argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
         } catch (IOException e) {
@@ -96,6 +89,7 @@ public class JustificationDiagramServiceImpl implements JustificationDiagramServ
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
         }
+
         if (argumentationSystem == null) {
             LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
             return Response.status(Response.Status.NOT_FOUND).entity("No argumentation system with id " + argumentationSystemId).build();

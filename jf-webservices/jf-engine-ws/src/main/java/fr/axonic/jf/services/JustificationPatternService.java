@@ -2,7 +2,6 @@ package fr.axonic.jf.services;
 
 import fr.axonic.jf.ArtifactType;
 import fr.axonic.jf.engine.pattern.Pattern;
-import fr.axonic.jf.ArtifactType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

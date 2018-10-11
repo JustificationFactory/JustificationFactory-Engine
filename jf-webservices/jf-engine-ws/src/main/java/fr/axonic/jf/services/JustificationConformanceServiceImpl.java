@@ -21,13 +21,14 @@ public class JustificationConformanceServiceImpl implements JustificationConform
 
     @Override
     public Response checkJustificationSystemCompleteness(String name) {
-        boolean complete = false;
+        boolean complete;
         try {
             complete = justificationSystemsDAO.getJustificationSystem(name).isComplete();
         } catch (IOException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(name).build();
         }
+
         return Response.status(Response.Status.OK).entity(complete).build();
     }
 

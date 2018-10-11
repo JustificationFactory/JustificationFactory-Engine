@@ -17,6 +17,7 @@ public class TransmittedSupports {
     }
 
     public TransmittedSupports() {
+        // For marshalling purpose.
     }
 
     @XmlElement

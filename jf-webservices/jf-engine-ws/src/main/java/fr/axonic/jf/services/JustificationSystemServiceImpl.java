@@ -3,9 +3,7 @@ package fr.axonic.jf.services;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
-import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.pattern.ListPatternsBase;
-import fr.axonic.validation.exception.VerificationException;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,20 +54,20 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
     public Response removeJustificationSystem(String argumentationSystemId) {
         try {
             justificationSystemsDAO.removeJustificationSystem(argumentationSystemId);
-
         } catch (IOException e) {
             LOGGER.error(e.toString());
             LOGGER.warn("Unknown {}, impossible to remove", argumentationSystemId);
+
             return Response.status(Response.Status.NOT_FOUND).entity("No justification system with id " + argumentationSystemId).build();
-            //return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
         }
         LOGGER.info("{} Justification System removed", argumentationSystemId);
+
         return Response.status(Response.Status.OK).build();
     }
 
     @Override
     public Response getJustificationSystems() {
-        Set<String> argumentationSystemsID = null;
+        Set<String> argumentationSystemsID;
         try {
             argumentationSystemsID = justificationSystemsDAO.getJustificationSystems().keySet();
         } catch (IOException e) {

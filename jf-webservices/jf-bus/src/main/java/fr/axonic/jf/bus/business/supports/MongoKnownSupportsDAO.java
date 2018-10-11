@@ -90,7 +90,7 @@ public class MongoKnownSupportsDAO implements KnownSupportsDAO {
     }
 
     @Override
-    public void makeEmpty() throws IOException {
+    public void makeEmpty() {
         MongoClient client = makeMongoClient();
         MongoCollection<Document> collection = fetchCollection(client);
 

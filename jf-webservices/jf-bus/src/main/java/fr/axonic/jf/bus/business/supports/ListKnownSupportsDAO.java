@@ -31,7 +31,7 @@ public class ListKnownSupportsDAO implements KnownSupportsDAO {
     }
 
     @Override
-    public void makeEmpty() throws IOException {
+    public void makeEmpty() {
         knownSupports = new ArrayList<>();
     }
 }

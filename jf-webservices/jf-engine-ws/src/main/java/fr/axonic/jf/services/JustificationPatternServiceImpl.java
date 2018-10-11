@@ -34,7 +34,7 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Override
     public Response registerPattern(String argumentationSystemId, Pattern pattern) {
-        JustificationSystem<ListPatternsBase> argumentationSystem = null;
+        JustificationSystem<ListPatternsBase> argumentationSystem;
         try {
             argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
         } catch (IOException e) {
@@ -47,7 +47,7 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Override
     public Response getJustificationSystemPatterns(String argumentationSystemId) {
-        JustificationSystemAPI argumentationSystem = null;
+        JustificationSystemAPI argumentationSystem;
         try {
             argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
         } catch (IOException e) {
@@ -64,7 +64,7 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Override
     public Response getJustificationSystemPattern(String argumentationSystemId, String pattern) {
-        JustificationSystemAPI argumentationSystem = null;
+        JustificationSystemAPI argumentationSystem;
         try {
             argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
         } catch (IOException e) {
@@ -85,10 +85,10 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
         ArtifactType artifactType = ArtifactType.valueOf(artifact.toUpperCase());
         Reflections reflections = new Reflections("fr.axonic.jf");
         List<Class> classes = new ArrayList<>();
-        for (Class clas : artifactType.getClasses()) {
-            Set<Class<? extends Evidence>> classs =
-                    reflections.getSubTypesOf(clas);
-            for (Class c : classs) {
+        for (Class clazz : artifactType.getClasses()) {
+            Set<Class<? extends Evidence>> clazzes =
+                    reflections.getSubTypesOf(clazz);
+            for (Class c : clazzes) {
                 if (!Modifier.isAbstract(c.getModifiers())) {
                     classes.add(c);
                 }
@@ -100,7 +100,7 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Override
     public Response getArtifactTypesUsable(String argumentationSystem) {
-        List<Pattern> patterns = null;
+        List<Pattern> patterns;
         try {
             patterns = justificationSystemsDAO.getJustificationSystem(argumentationSystem).getPatternsBase().getPatterns();
         } catch (IOException e) {
