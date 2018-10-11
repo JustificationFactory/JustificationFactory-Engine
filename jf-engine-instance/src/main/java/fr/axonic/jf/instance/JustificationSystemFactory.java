@@ -5,6 +5,7 @@ import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.instance.clinical.AVEKJustificationSystem;
 import fr.axonic.jf.instance.jenkins.JenkinsJustificationSystem;
 import fr.axonic.jf.instance.redmine.RedmineJustificationSystem;
+import fr.axonic.jf.instance.school.SchoolJustificationSystem;
 import fr.axonic.validation.exception.VerificationException;
 
 /**
@@ -13,11 +14,17 @@ import fr.axonic.validation.exception.VerificationException;
 public class JustificationSystemFactory {
 
     public static JustificationSystem create(JustificationSystemEnum justificationSystem) throws VerificationException, WrongEvidenceException {
-        switch (justificationSystem){
-            case JENKINS: return new JenkinsJustificationSystem();
-            case REDMINE: return new RedmineJustificationSystem();
-            case CLINICAL_STUDIES:return new AVEKJustificationSystem();
-            default: return null;
+        switch (justificationSystem) {
+            case JENKINS:
+                return new JenkinsJustificationSystem();
+            case REDMINE:
+                return new RedmineJustificationSystem();
+            case CLINICAL_STUDIES:
+                return new AVEKJustificationSystem();
+            case SCHOOL:
+                return new SchoolJustificationSystem();
+            default:
+                return null;
         }
     }
 }

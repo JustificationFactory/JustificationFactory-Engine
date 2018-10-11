@@ -1,10 +1,9 @@
 package fr.axonic.jf.engine.diagram;
 
+import fr.axonic.jf.engine.AlignedDiagrams;
 import fr.axonic.jf.engine.kernel.ComparisonType;
 import fr.axonic.jf.engine.kernel.JustificationDiagramAPI;
 import fr.axonic.jf.engine.pattern.Pattern;
-import fr.axonic.jf.engine.kernel.ComparisonType;
-import javafx.util.Pair;
 
 import javax.ws.rs.NotSupportedException;
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class JustificationPatternDiagram implements JustificationDiagramAPI<Patt
     }
 
     @Override
-    public Pair<JustificationDiagramAPI, JustificationDiagramAPI> align(Map<ComparisonType, List<Pattern>> stepsToKeep) {
+    public AlignedDiagrams align(Map<ComparisonType, List<Pattern>> stepsToKeep) {
         throw new NotSupportedException("Not yet implemented");
     }
 

@@ -16,7 +16,6 @@ import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.engine.support.evidence.Element;
 import fr.axonic.jf.engine.support.evidence.Hypothesis;
 import fr.axonic.validation.exception.VerificationException;
-import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +36,8 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
 
     protected T patternsBase;
     protected JustificationDiagram justificationDiagram;
-    //@XmlTransient
-    private final static Logger LOGGER = LoggerFactory.getLogger(JustificationSystem.class);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JustificationSystem.class);
 
     protected boolean autoSupportFillEnable = false;
     protected boolean versioningEnable = false;
@@ -48,7 +47,7 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
 
     }
 
-    public JustificationSystem(T patternsBase) throws VerificationException, WrongEvidenceException {
+    public JustificationSystem(T patternsBase) {
         this();
         this.patternsBase = patternsBase;
     }
@@ -271,8 +270,8 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
     @Override
     @XmlTransient
     public JustificationMatrix matrix() {
-        List<Pair<Pattern, JustificationStep>> matrix = new ArrayList<>();
-        justificationDiagram.getSteps().forEach(justificationStep -> matrix.add(new Pair<>(patternsBase.getPattern(justificationStep.getPatternId()), justificationStep)));
+        List<InstantiatedStep> matrix = new ArrayList<>();
+        justificationDiagram.getSteps().forEach(justificationStep -> matrix.add(new InstantiatedStep(patternsBase.getPattern(justificationStep.getPatternId()), justificationStep)));
 
         JustificationMatrix justificationMatrix = new JustificationMatrix();
         justificationMatrix.setContent(matrix);

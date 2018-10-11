@@ -78,16 +78,14 @@ public class MongoJustificationSystemsDAO implements JustificationSystemsDAO {
     public JustificationSystem getJustificationSystem(String name) throws IOException {
         MongoClient client = makeMongoClient();
         MongoCollection<Document> collection = fetchCollection(client);
-        JustificationSystem js=null;
+        JustificationSystem js = null;
         try {
-            collection.find().forEach((Consumer<? super Document>) document -> LOGGER.info("collect "+ document.toJson()));
-            Document document=collection.find(new Document().append(NAME_FIELD,name)).limit(1).first();
-            LOGGER.info("aa"+document);
-            if(document!=null){
+            Document document = collection.find(new Document().append(NAME_FIELD, name)).limit(1).first();
+
+            if (document != null) {
                 js = MAPPER.readValue(document.getString(SYSTEM_FIELD), JustificationSystem.class);
             }
-        }
-        finally {
+        } finally {
             client.close();
         }
         return js;

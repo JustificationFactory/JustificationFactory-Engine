@@ -37,7 +37,7 @@ public class JustificationSystemServiceImpl implements JustificationSystemServic
                 justificationSystem=new JustificationSystem<>(new ListPatternsBase());
             }
             justificationSystemsDAO.saveJustificationSystem(name, justificationSystem);
-        } catch (IOException | WrongEvidenceException | VerificationException e) {
+        } catch (IOException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(name).build();
         }

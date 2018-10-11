@@ -1,6 +1,6 @@
 package fr.axonic.jf.engine.kernel;
 
-import javafx.util.Pair;
+import fr.axonic.jf.engine.AlignedDiagrams;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public interface JustificationDiagramAPI<T extends JustificationStepAPI> extends
 
     Map<ComparisonType, List<T>> compare(JustificationDiagramAPI justificationDiagramAPI);
 
-    Pair<JustificationDiagramAPI,JustificationDiagramAPI> align(Map<ComparisonType, List<T>> stepsToKeep);
+    AlignedDiagrams align(Map<ComparisonType, List<T>> stepsToKeep);
 
     @XmlTransient
     default List<Assertion> getUsedAssertions(){
