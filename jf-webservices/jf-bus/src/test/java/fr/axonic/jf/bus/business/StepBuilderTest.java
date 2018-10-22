@@ -48,7 +48,7 @@ public class StepBuilderTest {
             }
 
             @Override
-            public JustificationSystem getJustificationSystem(String name) throws IOException {
+            public JustificationSystem getJustificationSystem(String name) {
                 return content.get(name);
             }
 
@@ -173,6 +173,77 @@ public class StepBuilderTest {
         }
 
         assertEquals(14, stepBuilder.getBuiltSteps().size());
+    }
+
+    @Test
+    public void shouldNotLoop() throws StepBuildingException {
+        acknowledge("SWAM_ST_0001", "A");
+        acknowledge("SWAM_ST_0003", "A");
+        acknowledge("SWAM_ST_0006", "A");
+        acknowledge("SWAM_ST_0007", "A");
+        acknowledge("SWAM_ST_0002", "A");
+        acknowledge("SWAM_ST_0004", "A");
+        acknowledge("SWAM_ST_0005", "A");
+        acknowledge("SWAM_ST_0010", "A");
+        acknowledge("SWAM_ST_0002", "B");
+        acknowledge("SWAM_ST_0003", "B");
+        acknowledge("SWAM_ST_0007", "B");
+        acknowledge("SWAM_ST_0006", "B");
+        acknowledge("SWAM_ST_0008", "A");
+        acknowledge("SWAM_ST_0001", "B");
+        acknowledge("SWAM_ST_0002", "C");
+        acknowledge("SWAM_ST_0013", "A");
+        acknowledge("SWAM_ST_0003", "C");
+        acknowledge("SWAM_ST_0011", "A");
+        acknowledge("SWAM_ST_0001", "C");
+        acknowledge("SWAM_ST_0002", "D");
+        acknowledge("SWAM_ST_0004", "B");
+        acknowledge("SWAM_ST_0013", "B");
+        acknowledge("SWAM_ST_0002", "E");
+        acknowledge("SWAM_ST_0008", "B");
+        acknowledge("SWAM_ST_0009", "A");
+        acknowledge("SWAM_ST_0012", "A");
+        acknowledge("SWAM_ST_0005", "B");
+        acknowledge("SWAM_ST_0002", "F");
+        acknowledge("SWAM_ST_0013", "C");
+        acknowledge("SWAM_ST_0001", "D");
+        acknowledge("SWAM_ST_0002", "G");
+        acknowledge("SWAM_ST_0002", "H");
+        acknowledge("SWAM_ST_0008", "C");
+        acknowledge("SWAM_ST_0013", "D");
+        acknowledge("SWAM_ST_0013", "E");
+        acknowledge("SWAM_ST_0006", "C");
+        acknowledge("SWAM_ST_0001", "E");
+        acknowledge("SWAM_ST_0001", "F");
+        acknowledge("SWAM_ST_0002", "I");
+        acknowledge("SWAM_ST_0002", "J");
+        acknowledge("SWAM_ST_0007", "C");
+        acknowledge("SWAM_ST_0007", "D");
+        acknowledge("SWAM_ST_0007", "E");
+        acknowledge("SWAM_ST_0008", "D");
+        acknowledge("SWAM_ST_0011", "B");
+        acknowledge("SWAM_ST_0013", "F");
+        acknowledge("SWAM_ST_0001", "G");
+        acknowledge("SWAM_ST_0001", "H");
+        acknowledge("SWAM_ST_0002", "K");
+        acknowledge("SWAM_ST_0002", "L");
+        acknowledge("SWAM_ST_0013", "G");
+        acknowledge("SWAM_ST_0013", "H");
+        acknowledge("SWAM_ST_0001", "I");
+        acknowledge("SWAM_ST_0002", "M");
+        acknowledge("SWAM_ST_0003", "D");
+        acknowledge("SWAM_ST_0008", "E");
+        acknowledge("SWAM_ST_0008", "F");
+        acknowledge("SWAM_ST_0013", "I");
+        acknowledge("SWAM_ST_0007", "F");
+        acknowledge("SWAM_ST_0007", "G");
+        acknowledge("SWAM_ST_0007", "H");
+        acknowledge("SWAM_ST_0001", "J");
+    }
+
+    private void acknowledge(String name, String version) throws StepBuildingException {
+        stepBuilder.acknowledgeSupport(evidence(name, version));
+        stepBuilder.acknowledgeSupport(approval(name, version));
     }
 
     private static String stNumber(int number) {

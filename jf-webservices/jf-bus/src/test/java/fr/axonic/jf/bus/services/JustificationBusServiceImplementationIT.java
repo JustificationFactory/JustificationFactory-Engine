@@ -1,8 +1,6 @@
 package fr.axonic.jf.bus.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import fr.axonic.jf.bus.configuration.JustificationBusTestBinder;
-import fr.axonic.jf.dao.JerseyMapperProvider;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.support.evidence.Document;
 import fr.axonic.jf.instance.JustificationSystemEnum;
@@ -24,6 +22,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
@@ -32,6 +31,7 @@ import static org.junit.Assert.assertNotNull;
 public class JustificationBusServiceImplementationIT extends JerseyTest {
 
     private JustificationBusTestBinder binder;
+    private TransmittedSupports supports;
 
     @Override
     protected Application configure() {
@@ -50,6 +50,9 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
         }
 
         binder.getDao().saveJustificationSystem("REDMINE", JustificationSystemFactory.create(JustificationSystemEnum.REDMINE));
+
+        supports = new TransmittedSupports();
+        supports.setSupports(new ArrayList<>());
     }
 
     @Test
@@ -67,7 +70,6 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
 
     @Test
     public void shouldAcceptSchoolEvidences() {
-        TransmittedSupports supports = new TransmittedSupports();
         supports.setSupports(Arrays.asList(
                 new ContinuousIntegrationSystemEvidence(new Document("http://ci.com")),
                 new ProjectGradeEvidence(new ProjectGradeDocument("http://grade.edu", 18)),
@@ -80,30 +82,59 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
         assertEquals(200, ok.getStatus());
     }
 
-    public static void main(String[] args) throws JsonProcessingException {
-        TransmittedSupports supports = new TransmittedSupports();
-        supports.setSupports(Arrays.asList(
-                new ContinuousIntegrationSystemEvidence(new Document("http://link-to-our-student-ci.io"))/*,
-                new ProjectGradeEvidence(new ProjectGradeDocument("http://grade.edu", 18)),
-                new ReadResearchArticlesEvidence(new Document("http://edu.gouv"))*/
-        ));
-
-        System.out.println(new JerseyMapperProvider().getContext(null).writeValueAsString(supports));
-    }
-
     @Test
     public void shouldBuildOnlyOneStep() {
-        TransmittedSupports supports = new TransmittedSupports();
-        supports.setSupports(Arrays.asList(
-                evidence("SWAM_ST_0001", "A"),
-                approval("SWAM_ST_0001", "A"),
-                evidence("SWAM_ST_0003", "A"),
-                approval("SWAM_ST_0003", "A")));
+        acknowledge("SWAM_ST_0001", "A");
+        acknowledge("SWAM_ST_0003", "A");
 
         Response ok = target("/bus/supports").request().post(Entity.json(supports));
 
         assertNotNull(ok);
         assertEquals(200, ok.getStatus());
+    }
+
+    @Test
+    public void shouldNotLoop() {
+        acknowledge("SWAM_ST_0001", "A");
+        acknowledge("SWAM_ST_0003", "A");
+        acknowledge("SWAM_ST_0006", "A");
+        acknowledge("SWAM_ST_0007", "A");
+        acknowledge("SWAM_ST_0002", "A");
+        acknowledge("SWAM_ST_0004", "A");
+        acknowledge("SWAM_ST_0005", "A");
+        acknowledge("SWAM_ST_0010", "A");
+        acknowledge("SWAM_ST_0002", "B");
+        acknowledge("SWAM_ST_0003", "B");
+        acknowledge("SWAM_ST_0007", "B");
+        acknowledge("SWAM_ST_0006", "B");
+        acknowledge("SWAM_ST_0008", "A");
+        acknowledge("SWAM_ST_0001", "B");
+        acknowledge("SWAM_ST_0002", "C");
+        acknowledge("SWAM_ST_0013", "A");
+        acknowledge("SWAM_ST_0003", "C");
+        acknowledge("SWAM_ST_0011", "A");
+        acknowledge("SWAM_ST_0001", "C");
+        acknowledge("SWAM_ST_0002", "D");
+        acknowledge("SWAM_ST_0004", "B");
+        acknowledge("SWAM_ST_0013", "B");
+        acknowledge("SWAM_ST_0002", "E");
+        acknowledge("SWAM_ST_0008", "B");
+        acknowledge("SWAM_ST_0009", "A");
+        acknowledge("SWAM_ST_0012", "A");
+
+        // FIXME 22/10/2018 : At this point, everything is fine. Then the next document make the bus loop.
+
+        acknowledge("SWAM_ST_0005", "B");
+
+        Response ok = target("/bus/supports").request().post(Entity.json(supports));
+
+        assertNotNull(ok);
+        assertEquals(200, ok.getStatus());
+    }
+
+    private void acknowledge(String name, String version) {
+        supports.getSupports().add(evidence(name, version));
+        supports.getSupports().add(approval(name, version));
     }
 
     private static RedmineDocumentEvidence evidence(String name, String version) {
