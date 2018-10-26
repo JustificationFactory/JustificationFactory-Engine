@@ -4,6 +4,7 @@ import fr.axonic.jf.engine.exception.StepBuildingException;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.engine.support.evidence.Element;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.lang.reflect.InvocationTargetException;
 
@@ -43,6 +44,15 @@ public class OutputType<T extends Conclusion> extends SupportType<T> {
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new StepBuildingException("Impossible to create conclusion from " + o, e);
         }
+    }
+
+    @XmlElement
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public InputType<T> transformToInput() {

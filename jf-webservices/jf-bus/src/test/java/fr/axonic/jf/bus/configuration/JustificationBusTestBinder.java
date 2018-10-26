@@ -12,7 +12,7 @@ public class JustificationBusTestBinder extends AbstractBinder {
     private JustificationSystemsDAO dao;
 
     public JustificationBusTestBinder() {
-        dao = new MongoJustificationSystemsDAO();
+        dao = new MongoJustificationSystemsDAO("mongodb://localhost:27018","jf","justificationSystems");
     }
 
     @Override

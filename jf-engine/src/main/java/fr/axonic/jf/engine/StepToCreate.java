@@ -3,6 +3,8 @@ package fr.axonic.jf.engine;
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
@@ -23,6 +25,8 @@ public class StepToCreate {
         this.conclusion = conclusion;
     }
 
+    @XmlElementWrapper
+    @XmlElement
     public List<Support> getSupports() {
         return supports;
     }
@@ -31,6 +35,7 @@ public class StepToCreate {
         this.supports = supports;
     }
 
+    @XmlElement
     public Conclusion getConclusion() {
         return conclusion;
     }

@@ -149,7 +149,7 @@ public class AVEKJustificationSystem extends JustificationSystem<ListPatternsBas
             // revoir avec la bonne stratgeie
             Evidence<Result> results0 = new ResultsEvidence("Result 0", new Result(new AList<>()));
             Conclusion<EstablishedEffect> effect0 = new EstablishEffectConclusion("Effect 0", new EstablishedEffect(null, new AList<>()));
-            Support experimentationRole = rtExperimentation.create(experimentation0);
+            Support experimentationRole =  rtExperimentation.create(experimentation0);
             Support evResults = rtResults.create(results0);
             justificationSystem.constructStep(justificationSystem.getPatternsBase().getPattern("2"), Arrays.asList(experimentationRole, evResults), effect0);
         }
