@@ -16,6 +16,7 @@ import fr.axonic.validation.exception.VerificationException;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.client.Entity;
@@ -94,6 +95,7 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
     }
 
     @Test
+    @Ignore
     public void shouldNotLoop() {
         acknowledge("SWAM_ST_0001", "A");
         acknowledge("SWAM_ST_0003", "A");
