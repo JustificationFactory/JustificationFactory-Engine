@@ -1,5 +1,5 @@
 # Justification Factory - Engine
-Justification Factory engine is thye core of this framework. It modelize and expose features around justification semantics throught concept, operations and relationships. 
+Justification Factory engine is thye core of this framework. It modelizes and exposes features around justification semantics throught concept, operations and relationships. 
 It is including :
 * Justification Diagrams meta-model 
 * Justification services
