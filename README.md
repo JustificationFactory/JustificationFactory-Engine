@@ -9,6 +9,9 @@ It is including :
 * Justification bus
 * Justification database
 
+## Stakeholders:
+  * Owner: Clément Duffau ([clement.duffau.02@gmail.com](clement.duffau.02@gmail.com))
+  * Contributor : Antoine Aubé ([aube.antoine@protonmail.com](aube.antoine@protonmail.com))
 ## Key concepts in meta-model
 
 ## Services documentation
