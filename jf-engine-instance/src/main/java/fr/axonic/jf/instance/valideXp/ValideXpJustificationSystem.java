@@ -27,7 +27,7 @@ import java.util.Arrays;
 
 public class ValideXpJustificationSystem extends JustificationSystem<DiagramPatternsBase> {
 
-    public SchoolJustificationSystem() throws VerificationException, WrongEvidenceException {
+    public ValideXpJustificationSystem() throws VerificationException, WrongEvidenceException {
         super(createPatternsBase());
     }
 
