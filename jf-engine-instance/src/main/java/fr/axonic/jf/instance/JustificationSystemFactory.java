@@ -6,6 +6,7 @@ import fr.axonic.jf.instance.clinical.AVEKJustificationSystem;
 import fr.axonic.jf.instance.jenkins.JenkinsJustificationSystem;
 import fr.axonic.jf.instance.redmine.RedmineJustificationSystem;
 import fr.axonic.jf.instance.school.SchoolJustificationSystem;
+import fr.axonic.jf.instance.valideXp.ValideXpJustificationSystem;
 import fr.axonic.validation.exception.VerificationException;
 
 /**
@@ -23,6 +24,8 @@ public class JustificationSystemFactory {
                 return new AVEKJustificationSystem();
             case SCHOOL:
                 return new SchoolJustificationSystem();
+            case XP_VALIDATOR:
+                return new ValideXpJustificationSystem();
             default:
                 return null;
         }
