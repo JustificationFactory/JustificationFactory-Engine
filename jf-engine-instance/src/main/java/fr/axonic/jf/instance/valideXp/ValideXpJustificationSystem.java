@@ -21,7 +21,7 @@ import fr.axonic.jf.instance.valideXp.evidence.LogEvidence;
 import fr.axonic.jf.instance.valideXp.evidence.ResultAnalyseEvidence;
 import fr.axonic.jf.instance.valideXp.evidence.XpEvidence;
 import fr.axonic.jf.instance.valideXp.strategies.ValideurDxpStrategy;
-//import fr.axonic.validation.exception.VerificationException;
+import fr.axonic.validation.exception.VerificationException;
 
 import java.util.Arrays;
 
