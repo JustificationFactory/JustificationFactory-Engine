@@ -82,7 +82,9 @@ public class StepBuilder {
         List<Pattern> patterns = justificationSystem.getApplicablePatterns(knownSupports);
 
         if (patterns.isEmpty()) {
-            LOGGER.info("No applicable pattern for {}. No action.", justificationSystemName);
+            LOGGER.info("Voici les support envoyer : ", knownSupports);
+            LOGGER.info("No applicable pattern for {}. No action. Classe = {}", justificationSystemName,justificationSystem.getClass() );
+           // LOGGER.info("La classe est {}",justificationSystem.getClass());
             return;
         }
 
