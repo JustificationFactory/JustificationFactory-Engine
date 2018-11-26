@@ -1,5 +1,6 @@
 package fr.axonic.jf.instance.valideXp.strategies;
 
+import fr.axonic.jf.engine.support.evidence.Document;
 import fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion;
 import fr.axonic.jf.instance.valideXp.ValideXpJustificationSystem;
 import fr.axonic.jf.engine.support.Support;
@@ -14,12 +15,11 @@ public class ValideurDxpStrategy extends ValideXpStrategy{
         super(name);
     }
 
-    public ValideurDxpStrategy() {
-        super(null);
-    }
-
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
-        return new ValideXpConclusion();
+
+        ValideXpConclusion conclusion = new ValideXpConclusion();
+        conclusion.setName("XP_VALIDE");
+        return conclusion;
     }
 }
