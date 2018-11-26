@@ -2,11 +2,11 @@ package fr.axonic.jf.instance;
 
 import fr.axonic.jf.engine.*;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
+import fr.axonic.jf.instance.ValidXp.ValidXpSystem;
 import fr.axonic.jf.instance.clinical.AVEKJustificationSystem;
 import fr.axonic.jf.instance.jenkins.JenkinsJustificationSystem;
 import fr.axonic.jf.instance.redmine.RedmineJustificationSystem;
 import fr.axonic.jf.instance.school.SchoolJustificationSystem;
-import fr.axonic.jf.instance.valideXp.ValideXpJustificationSystem;
 import fr.axonic.validation.exception.VerificationException;
 
 /**
@@ -24,8 +24,8 @@ public class JustificationSystemFactory {
                 return new AVEKJustificationSystem();
             case SCHOOL:
                 return new SchoolJustificationSystem();
-            case XP_VALIDATOR:
-                return new ValideXpJustificationSystem();
+            case VALID_XP_SYSTEM:
+                return new ValidXpSystem();
             default:
                 return null;
         }
