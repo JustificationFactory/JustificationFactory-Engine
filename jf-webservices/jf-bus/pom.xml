@@ -5,7 +5,7 @@
     <parent>
         <artifactId>jf-webservices</artifactId>
         <groupId>fr.axonic.jf</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.2-SNAPSHOT</version>
     </parent>
 
     <packaging>war</packaging>
@@ -61,6 +61,7 @@
                         <configuration>
                             <version>3.2.21</version>
                             <skip>false</skip>
+                            <port>27018</port>
                         </configuration>
                     </execution>
                     <execution>

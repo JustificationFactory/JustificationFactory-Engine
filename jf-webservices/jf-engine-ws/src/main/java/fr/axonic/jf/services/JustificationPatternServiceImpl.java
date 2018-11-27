@@ -53,11 +53,13 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
         JustificationSystem<ListPatternsBase> argumentationSystem;
         try {
             argumentationSystem = justificationSystemsDAO.getJustificationSystem(argumentationSystemId);
+            argumentationSystem.getPatternsBase().addPattern(pattern);
+            justificationSystemsDAO.saveJustificationSystem(argumentationSystemId,argumentationSystem);
         } catch (IOException e) {
             LOGGER.error(e.toString());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(argumentationSystemId).build();
         }
-        argumentationSystem.getPatternsBase().addPattern(pattern);
+
         return Response.status(Response.Status.ACCEPTED).entity(pattern.getId()).build();
     }
 

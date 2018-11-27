@@ -18,8 +18,7 @@ public class MongoJustificationSystemsDAOIT {
 
     @Before
     public void initialize() throws IOException {
-        dao = new MongoJustificationSystemsDAO();
-
+        dao = new MongoJustificationSystemsDAO("mongodb://localhost:27018","jf","justificationSystems");
         dao.getJustificationSystems().keySet().forEach(dao::removeJustificationSystem);
     }
 

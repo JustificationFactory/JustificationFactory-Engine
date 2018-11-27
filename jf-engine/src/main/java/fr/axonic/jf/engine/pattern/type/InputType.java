@@ -35,7 +35,7 @@ public class InputType<T extends Support> extends SupportType<T>{
 	public Support create(Support evidence) throws WrongEvidenceException {
 		if (evidence.getClass().equals(type.getClassType())){
 			evidence.setName(name);
-			return  evidence;
+			return evidence;
 		}
 		throw new WrongEvidenceException(evidence+ " is not compatible with "+ type);
 	}
