@@ -10,6 +10,10 @@ import javax.ws.rs.core.Response;
 public interface JustificationPatternService {
 
     @POST
+    @Path("/{justificationSystemId}")
+    Response instantiatePattern(@PathParam("justification_system_id") String justificationSystemId);
+
+    @POST
     @Path("/{justification_system_id}/pattern")
     @Consumes(MediaType.APPLICATION_JSON)
     Response registerPattern(@PathParam("justification_system_id") String justificationSystemId, Pattern pattern);

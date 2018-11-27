@@ -29,3 +29,10 @@ It is really alike the DAO for the known supports but the environment variables 
 | Name of the collection | ksDatabaseCollection | knownSupports             |
 
 Make sure that the six environment variables (three for the known supports, three for the justification systems) are correctly setup in the host of the bus service.
+
+## What does it?
+
+You send evidences to the bus. It checks the evidences base and compare it to the needs of the Justification Diagrams.
+If there is enough evidences to build one step, it builds it, then continues.
+
+![sequence diagram](docs/sequence-diag.png)
