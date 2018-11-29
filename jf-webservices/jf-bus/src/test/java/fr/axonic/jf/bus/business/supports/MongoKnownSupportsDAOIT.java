@@ -18,8 +18,8 @@ public class MongoKnownSupportsDAOIT {
     private MongoKnownSupportsDAO dao;
 
     @Before
-    public void initialize() throws IOException {
-        dao = new MongoKnownSupportsDAO();
+    public void initialize() {
+        dao = new MongoKnownSupportsDAO("mongodb://localhost:27018", "jf", "knownSupports");
 
         dao.makeEmpty();
     }
