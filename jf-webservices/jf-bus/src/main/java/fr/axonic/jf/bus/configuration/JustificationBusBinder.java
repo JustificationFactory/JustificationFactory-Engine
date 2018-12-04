@@ -12,7 +12,7 @@ public class JustificationBusBinder extends AbstractBinder {
     @Override
     protected void configure() {
         bind(MongoJustificationSystemsDAO.class).to(JustificationSystemsDAO.class);
-        bind(ListKnownSupportsDAO.class).to(KnownSupportsDAO.class);
+        bind(new ListKnownSupportsDAO()).to(KnownSupportsDAO.class);
         bind(StepBuilder.class).to(StepBuilder.class);
     }
 }

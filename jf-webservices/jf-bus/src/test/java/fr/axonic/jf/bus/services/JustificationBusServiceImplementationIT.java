@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -46,27 +47,68 @@ public class JustificationBusServiceImplementationIT extends JerseyTest {
 
     @Before
     public void initialize() throws IOException, VerificationException, WrongEvidenceException {
-        for (String name : binder.getDao().getJustificationSystems().keySet()) {
-            binder.getDao().removeJustificationSystem(name);
+        for (String name : binder.getJustificationSystemsDAO().getJustificationSystems().keySet()) {
+            binder.getJustificationSystemsDAO().removeJustificationSystem(name);
         }
 
-        binder.getDao().saveJustificationSystem("REDMINE", JustificationSystemFactory.create(JustificationSystemEnum.REDMINE));
+        binder.getJustificationSystemsDAO().saveJustificationSystem("REDMINE", JustificationSystemFactory.create(JustificationSystemEnum.REDMINE));
 
         supports = new TransmittedSupports();
         supports.setSupports(new ArrayList<>());
     }
 
     @Test
-    public void shouldAcceptRedmineEvidences() {
+    public void shouldAcceptRedmineEvidences() throws VerificationException, WrongEvidenceException, IOException {
+        binder.getJustificationSystemsDAO().saveJustificationSystem("REDMINE", JustificationSystemFactory.create(JustificationSystemEnum.REDMINE));
+        assertEquals(0, binder.getJustificationSystemsDAO().getJustificationSystem("REDMINE").getJustificationDiagram().getSteps().size());
+
         TransmittedSupports supports = new TransmittedSupports();
         supports.setSupports(Arrays.asList(
-                new RedmineDocumentEvidence("DOC", new RedmineDocument("DOC")),
-                new RedmineDocumentApproval("DOC_APPROVAL", new Document("DOC_APPROVAL"))));
+                new RedmineDocumentEvidence("SWAM_ST_0001", new RedmineDocument("SWAM_ST_0001")),
+                new RedmineDocumentApproval("SWAM_ST_0001_APPROVAL", new Document("SWAM_ST_0001_APPROVAL"))));
 
         Response ok = target("/bus/supports").request().post(Entity.json(supports));
 
         assertNotNull(ok);
         assertEquals(200, ok.getStatus());
+
+        assertEquals(1, binder.getJustificationSystemsDAO().getJustificationSystem("REDMINE").getJustificationDiagram().getSteps().size());
+    }
+
+    @Test
+    public void shouldAcceptRedmineEvidencesInSeveralTimes() throws IOException, VerificationException, WrongEvidenceException {
+        binder.getJustificationSystemsDAO().saveJustificationSystem("REDMINE", JustificationSystemFactory.create(JustificationSystemEnum.REDMINE));
+        assertEquals(0,
+                binder.getJustificationSystemsDAO()
+                        .getJustificationSystem("REDMINE")
+                        .getJustificationDiagram()
+                        .getSteps()
+                        .size());
+
+        TransmittedSupports supports = new TransmittedSupports();
+        supports.setSupports(Collections.singletonList(
+                new RedmineDocumentEvidence("SWAM_ST_0001", new RedmineDocument("SWAM_ST_0001"))));
+
+        Response ok = target("/bus/supports").request().post(Entity.json(supports));
+
+        assertNotNull(ok);
+        assertEquals(200, ok.getStatus());
+
+        TransmittedSupports otherSupports = new TransmittedSupports();
+        otherSupports.setSupports(Collections.singletonList(
+                new RedmineDocumentApproval("SWAM_ST_0001_APPROVAL", new Document("SWAM_ST_0001_APPROVAL"))));
+
+        Response otherOk = target("/bus/supports").request().post(Entity.json(otherSupports));
+
+        assertNotNull(otherOk);
+        assertEquals(200, otherOk.getStatus());
+
+        assertEquals(1,
+                binder.getJustificationSystemsDAO()
+                        .getJustificationSystem("REDMINE")
+                        .getJustificationDiagram()
+                        .getSteps()
+                        .size());
     }
 
     @Test
