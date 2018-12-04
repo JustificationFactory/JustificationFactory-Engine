@@ -11,7 +11,6 @@ import fr.axonic.jf.engine.pattern.type.Type;
 import fr.axonic.jf.engine.strategy.Strategy;
 import fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion;
 import fr.axonic.jf.instance.ValidXp.evidence.LogEvidence;
-import fr.axonic.jf.instance.ValidXp.evidence.LogResultsEvidence;
 import fr.axonic.jf.instance.ValidXp.evidence.XpEvidence;
 import fr.axonic.jf.instance.ValidXp.strategies.ValidXpStrategy1;
 import fr.axonic.validation.exception.VerificationException;
@@ -36,8 +35,6 @@ public class ValidXpSystem extends JustificationSystem<DiagramPatternsBase> {
         // Evidences
         // Log evidence
         InputType<LogEvidence> Log_e = new InputType<>(LogEvidence.EVIDENCE_NAME, new Type<>(LogEvidence.class, "LOG_E"));
-        // Log results evidence
-        InputType<LogResultsEvidence> Log_results_e = new InputType<>(LogResultsEvidence.EVIDENCE_NAME, new Type<>(LogResultsEvidence.class, "LOG_RESULTS_E"));
         // Xp evidence
         InputType<XpEvidence> Xp_e = new InputType<>(XpEvidence.EVIDENCE_NAME, new Type<>(XpEvidence.class, "XP_E"));
 
@@ -57,7 +54,7 @@ public class ValidXpSystem extends JustificationSystem<DiagramPatternsBase> {
         Strategy Valid_xp_s = new ValidXpStrategy1("VALID_XP_S");
 
         //PATTERN
-        Pattern Valid_xp_p = new Pattern("VALID_XP_P", "VALID_XP_P", Valid_xp_s, Arrays.asList(Log_e,Log_results_e,Xp_e), Valid_xp_c);
+        Pattern Valid_xp_p = new Pattern("VALID_XP_P", "VALID_XP_P", Valid_xp_s, Arrays.asList(Log_e,Xp_e), Valid_xp_c);
 
         jpd.addStep(Valid_xp_p);
 
