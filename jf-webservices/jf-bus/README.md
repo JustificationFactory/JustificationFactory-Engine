@@ -13,11 +13,11 @@ Content-Type: application/json
 }
 ```
 
-This route transmit supports to the bus so that he can build Justification Diagrams based on the known Justification Pattern Diagrams.
+This route transmits supports to the bus so that he can build Justification Diagrams based on the known Justification Pattern Diagrams.
 
 ## Warnings
 
-The production version of the bus use a MongoDB database both for received supports and saved justification systems.
+The production version of the bus uses a MongoDB database both for received supports and saved justification systems.
 
 The DAO for the justification systems is described in the [jf-dao module](../../jf-dao).
 It is really alike the DAO for the known supports but the environment variables to parameterize it are different:

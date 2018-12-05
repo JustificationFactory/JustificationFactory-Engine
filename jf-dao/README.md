@@ -4,16 +4,16 @@
 
 ### Justification Systems DAO interface
 
-The DAO allow modification on the known justifications systems:
+The DAO allows the usage on the known justifications systems:
 * List them all.
 * Get one in particular.
 * Save one.
 * Remove one.
-This works as a key/value database which values are the justification systems and the keys, their names.
+This works as a key/value database which the values are the justification systems and the keys, their names.
 
 ### Types of existing Justification Systems DAO
 
-There is some implementation of this DAO:
+There is some implementations of this DAO:
 * **[MapJustificationSystemsDAO](src/main/java/fr/axonic/jf/dao/implementations/MapJustificationSystemsDAO.java)**: stores the pairs in a hashmap.
 * **[FileJustificationSystem](src/main/java/fr/axonic/jf/dao/implementations/FileJustificationSystemsDAO.java)**: stores the pairs in the host file system.
 * **[MongoJustificationSystemsDAO](src/main/java/fr/axonic/jf/dao/implementations/MongoJustificationSystemsDAO.java)**: stores the pairs in a MongoDB database.
