@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "a44e5ce0-9ea4-443c-8996-8a037fc870d5",
+		"name": "Justification Factory Stack",
+		"description": "Requests samples using the stack of Justification Factory (bus & engine webservices).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bus",
+			"item": [
+				{
+					"name": "Send a support",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"supports\": [\r\n    {\r\n      \"@type\": \"fr.axonic.jf.instance.school.evidences.ContinuousIntegrationSystemEvidence\",\r\n      \"artifacts\": [\r\n        {\r\n          \"@type\": \".Document\",\r\n          \"url\": \"http://link-to-our-student-ci.io\",\r\n          \"path\": null,\r\n          \"code\": null,\r\n          \"version\": null\r\n        }\r\n      ],\r\n      \"id\": \"10cfbae43cb744ff933c2968de2055f1\",\r\n      \"name\": \"HAVE A CONTINUOUS INTEGRATION SYSTEM\",\r\n      \"element\": {\r\n        \"@type\": \".Document\",\r\n        \"url\": \"http://link-to-our-student-ci.io\",\r\n        \"path\": null,\r\n        \"code\": null,\r\n        \"version\": null\r\n      }\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/bus/rest/bus/supports",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"bus",
+								"rest",
+								"bus",
+								"supports"
+							]
+						},
+						"description": "Send a support to the bus to build new Justification Diagram steps."
+					},
+					"response": []
+				}
+			],
+			"description": "Requests related to the bus.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3bea5e0e-0385-43cd-be48-9a3e04a8b582",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69e75eea-9fa9-4c8b-a1d7-9be3ed4a9eb3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Engine webservices",
+			"item": [
+				{
+					"name": "Create a Justification System",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cec5a5fa-3279-4b90-93d7-1b9c8b0e34cd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "547cddd3-c79b-471a-8dc4-113abb4e9952",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"justificationDiagram\": {\n    \"steps\": []\n  },\n  \"patternsBase\": {\n    \"@type\": \".DiagramPatternsBase\",\n    \"patternsBaseType\": \"PATTERN_DIAGRAM\",\n    \"patterns\": [\n      {\n        \"supports\": [\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.evidences.ReadResearchArticlesEvidence\",\n                \"nameType\": \"HAVE_READ_RESEARCH_ARTICLES\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.evidences.ReadResearchArticlesEvidence\",\n              \"nameType\": \"HAVE_READ_RESEARCH_ARTICLES\"\n            },\n            \"name\": \"HAVE READ RESEARCH ARTICLES\"\n          },\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.evidences.ContinuousIntegrationSystemEvidence\",\n                \"nameType\": \"HAVE_A_CONTINUOUS_INTEGRATION_SYSTEM\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.evidences.ContinuousIntegrationSystemEvidence\",\n              \"nameType\": \"HAVE_A_CONTINUOUS_INTEGRATION_SYSTEM\"\n            },\n            \"name\": \"HAVE A CONTINUOUS INTEGRATION SYSTEM\"\n          }\n        ],\n        \"conclusion\": {\n          \"artifacts\": [\n            {\n              \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n              \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n            }\n          ],\n          \"type\": {\n            \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n            \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n          }\n        },\n        \"strategy\": {\n          \"@type\": \"fr.axonic.jf.instance.school.strategies.WorkHardStrategy\",\n          \"name\": \"WORK HARD\",\n          \"rationale\": null,\n          \"usageDomain\": null\n        },\n        \"id\": \"TAKE_THE_NECESSARY_TO_SUCCEED_STUDIES\",\n        \"name\": \"Take the necessary to succeed studies\",\n        \"inputTypes\": [\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.evidences.ReadResearchArticlesEvidence\",\n                \"nameType\": \"HAVE_READ_RESEARCH_ARTICLES\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.evidences.ReadResearchArticlesEvidence\",\n              \"nameType\": \"HAVE_READ_RESEARCH_ARTICLES\"\n            },\n            \"name\": \"HAVE READ RESEARCH ARTICLES\"\n          },\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.evidences.ContinuousIntegrationSystemEvidence\",\n                \"nameType\": \"HAVE_A_CONTINUOUS_INTEGRATION_SYSTEM\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.evidences.ContinuousIntegrationSystemEvidence\",\n              \"nameType\": \"HAVE_A_CONTINUOUS_INTEGRATION_SYSTEM\"\n            },\n            \"name\": \"HAVE A CONTINUOUS INTEGRATION SYSTEM\"\n          }\n        ],\n        \"outputType\": {\n          \"artifacts\": [\n            {\n              \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n              \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n            }\n          ],\n          \"type\": {\n            \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n            \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n          }\n        }\n      },\n      {\n        \"supports\": [\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n                \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n              \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n            },\n            \"name\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\"\n          },\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.evidences.ProjectGradeEvidence\",\n                \"nameType\": \"HAVE_GOT_A_GOOD_PROJECT_GRADE\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.evidences.ProjectGradeEvidence\",\n              \"nameType\": \"HAVE_GOT_A_GOOD_PROJECT_GRADE\"\n            },\n            \"name\": \"HAVE GOT A GOOD PROJECT GRADE\"\n          }\n        ],\n        \"conclusion\": {\n          \"artifacts\": [\n            {\n              \"classType\": \"fr.axonic.jf.instance.school.conclusions.SchoolSuccessConclusion\",\n              \"nameType\": \"SUCCEEDED_STUDIES\"\n            }\n          ],\n          \"type\": {\n            \"classType\": \"fr.axonic.jf.instance.school.conclusions.SchoolSuccessConclusion\",\n            \"nameType\": \"SUCCEEDED_STUDIES\"\n          }\n        },\n        \"strategy\": {\n          \"@type\": \"fr.axonic.jf.instance.school.strategies.GettingGoodResultsStrategy\",\n          \"name\": \"GETTING GOOD RESULTS\",\n          \"rationale\": null,\n          \"usageDomain\": null\n        },\n        \"id\": \"SCHOOL_SUCCESS\",\n        \"name\": \"School success\",\n        \"inputTypes\": [\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n                \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\",\n              \"nameType\": \"TAKE_THE_NECESSARY_TO_SUCCEED\"\n            },\n            \"name\": \"fr.axonic.jf.instance.school.conclusions.TakeTheNecessaryToSucceedSubConclusion\"\n          },\n          {\n            \"artifacts\": [\n              {\n                \"classType\": \"fr.axonic.jf.instance.school.evidences.ProjectGradeEvidence\",\n                \"nameType\": \"HAVE_GOT_A_GOOD_PROJECT_GRADE\"\n              }\n            ],\n            \"type\": {\n              \"classType\": \"fr.axonic.jf.instance.school.evidences.ProjectGradeEvidence\",\n              \"nameType\": \"HAVE_GOT_A_GOOD_PROJECT_GRADE\"\n            },\n            \"name\": \"HAVE GOT A GOOD PROJECT GRADE\"\n          }\n        ],\n        \"outputType\": {\n          \"artifacts\": [\n            {\n              \"classType\": \"fr.axonic.jf.instance.school.conclusions.SchoolSuccessConclusion\",\n              \"nameType\": \"SUCCEEDED_STUDIES\"\n            }\n          ],\n          \"type\": {\n            \"classType\": \"fr.axonic.jf.instance.school.conclusions.SchoolSuccessConclusion\",\n            \"nameType\": \"SUCCEEDED_STUDIES\"\n          }\n        }\n      }\n    ]\n  },\n  \"autoSupportFillEnable\": false,\n  \"versioningEnable\": false\n}"
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"system",
+								"{{justificationSystemName}}"
+							]
+						},
+						"description": "Add a Justification System to the Justification Factory."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a Justification System",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"system",
+								"{{justificationSystemName}}"
+							]
+						},
+						"description": "Fetch a Justification System from the Justification Diagram."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve the matrix of instantiated steps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/{{justificationSystemName}}/matrix",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"{{justificationSystemName}}",
+								"matrix"
+							]
+						},
+						"description": "Fetch a Justification System from the Justification Diagram."
+					},
+					"response": []
+				},
+				{
+					"name": "Remove a Justification System",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"system",
+								"{{justificationSystemName}}"
+							]
+						},
+						"description": "Delete a Justification System of the Justification Factory."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve the names of known Justification Systems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/systems",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"systems"
+							]
+						},
+						"description": "Fetch only the names of the known Justification Systems instances in the Justification Factory."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "863fbda3-2491-427e-a929-e79be571ab9c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a9784701-4606-4472-8db1-efcd5c496299",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5a9d2d92-c6cf-4eb7-8330-2f412028a8f0",
+			"key": "stackHostName",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "d417b644-f9d9-4ac1-a851-29e71bf6c705",
+			"key": "stackHostPort",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"id": "c0fd4cc0-eeb1-466a-b89c-6256a8c70c53",
+			"key": "justificationSystemName",
+			"value": "SCHOOL",
+			"type": "string"
+		}
+	]
+}

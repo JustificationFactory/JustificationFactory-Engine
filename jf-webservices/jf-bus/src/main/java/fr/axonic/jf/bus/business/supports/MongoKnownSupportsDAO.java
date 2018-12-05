@@ -32,6 +32,7 @@ public class MongoKnownSupportsDAO implements KnownSupportsDAO {
     private final String url;
     private final String databaseName;
     private final String collectionName;
+    private MongoClient client;
 
     public MongoKnownSupportsDAO() {
         this(KNOWN_SUPPORTS_DATABASE_URL, KNOWN_SUPPORTS_DATABASE_NAME, KNOWN_SUPPORTS_COLLECTION);
@@ -45,29 +46,27 @@ public class MongoKnownSupportsDAO implements KnownSupportsDAO {
 
     @Override
     public void saveSupport(Support support) throws IOException {
-        MongoClient client = makeMongoClient();
+        if (client == null) {
+            client = makeMongoClient();
+        }
+
         MongoCollection<Document> collection = fetchCollection(client);
 
-        try {
-            collection.insertOne(new Document().append(CONTENT_FIELD, MAPPER.writeValueAsString(support)));
-        } finally {
-            client.close();
-        }
+        collection.insertOne(new Document().append(CONTENT_FIELD, MAPPER.writeValueAsString(support)));
     }
 
     @Override
     public List<Support> loadSupports() throws IOException {
         List<Support> temporarySupports = new ArrayList<>();
 
-        MongoClient client = makeMongoClient();
+        if (client == null) {
+            client = makeMongoClient();
+        }
+
         MongoCollection<Document> collection = fetchCollection(client);
 
-        try {
-            for (Document foundDocument : collection.find()) {
-                temporarySupports.add(MAPPER.readValue(foundDocument.getString(CONTENT_FIELD), Support.class));
-            }
-        } finally {
-            client.close();
+        for (Document foundDocument : collection.find()) {
+            temporarySupports.add(MAPPER.readValue(foundDocument.getString(CONTENT_FIELD), Support.class));
         }
 
         return Collections.unmodifiableList(temporarySupports);
@@ -75,30 +74,28 @@ public class MongoKnownSupportsDAO implements KnownSupportsDAO {
 
     @Override
     public void removeAllSupports(List<Support> toBeRemoved) throws IOException {
-        MongoClient client = makeMongoClient();
+        if (client == null) {
+            client = makeMongoClient();
+        }
+
         MongoCollection<Document> collection = fetchCollection(client);
 
-        try {
-            for (Support support : toBeRemoved) {
-                Document associatedDocument = new Document().append(CONTENT_FIELD, MAPPER.writeValueAsString(support));
+        for (Support support : toBeRemoved) {
+            Document associatedDocument = new Document().append(CONTENT_FIELD, MAPPER.writeValueAsString(support));
 
-                collection.deleteMany(associatedDocument);
-            }
-        } finally {
-            client.close();
+            collection.deleteMany(associatedDocument);
         }
     }
 
     @Override
     public void makeEmpty() {
-        MongoClient client = makeMongoClient();
+        if (client == null) {
+            client = makeMongoClient();
+        }
+
         MongoCollection<Document> collection = fetchCollection(client);
 
-        try {
-            collection.drop();
-        } finally {
-            client.close();
-        }
+        collection.drop();
     }
 
     private MongoClient makeMongoClient() {
@@ -107,5 +104,11 @@ public class MongoKnownSupportsDAO implements KnownSupportsDAO {
 
     private MongoCollection<Document> fetchCollection(MongoClient client) {
         return client.getDatabase(databaseName).getCollection(collectionName);
+    }
+
+    protected void finalize() {
+        if (client != null) {
+            client.close();
+        }
     }
 }

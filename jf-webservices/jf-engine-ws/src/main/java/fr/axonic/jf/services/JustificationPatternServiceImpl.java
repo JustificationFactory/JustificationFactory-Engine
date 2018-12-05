@@ -4,12 +4,16 @@ import fr.axonic.jf.ArtifactType;
 import fr.axonic.jf.dao.JustificationSystemsDAO;
 import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.JustificationSystemAPI;
+import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.pattern.ListPatternsBase;
 import fr.axonic.jf.engine.pattern.Pattern;
 import fr.axonic.jf.engine.pattern.type.SupportType;
 import fr.axonic.jf.engine.pattern.type.Type;
 import fr.axonic.jf.engine.strategy.HumanStrategy;
 import fr.axonic.jf.engine.support.evidence.Evidence;
+import fr.axonic.jf.instance.JustificationSystemEnum;
+import fr.axonic.jf.instance.JustificationSystemFactory;
+import fr.axonic.validation.exception.VerificationException;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
@@ -31,6 +35,18 @@ public class JustificationPatternServiceImpl implements JustificationPatternServ
 
     @Inject
     private JustificationSystemsDAO justificationSystemsDAO;
+
+    @Override
+    public Response instantiatePattern(String justificationSystemId) {
+        JustificationSystemEnum jsType = JustificationSystemEnum.valueOf(justificationSystemId.toUpperCase());
+
+        try {
+            justificationSystemsDAO.saveJustificationSystem(jsType.name(), JustificationSystemFactory.create(jsType));
+            return Response.ok().build();
+        } catch (IOException | VerificationException | WrongEvidenceException e) {
+            return Response.serverError().build();
+        }
+    }
 
     @Override
     public Response registerPattern(String argumentationSystemId, Pattern pattern) {

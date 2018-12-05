@@ -54,6 +54,7 @@ public class StepBuilder {
 
         try {
             knownSupportsDAO.saveSupport(addedSupport);
+            LOGGER.info("Know {} supports after new acknowledgement: {}", knownSupportsDAO.loadSupports().size(), knownSupportsDAO.loadSupports());
             triggerStepsBuilding();
         } catch (IOException e) {
             LOGGER.error("Error while building steps", e);

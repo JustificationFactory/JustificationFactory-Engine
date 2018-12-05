@@ -1,20 +1,17 @@
 # Justification Factory - Engine
 Justification Factory engine is thye core of this framework. It modelizes and exposes features around justification semantics throught concept, operations and relationships. 
 It is including :
-* Justification Diagrams meta-model 
-* Justification services
+* Justification Diagrams meta-model (jf-engine)
+* Justification services (jd-ws)
   * Justification Diagram service
   * Justification Pattern service
   * Conformance service
-* Justification bus
-* Justification database
+* Justification bus (jf-bus)
+* Justification database (jf-dao)
 
 ## Stakeholders:
   * Owner: Clément Duffau ([clement.duffau.02@gmail.com](clement.duffau.02@gmail.com))
   * Contributor : Antoine Aubé ([aube.antoine@protonmail.com](aube.antoine@protonmail.com))
-## Key concepts in meta-model
-
-## Services documentation
 
 ## Dependencies needed
 
