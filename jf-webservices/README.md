@@ -3,7 +3,7 @@
 ## Content
 
 There is two webservices which come with Justification Factory:
-* The engine webservice (jf-engine-ws) to manipulate JDs and JPDs.
+* The engine webservice (jf-engine-ws) to manipulate Justification Diagrams and Justification Pattern Diagrams.
 * The bus (jf-bus) which automates the production of Justification Diagrams.
 
 ## Build
@@ -24,7 +24,7 @@ Beware:
 * If you use the Docker images, the urls are like ```[hostname:hostPort]/[bus or engine]/rest/[serviceName]/...```.
 * Do not forget to setup the environment variables.
 
-## How use it?
+## Usage examples
 
 You can import ```docs/jf-postman.json``` which contains some requests to interact with the bus and engine-ws.
 You need to setup an environment with some variables (stackHostName, stackHostPort, justificationSystemName, ...) before it is usable.
