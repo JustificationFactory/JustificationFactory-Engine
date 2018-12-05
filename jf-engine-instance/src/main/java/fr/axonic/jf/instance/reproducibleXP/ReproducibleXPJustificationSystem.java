@@ -42,7 +42,6 @@ public class ReproducibleXPJustificationSystem extends JustificationSystem<Diagr
         //Strategies
         TopLevelReproducibleXPStrategy reproducibleXPStrategy = new TopLevelReproducibleXPStrategy("REPRODUCIBLE_XP_STRATEGY");
 
-
         ReproducibleMetricStrategy reproducibleMetricStrategy = new ReproducibleMetricStrategy("REPRODUCIBLE_METRICS_STRATEGY");
         AccuracyMetricStrategy accuracyMetricStrategy = new AccuracyMetricStrategy("ACCURACY_STRATEGY");
         TotalTimeMetricStrategy totalTimeMetricStrategy =  new TotalTimeMetricStrategy("TOTALTIME_STRATEGY");
@@ -77,7 +76,7 @@ public class ReproducibleXPJustificationSystem extends JustificationSystem<Diagr
        //Patterns
        Pattern accuracyPattern = new Pattern("ACCURACY_PATTERN","ACCURACY_PATTERN",accuracyMetricStrategy,accuracySupports,accuracyMetricsConclusion);
 
-        Pattern totaltimePattern = new Pattern("TOTALTIME_PATTERN","TOTALTIME_PATTERN",totalTimeMetricStrategy,totaltimeSupports,totalTimeMetricsConclusion);
+       Pattern totaltimePattern = new Pattern("TOTALTIME_PATTERN","TOTALTIME_PATTERN",totalTimeMetricStrategy,totaltimeSupports,totalTimeMetricsConclusion);
 
         //Pattern which takes two conclusions (conclusion of the accuracy metric analysis and conclusion of the total-time metric analysis)
         Pattern reproducibleMetricsPattern = new Pattern("REPRODUCIBLE_METRICS_PATTERN","REPRODUCIBLE_METRICS_PATTERN",reproducibleMetricStrategy,metricsConclusionsSupports,reproducibleMetricsConclusion);

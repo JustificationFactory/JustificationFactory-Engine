@@ -6,6 +6,7 @@ import fr.axonic.jf.instance.ValidXp.ValidXpSystem;
 import fr.axonic.jf.instance.clinical.AVEKJustificationSystem;
 import fr.axonic.jf.instance.jenkins.JenkinsJustificationSystem;
 import fr.axonic.jf.instance.redmine.RedmineJustificationSystem;
+import fr.axonic.jf.instance.reproducibleXP.ReproducibleXPJustificationSystem;
 import fr.axonic.jf.instance.school.SchoolJustificationSystem;
 import fr.axonic.validation.exception.VerificationException;
 
@@ -26,6 +27,8 @@ public class JustificationSystemFactory {
                 return new SchoolJustificationSystem();
             case VALID_XP_SYSTEM:
                 return new ValidXpSystem();
+            case REPRODUCIBLE_XP:
+                return new ReproducibleXPJustificationSystem();
             default:
                 return null;
         }

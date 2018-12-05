@@ -1,0 +1,82 @@
+{
+        "supports": [
+          {
+            "artifacts": [
+              {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+                "nameType": "METRICS_CONCLUSION"
+              }
+            ],
+            "type": {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+              "nameType": "METRICS_CONCLUSION"
+            },
+            "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion"
+          }
+        ],
+
+
+
+
+
+        "conclusion": {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleXPConclusion",
+              "nameType": "REPRODUCIBLE_XP_CONCLUSION"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleXPConclusion",
+            "nameType": "REPRODUCIBLE_XP_CONCLUSION"
+          }
+        },
+
+
+
+
+        "strategy": {
+          "@type": "fr.axonic.jf.instance.reproducibleXP.strategies.TopLevelReproducibleXPStrategy",
+          "name": "REPRODUCIBLE_XP_STRATEGY",
+          "rationale": null,
+          "usageDomain": null
+        },
+
+
+
+
+        "id": "REPRODUCIBLE_XP_PATTERN",
+        "name": "REPRODUCIBLE_XP_PATTERN"
+
+        ,
+        "inputTypes": [
+            {
+              "artifacts": [
+                {
+                  "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+                  "nameType": "METRICS_CONCLUSION"
+                }
+              ],
+              "type": {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+                "nameType": "METRICS_CONCLUSION"
+              },
+              "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion"
+            }
+        ],
+
+
+
+        "outputType": {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleXPConclusion",
+              "nameType": "REPRODUCIBLE_XP_CONCLUSION"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleXPConclusion",
+            "nameType": "REPRODUCIBLE_XP_CONCLUSION"
+          }
+        }
+      }

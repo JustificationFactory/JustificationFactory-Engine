@@ -1,0 +1,82 @@
+{
+        "supports": [
+          {
+            "artifacts": [
+              {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.evidences.AccuracyMetric",
+                "nameType": "ACCURACY_METRIC"
+              }
+            ],
+            "type": {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.evidences.AccuracyMetric",
+              "nameType": "ACCURACY_METRIC"
+            },
+            "name": "ACCURACY_METRIC"
+          }
+        ],
+
+
+
+
+
+        "conclusion": {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+              "nameType": "ACCURACY_CONCLUSION"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+            "nameType": "ACCURACY_CONCLUSION"
+          }
+        },
+
+
+
+
+        "strategy": {
+          "@type": "fr.axonic.jf.instance.reproducibleXP.strategies.AccuracyMetricStrategy",
+          "name": "ACCURACY_STRATEGY",
+          "rationale": null,
+          "usageDomain": null
+        },
+
+
+
+
+        "id": "ACCURACY_PATTERN",
+        "name": "ACCURACY_PATTERN"
+
+        ,
+        "inputTypes": [
+        {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.evidences.AccuracyMetric",
+              "nameType": "ACCURACY_METRIC"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.evidences.AccuracyMetric",
+            "nameType": "ACCURACY_METRIC"
+          },
+          "name": "ACCURACY_METRIC"
+        }
+        ],
+
+
+
+        "outputType": {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+              "nameType": "ACCURACY_CONCLUSION"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+            "nameType": "ACCURACY_CONCLUSION"
+          }
+        }
+      }

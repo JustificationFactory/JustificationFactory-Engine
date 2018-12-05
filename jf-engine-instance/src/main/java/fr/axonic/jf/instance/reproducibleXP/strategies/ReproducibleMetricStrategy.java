@@ -13,6 +13,10 @@ public class ReproducibleMetricStrategy extends ReproducibleXPStrategy  {
         super(name);
     }
 
+    public ReproducibleMetricStrategy()  {
+        super(null);
+    }
+
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
         //TODO: Analyse conclusions of metrics strategies & return conclusion

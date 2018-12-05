@@ -12,6 +12,10 @@ public class AccuracyMetricStrategy extends ReproducibleXPStrategy {
         super(name);
     }
 
+    public AccuracyMetricStrategy()  {
+        super(null);
+    }
+
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
         //TODO: Analyse metric(s) in the supportList parameter in order to give a conclusion regarding reproducibility

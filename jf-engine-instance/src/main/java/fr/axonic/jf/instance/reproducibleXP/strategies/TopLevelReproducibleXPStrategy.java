@@ -12,6 +12,10 @@ public class TopLevelReproducibleXPStrategy extends ReproducibleXPStrategy {
         super(name);
     }
 
+    public TopLevelReproducibleXPStrategy()  {
+        super(null);
+    }
+
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
         //TODO: Analyse validXP conclusions and conclusions of metrics strategies & return conclusion

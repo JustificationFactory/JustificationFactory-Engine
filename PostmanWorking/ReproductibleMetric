@@ -1,0 +1,110 @@
+{
+        "supports": [
+          {
+            "artifacts": [
+              {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+                "nameType": "ACCURACY_CONCLUSION"
+              }
+            ],
+            "type": {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+              "nameType": "ACCURACY_CONCLUSION"
+            },
+            "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion"
+          },
+
+          {
+            "artifacts": [
+              {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
+                "nameType": "TOTALTIME_CONCLUSION"
+              }
+            ],
+            "type": {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
+              "nameType": "TOTALTIME_CONCLUSION"
+            },
+            "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion"
+          }
+        ],
+
+
+
+
+
+        "conclusion": {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+              "nameType": "METRICS_CONCLUSION"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+            "nameType": "METRICS_CONCLUSION"
+          }
+        },
+
+
+
+
+        "strategy": {
+          "@type": "fr.axonic.jf.instance.reproducibleXP.strategies.ReproducibleMetricStrategy",
+          "name": "REPRODUCIBLE_METRICS_STRATEGY",
+          "rationale": null,
+          "usageDomain": null
+        },
+
+
+
+
+        "id": "REPRODUCIBLE_METRICS_PATTERN",
+        "name": "REPRODUCIBLE_METRICS_PATTERN"
+
+        ,
+        "inputTypes": [
+            {
+              "artifacts": [
+                {
+                  "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+                  "nameType": "ACCURACY_CONCLUSION"
+                }
+              ],
+              "type": {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+                "nameType": "ACCURACY_CONCLUSION"
+              },
+              "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion"
+            },
+
+            {
+              "artifacts": [
+                {
+                  "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
+                  "nameType": "TOTALTIME_CONCLUSION"
+                }
+              ],
+              "type": {
+                "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
+                "nameType": "TOTALTIME_CONCLUSION"
+              },
+              "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion"
+            }
+        ],
+
+
+
+        "outputType": {
+          "artifacts": [
+            {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+              "nameType": "METRICS_CONCLUSION"
+            }
+          ],
+          "type": {
+            "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
+            "nameType": "METRICS_CONCLUSION"
+          }
+        }
+      }

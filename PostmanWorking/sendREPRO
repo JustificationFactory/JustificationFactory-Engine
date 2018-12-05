@@ -1,0 +1,50 @@
+{
+  "supports": [
+    {
+      "@type": "fr.axonic.jf.instance.reproducibleXP.evidences.AccuracyMetric",
+      "artifacts": [
+        {
+          "@type": ".Document",
+          "url": "http://link-to-our-student-ci.io",
+          "path": null,
+          "code": null,
+          "version": null
+        }
+      ],
+      "id": "10cfbae43cb744ff933c2968de2055f1",
+      "name": "ACCURACY_METRIC",
+      "element": {
+        "@type": ".Document",
+        "url": "http://link-to-our-student-ci.io",
+        "path": null,
+        "code": null,
+        "version": null
+      }
+    },
+
+
+    {
+      "@type": "fr.axonic.jf.instance.reproducibleXP.evidences.TotalTimeMetric",
+      "artifacts": [
+        {
+          "@type": ".Document",
+          "url": "http://link-to-our-student-ci.io",
+          "path": null,
+          "code": null,
+          "version": null
+        }
+      ],
+      "id": "10cfbae43cb744ff933c2968de2055f2",
+      "name": "TOTALTIME_METRIC",
+      "element": {
+        "@type": ".Document",
+        "url": "http://link-to-our-student-ci.io",
+        "path": null,
+        "code": null,
+        "version": null
+      }
+    }
+
+
+  ]
+}
