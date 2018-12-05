@@ -1,4 +1,11 @@
 # Justification Factory - Engine
+
+
+## Stakeholders
+  * Owner: Clément Duffau ([clement.duffau.02@gmail.com](clement.duffau.02@gmail.com))
+  * Contributor : Antoine Aubé ([aube.antoine@protonmail.com](aube.antoine@protonmail.com))
+
+## Global Architecture
 Justification Factory engine is thye core of this framework. It modelizes and exposes features around justification semantics throught concept, operations and relationships. 
 It is including :
 * Justification Diagrams meta-model (jf-engine)
@@ -9,9 +16,8 @@ It is including :
 * Justification bus (jf-bus)
 * Justification database (jf-dao)
 
-## Stakeholders:
-  * Owner: Clément Duffau ([clement.duffau.02@gmail.com](clement.duffau.02@gmail.com))
-  * Contributor : Antoine Aubé ([aube.antoine@protonmail.com](aube.antoine@protonmail.com))
+![global-achitecture](docs/global-architecture.png)
+
 
 ## Dependencies needed
 
