@@ -1,7 +1,11 @@
-## Key concepts in meta-model
+# Justification Factory :: Engine
+
+## Content
+
+### Key concepts in meta-model
 
 ![meta-model](docs/meta-model.png)
 
-## Implementations 
+### Implementations 
 
 Examples are given in ```../jf-engine-instance```
