@@ -93,14 +93,14 @@
             "artifacts": [
               {
                 "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-                "nameType": "METRICS_CONCLUSION"
+                "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
               }
             ],
             "type": {
               "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-              "nameType": "METRICS_CONCLUSION"
+              "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
             },
-            "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion"
+            "name": "REPRODUCIBLE_METRICS_CONCLUSION"
           }
         ],
 
@@ -143,14 +143,14 @@
               "artifacts": [
                 {
                   "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-                  "nameType": "METRICS_CONCLUSION"
+                  "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
                 }
               ],
               "type": {
                 "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-                "nameType": "METRICS_CONCLUSION"
+                "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
               },
-              "name": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion"
+              "name": "REPRODUCIBLE_METRICS_CONCLUSION"
             }
         ],
 
@@ -169,18 +169,24 @@
           }
         }
       }
-,{
+
+
+
+
+
+
+      ,{
         "supports": [
           {
             "artifacts": [
               {
                 "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
-                "nameType": "ACCURACY_CONCLUSION"
+                "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion"
               }
             ],
             "type": {
               "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
-              "nameType": "ACCURACY_CONCLUSION"
+              "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion"
             },
             "name": "ACCURACY_CONCLUSION"
           },
@@ -189,12 +195,12 @@
             "artifacts": [
               {
                 "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
-                "nameType": "TOTALTIME_CONCLUSION"
+                "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion"
               }
             ],
             "type": {
               "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
-              "nameType": "TOTALTIME_CONCLUSION"
+              "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion"
             },
             "name": "TOTALTIME_CONCLUSION"
           }
@@ -208,12 +214,12 @@
           "artifacts": [
             {
               "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-              "nameType": "METRICS_CONCLUSION"
+              "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
             }
           ],
           "type": {
             "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-            "nameType": "METRICS_CONCLUSION"
+            "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
           }
         },
 
@@ -236,32 +242,32 @@
         ,
         "inputTypes": [
             {
-              "artifacts": [
-                {
-                  "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
-                  "nameType": "ACCURACY_CONCLUSION"
-                }
-              ],
-              "type": {
+            "artifacts": [
+              {
                 "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
-                "nameType": "ACCURACY_CONCLUSION"
-              },
-              "name": "ACCURACY_CONCLUSION"
+                "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion"
+              }
+            ],
+            "type": {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion",
+              "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.AccuracyMetricsConclusion"
             },
+            "name": "ACCURACY_CONCLUSION"
+          },
 
-            {
-              "artifacts": [
-                {
-                  "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
-                  "nameType": "TOTALTIME_CONCLUSION"
-                }
-              ],
-              "type": {
+          {
+            "artifacts": [
+              {
                 "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
-                "nameType": "TOTALTIME_CONCLUSION"
-              },
-              "name": "TOTALTIME_CONCLUSION"
-            }
+                "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion"
+              }
+            ],
+            "type": {
+              "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion",
+              "nameType": "fr.axonic.jf.instance.reproducibleXP.conclusions.TotalTimeMetricsConclusion"
+            },
+            "name": "TOTALTIME_CONCLUSION"
+          }
         ],
 
 
@@ -270,15 +276,19 @@
           "artifacts": [
             {
               "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-              "nameType": "METRICS_CONCLUSION"
+              "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
             }
           ],
           "type": {
             "classType": "fr.axonic.jf.instance.reproducibleXP.conclusions.ReproducibleMetricsConclusion",
-            "nameType": "METRICS_CONCLUSION"
+            "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
           }
         }
       }
+
+
+
+
 ,
 {
         "supports": [
