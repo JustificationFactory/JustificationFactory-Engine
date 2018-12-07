@@ -30,42 +30,6 @@ import java.util.Arrays;
 
 public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPatternsBase> {
 
-    /*public ReproducibleExperimentSystem() throws VerificationException, WrongEvidenceException{
-        ListPatternsBase patternsBase = new ListPatternsBase();
-
-        //Accuracy metric pattern
-        InputType<AccuracyMetricEvidence> Accuracy_Evidence = new InputType<AccuracyMetricEvidence>("ACCURACY_METRIC_EVIDENCE", AccuracyMetricEvidence.class);
-        OutputType<AccuracyMetricConclusion> Accuracy_Conclusion = new OutputType<>(AccuracyMetricConclusion.class);
-        Strategy Accuracy_Strategy = new AccuracyMetricStrategy("ACCURACY_METRIC_STRATEGY");
-        Pattern Accuracy_Pattern = new Pattern("ACCURACY_METRIC_PATTERN", "ACCURACY_METRIC_PATTERN", Accuracy_Strategy, Arrays.asList(Accuracy_Evidence), Accuracy_Conclusion);
-
-        //Total time metric pattern
-        InputType<TotalTimeMetricEvidence> Total_Time_Evidence = new InputType<TotalTimeMetricEvidence>("TOTAL_TIME_METRIC_EVIDENCE", TotalTimeMetricEvidence.class);
-        OutputType<TotalTimeMetricConclusion> Total_Time_Conclusion = new OutputType<>(TotalTimeMetricConclusion.class);
-        Strategy Total_Time_Strategy = new TotalTimeMetricStrategy("TOTAL_TIME_METRIC_STRATEGY");
-        Pattern Total_Time_Pattern = new Pattern("TOTAL_TIME_METRIC_PATTERN", "TOTAL_TIME_METRIC_PATTERN", Total_Time_Strategy, Arrays.asList(Total_Time_Evidence), Total_Time_Conclusion);
-
-        //Reproducible metrics pattern
-        OutputType<ReproducibleMetricsConclusion> Reproducible_Metrics_Conclusion = new OutputType<>(ReproducibleMetricsConclusion.class);
-        Strategy Reproducible_Metrics_Strategy = new ReproducibleMetricsStrategy("REPRODUCIBLE_METRICS_STRATEGY");
-        Pattern Reproducible_Metrics_Pattern = new Pattern("REPRODUCIBLE_METRICS_PATTERN", "REPRODUCIBLE_METRICS_PATTERN", Reproducible_Metrics_Strategy, Arrays.asList(Accuracy_Pattern.getOutputType().transformToInput(), Total_Time_Pattern.getOutputType().transformToInput()), Reproducible_Metrics_Conclusion);
-
-        //Top level reproducible experiment pattern
-        OutputType<ReproducibleExperimentConclusion> Reproducible_Experiment_Conclusion = new OutputType<>(ReproducibleExperimentConclusion.class);
-        Strategy Reproducible_Experiment_Strategy = new ReproducibleExperimentFinalStrategy("REPRODUCIBLE_EXPERIMENT_STRATEGY");
-        Pattern Reproducible_Experiment_Pattern = new Pattern("REPRODUCIBLE_EXPERIMENT_PATTERN", "REPRODUCIBLE_EXPERIMENT_PATTERN", Reproducible_Experiment_Strategy, Arrays.asList(Reproducible_Metrics_Pattern.getOutputType().transformToInput()), Reproducible_Experiment_Conclusion);
-        //TODO: Add valid xp conclusion
-
-        patternsBase.addPattern(Accuracy_Pattern);
-        patternsBase.addPattern(Total_Time_Pattern);
-        patternsBase.addPattern(Reproducible_Metrics_Pattern);
-        patternsBase.addPattern(Reproducible_Experiment_Pattern);
-
-        this.patternsBase=patternsBase;
-        //this.autoSupportFillEnable =true;
-        //this.versioningEnable=true;
-    }
-*/
 
     public ReproducibleExperimentSystem()throws VerificationException, WrongEvidenceException {
         super(createPatternsBase());
@@ -80,20 +44,20 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
 
 
         //Accuracy metric pattern
-        InputType<AccuracyMetricEvidence> Accuracy_Evidence = new InputType <>(AccuracyMetricEvidence.EVIDENCE_NAME, new Type<>(AccuracyMetricEvidence.class, "ACCURACY_METRIC_EVIDENCE")); //new InputType<AccuracyMetricEvidence>("ACCURACY_METRIC_EVIDENCE", AccuracyMetricEvidence.class);
+        InputType<AccuracyMetricEvidence> Accuracy_Evidence = new InputType <>(AccuracyMetricEvidence.EVIDENCE_NAME, new Type<>(AccuracyMetricEvidence.class, "ACCURACY_METRIC_EVIDENCE"));
         OutputType<AccuracyMetricConclusion> Accuracy_Conclusion = new OutputType<>("ACCURACY_METRIC_CONCLUSION", new Type<>(AccuracyMetricConclusion.class, "ACCURACY_METRIC_CONCLUSION"));
-//new OutputType<>(AccuracyMetricConclusion.class);
+
         Strategy Accuracy_Strategy = new AccuracyMetricStrategy("ACCURACY_METRIC_STRATEGY");
         Pattern Accuracy_Pattern = new Pattern("ACCURACY_METRIC_PATTERN", "ACCURACY_METRIC_PATTERN", Accuracy_Strategy, Arrays.asList(Accuracy_Evidence), Accuracy_Conclusion);
 
         //Total time metric pattern
-        InputType<TotalTimeMetricEvidence> Total_Time_Evidence = new InputType <>(TotalTimeMetricEvidence.EVIDENCE_NAME, new Type<>(TotalTimeMetricEvidence.class, "TOTAL_TIME_METRIC_EVIDENCE"));//new InputType<TotalTimeMetricEvidence>("TOTAL_TIME_METRIC_EVIDENCE", TotalTimeMetricEvidence.class);
-        OutputType<TotalTimeMetricConclusion> Total_Time_Conclusion = new OutputType<>("TOTAL_TIME_METRIC_CONCLUSION", new Type<>(TotalTimeMetricConclusion.class, "TOTAL_TIME_METRIC_CONCLUSION"));//new OutputType<>(TotalTimeMetricConclusion.class);
+        InputType<TotalTimeMetricEvidence> Total_Time_Evidence = new InputType <>(TotalTimeMetricEvidence.EVIDENCE_NAME, new Type<>(TotalTimeMetricEvidence.class, "TOTAL_TIME_METRIC_EVIDENCE"));
+        OutputType<TotalTimeMetricConclusion> Total_Time_Conclusion = new OutputType<>("TOTAL_TIME_METRIC_CONCLUSION", new Type<>(TotalTimeMetricConclusion.class, "TOTAL_TIME_METRIC_CONCLUSION"));
         Strategy Total_Time_Strategy = new TotalTimeMetricStrategy("TOTAL_TIME_METRIC_STRATEGY");
         Pattern Total_Time_Pattern = new Pattern("TOTAL_TIME_METRIC_PATTERN", "TOTAL_TIME_METRIC_PATTERN", Total_Time_Strategy, Arrays.asList(Total_Time_Evidence), Total_Time_Conclusion);
 
         //Reproducible metrics pattern
-        OutputType<ReproducibleMetricsConclusion> Reproducible_Metrics_Conclusion = new OutputType<>("REPRODUCIBLE_METRICS_CONCLUSION", new Type<>(ReproducibleMetricsConclusion.class, "REPRODUCIBLE_METRICS_CONCLUSION"));//new OutputType<>(ReproducibleMetricsConclusion.class);
+        OutputType<ReproducibleMetricsConclusion> Reproducible_Metrics_Conclusion = new OutputType<>("REPRODUCIBLE_METRICS_CONCLUSION", new Type<>(ReproducibleMetricsConclusion.class, "REPRODUCIBLE_METRICS_CONCLUSION"));
         Strategy Reproducible_Metrics_Strategy = new ReproducibleMetricsStrategy("REPRODUCIBLE_METRICS_STRATEGY");
         Pattern Reproducible_Metrics_Pattern = new Pattern("REPRODUCIBLE_METRICS_PATTERN", "REPRODUCIBLE_METRICS_PATTERN", Reproducible_Metrics_Strategy, Arrays.asList(Accuracy_Pattern.getOutputType().transformToInput(), Total_Time_Pattern.getOutputType().transformToInput()), Reproducible_Metrics_Conclusion);
 
@@ -106,7 +70,7 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
 
 
         //Top level reproducible experiment pattern
-        OutputType<ReproducibleExperimentConclusion> Reproducible_Experiment_Conclusion = new OutputType<>("REPRODUCIBLE_EXPERIMENT_CONCLUSION", new Type<>(ReproducibleExperimentConclusion.class, "REPRODUCIBLE_EXPERIMENT_CONCLUSION"));//new OutputType<>(ReproducibleExperimentConclusion.class);
+        OutputType<ReproducibleExperimentConclusion> Reproducible_Experiment_Conclusion = new OutputType<>("REPRODUCIBLE_EXPERIMENT_CONCLUSION", new Type<>(ReproducibleExperimentConclusion.class, "REPRODUCIBLE_EXPERIMENT_CONCLUSION"));
         Strategy Reproducible_Experiment_Strategy = new ReproducibleExperimentFinalStrategy("REPRODUCIBLE_EXPERIMENT_STRATEGY");
         Pattern Reproducible_Experiment_Pattern = new Pattern("REPRODUCIBLE_EXPERIMENT_PATTERN", "REPRODUCIBLE_EXPERIMENT_PATTERN", Reproducible_Experiment_Strategy, Arrays.asList(Reproducible_Metrics_Pattern.getOutputType().transformToInput(), Valid_Xp_Pattern.getOutputType().transformToInput()), Reproducible_Experiment_Conclusion);
 
