@@ -2,6 +2,8 @@ package fr.axonic.jf.instance;
 
 import fr.axonic.jf.engine.*;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
+import fr.axonic.jf.instance.Ok.OkSystem;
+import fr.axonic.jf.instance.ReproducibleExperiment.ReproducibleExperimentSystem;
 import fr.axonic.jf.instance.ValidXp.ValidXpSystem;
 import fr.axonic.jf.instance.clinical.AVEKJustificationSystem;
 import fr.axonic.jf.instance.jenkins.JenkinsJustificationSystem;
@@ -29,6 +31,10 @@ public class JustificationSystemFactory {
                 return new ValidXpSystem();
             case REPRODUCIBLE_XP:
                 return new ReproducibleXPJustificationSystem();
+            case OK_SYSTEM:
+                return new OkSystem();
+            case REPRODUCIBLE_EXPERIMENT:
+                return new ReproducibleExperimentSystem();
             default:
                 return null;
         }

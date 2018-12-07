@@ -84,7 +84,7 @@ public class StepBuilder {
 
         if (patterns.isEmpty()) {
             LOGGER.info("Voici les support envoyer : {} ", knownSupports);
-            LOGGER.info("No applicable pattern for {}. No action. Classe = {}", justificationSystemName,justificationSystem.getPatternsBase() );
+            LOGGER.info("No applicable pattern for {}. No action.", justificationSystemName );
            // LOGGER.info("La classe est {}",justificationSystem.getClass());
             return;
         }
@@ -94,7 +94,10 @@ public class StepBuilder {
 
         for (Pattern pattern : patterns) {
             List<Support> usefulSupports = pattern.filterUsefulEvidences(knownSupports);
+            for (Support s: knownSupports) {
+                System.out.println("J'AI : "+s.getName()+" "+s.toString());
 
+            }
             LOGGER.info("Build pattern {} with supports: {}", pattern.getId(), usefulSupports);
 
             try {

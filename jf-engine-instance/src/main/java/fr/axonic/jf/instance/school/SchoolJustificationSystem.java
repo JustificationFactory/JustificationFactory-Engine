@@ -37,11 +37,21 @@ public class SchoolJustificationSystem extends JustificationSystem<DiagramPatter
                 new InputType<>(ReadResearchArticlesEvidence.EVIDENCE_NAME, new Type<>(ReadResearchArticlesEvidence.class, "HAVE_READ_RESEARCH_ARTICLES"));
         InputType<ContinuousIntegrationSystemEvidence> continuousIntegrationSystem =
                 new InputType<>(ContinuousIntegrationSystemEvidence.EVIDENCE_NAME, new Type<>(ContinuousIntegrationSystemEvidence.class, "HAVE_A_CONTINUOUS_INTEGRATION_SYSTEM"));
+
+
+
         OutputType<TakeTheNecessaryToSucceedSubConclusion> takeTheNecessaryToSucceed =
                 new OutputType<>("TAKE THE_NECESSARY TO SUCCEED", new Type<>(TakeTheNecessaryToSucceedSubConclusion.class, "TAKE_THE_NECESSARY_TO_SUCCEED"));
+
+
         Strategy workHard = new WorkHardStrategy("WORK HARD");
+
         Pattern takeTheNecessaryPattern = new Pattern("TAKE_THE_NECESSARY_TO_SUCCEED_STUDIES", "Take the necessary to succeed studies", workHard,
                 Arrays.asList(readResearchArticle, continuousIntegrationSystem), takeTheNecessaryToSucceed);
+
+
+
+
 
         InputType<ProjectGradeEvidence> projectGrade =
                 new InputType<>(ProjectGradeEvidence.EVIDENCE_NAME, new Type<>(ProjectGradeEvidence.class, "HAVE_GOT_A_GOOD_PROJECT_GRADE"));

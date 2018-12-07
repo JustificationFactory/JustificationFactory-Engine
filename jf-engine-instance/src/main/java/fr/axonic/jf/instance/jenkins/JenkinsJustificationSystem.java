@@ -23,6 +23,7 @@ public class JenkinsJustificationSystem extends JustificationSystem<ListPatterns
         super();
         ListPatternsBase patternsBase=new ListPatternsBase();
         InputType<DocumentEvidence> documentType=new InputType<>("document",DocumentEvidence.class);
+
         OutputType<UnitTestJenkinsConclusion> utType=new OutputType<>(UnitTestJenkinsConclusion.class);
         OutputType<IntegrationTestJenkinsConclusion> itType=new OutputType<>(IntegrationTestJenkinsConclusion.class);
         Pattern unitPattern=new Pattern("unit-test","Unit Test Pattern", new JenkinsStrategy("Validate unit tests"),Arrays.asList(documentType),utType);

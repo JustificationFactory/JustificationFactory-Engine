@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "a44e5ce0-9ea4-443c-8996-8a037fc870d5",
+		"name": "Justification Factory Stack",
+		"description": "Requests samples using the stack of Justification Factory (bus & engine webservices).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [{
+			"name": "Bus",
+			"item": [{
+				"name": "Send a support",
+				"request": {
+					"method": "POST",
+					"header": [{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"supports\":[{\"@type\":\"fr.axonic.jf.instance.valideXp.evidence.ResultAnalyseEvidence\",\"artifacts\":[{\"@type\":\".Document\",\"url\":\"http://link-to-our-student-ci.io\",\"path\":null,\"code\":null,\"version\":null}],\"id\":\"10cfbae43cb744ff933c2968de2055f45\",\"name\":\"RESULT_ANALYSE\",\"element\":{\"@type\":\".Document\",\"url\":\"http://link-to-our-student-ci.io\",\"path\":null,\"code\":null,\"version\":null}},{\"@type\":\"fr.axonic.jf.instance.valideXp.evidence.LogEvidence\",\"artifacts\":[{\"@type\":\".Document\",\"url\":\"http://link-to-our-student-ci.io\",\"path\":null,\"code\":null,\"version\":null}],\"id\":\"10cfbae43cb744ff933c2968de2055f35\",\"name\":\"LOG_FILE\",\"element\":{\"@type\":\".Document\",\"url\":\"http://link-to-our-student-ci.io\",\"path\":null,\"code\":null,\"version\":null}},{\"@type\":\"fr.axonic.jf.instance.valideXp.evidence.XpEvidence\",\"artifacts\":[{\"@type\":\".Document\",\"url\":\"http://link-to-our-student-ci.io\",\"path\":null,\"code\":null,\"version\":null}],\"id\":\"10cfbae43cb744ff933c2968de2055f25\",\"name\":\"XP_DESCRIPTION\",\"element\":{\"@type\":\".Document\",\"url\":\"http://link-to-our-student-ci.io\",\"path\":null,\"code\":null,\"version\":null}}]}"},
+					"url": {
+						"raw": "{{stackHostName}}:{{stackHostPort}}/bus/rest/bus/supports",
+						"host": [
+							"{{stackHostName}}"
+						],
+						"port": "{{stackHostPort}}",
+						"path": [
+							"bus",
+							"rest",
+							"bus",
+							"supports"
+						]
+					},
+					"description": "Send a support to the bus to build new Justification Diagram steps."
+				},
+				"response": []
+			}],
+			"description": "Requests related to the bus.",
+			"event": [{
+					"listen": "prerequest",
+					"script": {
+						"id": "3bea5e0e-0385-43cd-be48-9a3e04a8b582",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69e75eea-9fa9-4c8b-a1d7-9be3ed4a9eb3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Engine webservices",
+			"item": [{
+				"name": "Create a Justification System",
+				"event": [{
+						"listen": "test",
+						"script": {
+							"id": "cec5a5fa-3279-4b90-93d7-1b9c8b0e34cd",
+							"exec": [
+								""
+							],
+							"type": "text/javascript"
+						}
+					},
+					{
+						"listen": "prerequest",
+						"script": {
+							"id": "547cddd3-c79b-471a-8dc4-113abb4e9952",
+							"exec": [
+								""
+							],
+							"type": "text/javascript"
+						}
+					}
+				],
+				"request": {
+					"method": "POST",
+					"header": [{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}],
+					"body": {
+						"mode": "raw",
+						"raw": "{\n   \"justificationDiagram\": {\n   \"steps\": []},\n   \"patternsBase\": {\n   \"@type\": \".DiagramPatternsBase\",\n   \"patternsBaseType\": \"PATTERN_DIAGRAM\",\n   \"patterns\": [ {\n   \"supports\": [ {\n   \"artifacts\": [ {\"classType\": \"fr.axonic.jf.instance.valideXp.evidence.LogEvidence\",\n   \"nameType\": \"LOG_FILE\"\n   }\n   ], \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.LogEvidence\",\n   \"nameType\": \"LOG_FILE\"\n   },\n   \"name\": \"Log\"\n   },\n   {\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.ResultAnalyseEvidence\",\n   \"nameType\": \"RESULT_ANALYSE\"\n   }\n   ],\"type\": {\"classType\": \"fr.axonic.jf.instance.valideXp.evidence.ResultAnalyseEvidence\",\n   \"nameType\": \"RESULT_ANALYSE\"\n   }, \"name\": \"ResultAnalyse\"\n   },{\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.XpEvidence\",\n   \"nameType\": \"XP_DESCRIPTION\"\n   }\n   ],\n   \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.XpEvidence\",\n   \"nameType\": \"XP_DESCRIPTION\"\n   }, \"name\": \"XpEvidence\"\n   \n   }\n   ], \"conclusion\": {\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.conclusion.ValideXpConclusion\",\n   \"nameType\": \"XP_VALIDE\"\n   }\n   ], \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.conclusion.ValideXpConclusion\",\n   \"nameType\": \"XP_VALIDE\"\n   }\n   }, \"strategy\": {\n   \"@type\": \"fr.axonic.jf.instance.valideXp.strategies.ValideurDxpStrategy\",\n   \"name\": \"IS_IT_VALIDE\",\n   \"rationale\": null,\n   \"usageDomain\": null\n   },\n   \n   \"id\": \"XP_IS_VALIDATE_PATTERN\",\n   \"name\": \"pattern de validation\",\n   \"inputTypes\": [ {\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.LogEvidence\",\n   \"nameType\": \"LOG_FILE\"\n   }\n   ], \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.LogEvidence\",\n   \"nameType\": \"LOG_FILE\"\n   }, \"name\": \"Log\"\n   }, {\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.ResultAnalyseEvidence\",\n   \"nameType\": \"RESULT_ANALYSE\"\n   }\n   ], \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.ResultAnalyseEvidence\",\n   \"nameType\": \"RESULT_ANALYSE\"\n   }, \"name\": \"ResultAnalyse\"\n   }, {\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.XpEvidence\",\n   \"nameType\": \"XP_DESCRIPTION\"\n   }\n   ], \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.evidence.XpEvidence\",\n   \"nameType\": \"XP_DESCRIPTION\"\n   }, \"name\": \"XpEvidence\"\n   }\n   ],\n   \n   \n   \"outputType\": {\n   \"artifacts\": [ {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.conclusion.ValideXpConclusion\",\n   \"nameType\": \"XP_VALIDE\"\n   }\n   ], \"type\": {\n   \"classType\": \"fr.axonic.jf.instance.valideXp.conclusion.ValideXpConclusion\",\n   \"nameType\": \"XP_VALIDE\"\n   }\n   }\n   \n   }\n   ]}, \"autoSupportFillEnable\": false,\n   \"versioningEnable\": false\n   }"
+					},
+					"url": {
+						"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+						"host": [
+							"{{stackHostName}}"
+						],
+						"port": "{{stackHostPort}}",
+						"path": [
+							"engine",
+							"rest",
+							"justification",
+							"system",
+							"{{justificationSystemName}}"
+						]
+					},
+					"description": "Add a Justification System to the Justification Factory."
+				},
+				"response": []
+			}, {
+				"name": "Retrieve a Justification System",
+				"request": {
+					"method": "GET",
+					"header": [],
+					"body": {
+						"mode": "raw",
+						"raw": ""
+					},
+					"url": {
+						"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+						"host": [
+							"{{stackHostName}}"
+						],
+						"port": "{{stackHostPort}}",
+						"path": [
+							"engine",
+							"rest",
+							"justification",
+							"system",
+							"{{justificationSystemName}}"
+						]
+					},
+					"description": "Fetch a Justification System from the Justification Diagram."
+				},
+				"response": ["ok"]
+			}, {
+				"name": "Remove a Justification System",
+				"request": {
+					"method": "DELETE",
+					"header": [],
+					"body": {
+						"mode": "raw",
+						"raw": ""
+					},
+					"url": {
+						"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+						"host": [
+							"{{stackHostName}}"
+						],
+						"port": "{{stackHostPort}}",
+						"path": [
+							"engine",
+							"rest",
+							"justification",
+							"system",
+							"{{justificationSystemName}}"
+						]
+					},
+					"description": "Delete a Justification System of the Justification Factory."
+				},
+				"response": []
+			}, {
+				"name": "Retrieve the names of known Justification Systems",
+				"request": {
+					"method": "GET",
+					"header": [],
+					"body": {
+						"mode": "raw",
+						"raw": ""
+					},
+					"url": {
+						"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/systems",
+						"host": [
+							"{{stackHostName}}"
+						],
+						"port": "{{stackHostPort}}",
+						"path": [
+							"engine",
+							"rest",
+							"justification",
+							"systems"
+						]
+					},
+					"description": "Fetch only the names of the known Justification Systems instances in the Justification Factory."
+				},
+				"response": []
+			}]
+		}
+	],
+	"event": [{
+			"listen": "prerequest",
+			"script": {
+				"id": "863fbda3-2491-427e-a929-e79be571ab9c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a9784701-4606-4472-8db1-efcd5c496299",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [{
+			"id": "5c545f3e-0518-415b-8f92-67df3cbdc275",
+			"key": "stackHostName",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "88415505-e488-4dca-8776-84c8a769aa89",
+			"key": "stackHostPort",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"id": "93b7cdf1-fffd-4d7d-8612-3bcb1916ce51",
+			"key": "justificationSystemName",
+			"value": "REPRODUCIBLE_EXPERIMENT",
+			"type": "string"
+		}
+	]
+}

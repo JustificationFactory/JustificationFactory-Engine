@@ -1,0 +1,82 @@
+{
+						"supports":
+						   [
+						   		{
+									"artifacts":
+										[
+											{
+												"classType": "fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence",
+												"nameType": "TOTAL_TIME_METRIC_EVIDENCE"
+											}
+										],
+										"type":
+											{
+												"classType": "fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence",
+												"nameType": "TOTAL_TIME_METRIC_EVIDENCE"
+											},
+										"name": "TOTAL_TIME_METRIC_EVIDENCE"
+								}
+						   ],
+						"conclusion":
+							{
+								"artifacts":
+									[
+										{
+											"classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion",
+											"nameType": "TOTAL_TIME_METRIC_CONCLUSION"
+										}
+									],
+								"type":
+									{
+										"classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion",
+										"nameType": "TOTAL_TIME_METRIC_CONCLUSION"
+									},
+								"name" : "TOTAL_TIME_METRIC_CONCLUSION"
+							},
+						"strategy":
+							{
+								"@type": "fr.axonic.jf.instance.ReproducibleExperiment.strategies.TotalTimeMetricStrategy",
+								"name": "TOTAL_TIME_METRIC_STRATEGY",
+								"rationale": null,
+								"usageDomain": null
+							},
+
+						"id": "TOTAL_TIME_METRIC_PATTERN",
+						"name": "TOTAL_TIME_METRIC_PATTERN",
+						"inputTypes":
+							[
+              {
+              "artifacts":
+                [
+                  {
+                    "classType": "fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence",
+                    "nameType": "TOTAL_TIME_METRIC_EVIDENCE"
+                  }
+                ],
+                "type":
+                  {
+                    "classType": "fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence",
+                    "nameType": "TOTAL_TIME_METRIC_EVIDENCE"
+                  },
+                "name": "TOTAL_TIME_METRIC_EVIDENCE"
+            }
+							],
+
+
+						"outputType":
+            {
+              "artifacts":
+                [
+                  {
+                    "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion",
+                    "nameType": "TOTAL_TIME_METRIC_CONCLUSION"
+                  }
+                ],
+              "type":
+                {
+                  "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion",
+                  "nameType": "TOTAL_TIME_METRIC_CONCLUSION"
+                },
+              "name" : "TOTAL_TIME_METRIC_CONCLUSION"
+            }
+}

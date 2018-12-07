@@ -1,0 +1,79 @@
+{
+						"supports":
+						   [
+                {
+                "artifacts":
+                  [
+                    {
+                      "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusion",
+                      "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
+                    }
+                  ],
+                  "type":
+                    {
+                      "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusion",
+                      "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
+                    }
+              }
+						   ],
+						"conclusion":
+							{
+								"artifacts":
+									[
+										{
+											"classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion",
+											"nameType": "REPRODUCIBLE_EXPERIMENT_CONCLUSION"
+										}
+									],
+								"type":
+									{
+										"classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion",
+										"nameType": "REPRODUCIBLE_EXPERIMENT_CONCLUSION"
+									}
+							},
+						"strategy":
+							{
+								"@type": "fr.axonic.jf.instance.ReproducibleExperiment.strategies.ReproducibleExperimentFinalStrategy",
+								"name": "REPRODUCIBLE_EXPERIMENT_STRATEGY",
+								"rationale": null,
+								"usageDomain": null
+							},
+
+						"id": "REPRODUCIBLE_EXPERIMENT_PATTERN",
+						"name": "REPRODUCIBLE_EXPERIMENT_PATTERN",
+						"inputTypes":
+							[
+                      {
+                      "artifacts":
+                        [
+                          {
+                            "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusion",
+                            "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
+                          }
+                        ],
+                        "type":
+                          {
+                            "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusion",
+                            "nameType": "REPRODUCIBLE_METRICS_CONCLUSION"
+                          }
+                    }
+							],
+
+
+						"outputType":
+            {
+              "artifacts":
+                [
+                  {
+                    "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion",
+                    "nameType": "REPRODUCIBLE_EXPERIMENT_CONCLUSION"
+                  }
+                ],
+              "type":
+                {
+                  "classType": "fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion",
+                  "nameType": "REPRODUCIBLE_EXPERIMENT_CONCLUSION"
+                }
+            }
+
+				   }
