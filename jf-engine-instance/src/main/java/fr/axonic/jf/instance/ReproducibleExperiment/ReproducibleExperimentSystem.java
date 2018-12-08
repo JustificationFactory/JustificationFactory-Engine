@@ -4,7 +4,6 @@ import fr.axonic.jf.engine.JustificationSystem;
 import fr.axonic.jf.engine.diagram.JustificationPatternDiagram;
 import fr.axonic.jf.engine.exception.WrongEvidenceException;
 import fr.axonic.jf.engine.pattern.DiagramPatternsBase;
-import fr.axonic.jf.engine.pattern.ListPatternsBase;
 import fr.axonic.jf.engine.pattern.Pattern;
 import fr.axonic.jf.engine.pattern.type.InputType;
 import fr.axonic.jf.engine.pattern.type.OutputType;
@@ -14,6 +13,7 @@ import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricCon
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence;
 import fr.axonic.jf.instance.ReproducibleExperiment.strategies.AccuracyMetricStrategy;
@@ -45,16 +45,17 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
 
         //Accuracy metric pattern
         InputType<AccuracyMetricEvidence> Accuracy_Evidence = new InputType <>(AccuracyMetricEvidence.EVIDENCE_NAME, new Type<>(AccuracyMetricEvidence.class, "ACCURACY_METRIC_EVIDENCE"));
+        InputType<ExperimentEvidence> Experiment_Evidence = new InputType <>(ExperimentEvidence.EVIDENCE_NAME, new Type<>(ExperimentEvidence.class,"EXPERIMENT_EVIDENCE"));
         OutputType<AccuracyMetricConclusion> Accuracy_Conclusion = new OutputType<>("ACCURACY_METRIC_CONCLUSION", new Type<>(AccuracyMetricConclusion.class, "ACCURACY_METRIC_CONCLUSION"));
 
         Strategy Accuracy_Strategy = new AccuracyMetricStrategy("ACCURACY_METRIC_STRATEGY");
-        Pattern Accuracy_Pattern = new Pattern("ACCURACY_METRIC_PATTERN", "ACCURACY_METRIC_PATTERN", Accuracy_Strategy, Arrays.asList(Accuracy_Evidence), Accuracy_Conclusion);
+        Pattern Accuracy_Pattern = new Pattern("ACCURACY_METRIC_PATTERN", "ACCURACY_METRIC_PATTERN", Accuracy_Strategy, Arrays.asList(Accuracy_Evidence,Experiment_Evidence), Accuracy_Conclusion);
 
         //Total time metric pattern
         InputType<TotalTimeMetricEvidence> Total_Time_Evidence = new InputType <>(TotalTimeMetricEvidence.EVIDENCE_NAME, new Type<>(TotalTimeMetricEvidence.class, "TOTAL_TIME_METRIC_EVIDENCE"));
         OutputType<TotalTimeMetricConclusion> Total_Time_Conclusion = new OutputType<>("TOTAL_TIME_METRIC_CONCLUSION", new Type<>(TotalTimeMetricConclusion.class, "TOTAL_TIME_METRIC_CONCLUSION"));
         Strategy Total_Time_Strategy = new TotalTimeMetricStrategy("TOTAL_TIME_METRIC_STRATEGY");
-        Pattern Total_Time_Pattern = new Pattern("TOTAL_TIME_METRIC_PATTERN", "TOTAL_TIME_METRIC_PATTERN", Total_Time_Strategy, Arrays.asList(Total_Time_Evidence), Total_Time_Conclusion);
+        Pattern Total_Time_Pattern = new Pattern("TOTAL_TIME_METRIC_PATTERN", "TOTAL_TIME_METRIC_PATTERN", Total_Time_Strategy, Arrays.asList(Total_Time_Evidence,Experiment_Evidence), Total_Time_Conclusion);
 
         //Reproducible metrics pattern
         OutputType<ReproducibleMetricsConclusion> Reproducible_Metrics_Conclusion = new OutputType<>("REPRODUCIBLE_METRICS_CONCLUSION", new Type<>(ReproducibleMetricsConclusion.class, "REPRODUCIBLE_METRICS_CONCLUSION"));
