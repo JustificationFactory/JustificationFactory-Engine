@@ -77,7 +77,13 @@ public abstract class Support<T extends Element> implements Assertion<T>, Clonea
     }
 
     public void setElement(T element) {
+        setElement(element,false);
+    }
+    public void setElement(T element, boolean versionEnable) {
         this.element = element;
+        if(!versionEnable){
+            artifacts.clear();
+        }
         this.artifacts.add(element);
     }
 

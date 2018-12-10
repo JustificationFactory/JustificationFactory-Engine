@@ -186,7 +186,7 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
     }
 
     private <T extends Element> void updateSupport(Support<T> support, T element) {
-        support.setElement(element);
+        support.setElement(element, versioningEnable);
     }
 
     protected void postStepCreated(JustificationStep step) throws CloneNotSupportedException, WrongEvidenceException {
