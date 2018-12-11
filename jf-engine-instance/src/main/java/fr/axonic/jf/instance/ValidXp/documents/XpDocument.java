@@ -11,9 +11,9 @@ public class XpDocument extends Document{
 
     private String jobId;
 
-    public XpDocument(String url, String jobId) {
-        super(url);
+    public XpDocument(String jobId) {
         this.jobId = jobId;
+        super.init();
     }
 
     public XpDocument() {

@@ -6,31 +6,32 @@ import javax.xml.bind.annotation.XmlElement;
 import java.util.Objects;
 
 public class MetricDocument extends Document {
-    private String metric_id;
-    private int value;
 
-    public MetricDocument(String url, String metricId, int metricValue) {
-        super(url);
-        this.metric_id = metricId;
+    private String jobId;
+    private double value;
+
+    public MetricDocument(String jobId, double metricValue) {
+        this.jobId = jobId;
         this.value = metricValue;
+        super.init();
     }
     public MetricDocument(){}
 
     @XmlElement
-    public String getMetricId() {
-        return metric_id;
+    public String getJobId() {
+        return jobId;
     }
 
     @XmlElement
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
 
-    public void setMetricId(String id) {
-        this.metric_id = id;
+    public void setJobId(String id) {
+        this.jobId = id;
     }
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 

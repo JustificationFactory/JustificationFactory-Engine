@@ -7,20 +7,20 @@ import java.util.Objects;
 
 public class ThresholdDocument extends Document {
 
-    private int value;
+    private double value;
 
-    public ThresholdDocument(String url, int thresholdValue) {
-        super(url);
+    public ThresholdDocument(double thresholdValue) {
         this.value = thresholdValue;
+        super.init();
     }
     public ThresholdDocument(){}
 
     @XmlElement
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 

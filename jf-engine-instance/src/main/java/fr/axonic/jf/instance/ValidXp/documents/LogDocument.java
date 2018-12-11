@@ -12,10 +12,10 @@ public class LogDocument extends Document{
     private String jobId;
     private int exitCode;
 
-    public LogDocument(String url, String jobId, int exitCode) {
-        super(url);
+    public LogDocument(String jobId, int exitCode) {
         this.jobId = jobId;
         this.exitCode = exitCode;
+        super.init();
     }
 
     public LogDocument() {
