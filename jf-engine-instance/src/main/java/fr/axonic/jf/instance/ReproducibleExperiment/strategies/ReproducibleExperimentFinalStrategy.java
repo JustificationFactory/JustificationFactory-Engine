@@ -4,6 +4,7 @@ import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.engine.support.evidence.Document;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion;
+import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ReproducibleExperimentFinalStrategy extends ReproducibleExperimentS
 
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
-        Document doc = new Document("http://link-to-our-student-ci.io");
+        XpDocument doc = new XpDocument("testReproducible");
         ReproducibleExperimentConclusion conclusion = new ReproducibleExperimentConclusion("REPRODUCIBLE_EXPERIMENT_CONCLUSION",doc);
         return conclusion;
     }
