@@ -11,6 +11,7 @@ import fr.axonic.jf.engine.kernel.Assertion;
 import fr.axonic.jf.engine.pattern.*;
 import fr.axonic.jf.engine.pattern.type.InputType;
 import fr.axonic.jf.engine.strategy.ComputedStrategy;
+import fr.axonic.jf.engine.strategy.HumanStrategy;
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.engine.support.evidence.Element;
@@ -135,10 +136,8 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
         if (evidences == null || (evidences.isEmpty() && !autoSupportFillEnable)) {
             throw new StepBuildingException("Need evidences");
         }
-        if (conclusion == null && pattern.getStrategy() instanceof ComputedStrategy) {
-            conclusion = (((ComputedStrategy) pattern.getStrategy()).createConclusion(evidences));
-        }
-        if (conclusion == null) {
+
+        if (conclusion == null && pattern.getStrategy() instanceof HumanStrategy) {
             throw new StepBuildingException("Need a conclusion");
         }
         if (pattern == null) {
@@ -171,7 +170,10 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
         }
 
         try {
-            List<Support> usefulEvidences = filterUsefulSupports(pattern, evidences, conclusion);
+            List<Support> usefulEvidences = filterUsefulSupports(pattern, evidences);
+            if (conclusion == null && pattern.getStrategy() instanceof ComputedStrategy) {
+                conclusion = (((ComputedStrategy) pattern.getStrategy()).createConclusion(usefulEvidences));
+            }
             JustificationStep step = pattern.createStep(usefulEvidences, conclusion.clone());
             justificationDiagram.addStep(step);
             LOGGER.debug("Supports : " + usefulEvidences);
@@ -199,7 +201,7 @@ public class JustificationSystem<T extends PatternsBase> implements Justificatio
         }
     }
 
-    protected List<Support> filterUsefulSupports(Pattern pattern, List<Support> supports, Conclusion conclusion) throws StepBuildingException {
+    protected List<Support> filterUsefulSupports(Pattern pattern, List<Support> supports) throws StepBuildingException {
         List<Support> usefulEvidences = pattern.filterUsefulEvidences(supports);
         if (autoSupportFillEnable && usefulEvidences.size() != pattern.getInputTypes().size()) {
             LOGGER.info("Missing supports. Trying to autofill");
