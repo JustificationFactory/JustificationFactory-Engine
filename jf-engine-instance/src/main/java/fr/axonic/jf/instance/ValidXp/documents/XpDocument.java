@@ -11,14 +11,27 @@ public class XpDocument extends Document{
 
     private String jobId;
 
-    public XpDocument(String jobId) {
+
+
+    private boolean valid;
+
+    public XpDocument(String jobId, boolean validxp) {
         this.jobId = jobId;
+        this.valid = validxp;
         super.init();
     }
 
     public XpDocument() {
     }
 
+    @XmlElement
+    public boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
 
     @XmlElement
     public String getJobId() {
@@ -36,11 +49,11 @@ public class XpDocument extends Document{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         XpDocument that = (XpDocument) o;
-        return Objects.equals(jobId, that.jobId);
+        return Objects.equals(jobId, that.jobId) && valid == that.valid;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), jobId);
+        return Objects.hash(super.hashCode(), jobId,valid);
     }
 }

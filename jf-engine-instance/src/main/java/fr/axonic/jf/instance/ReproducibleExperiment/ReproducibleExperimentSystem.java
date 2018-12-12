@@ -67,7 +67,7 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
         InputType<XpEvidence> Xp_Evidence = new InputType <>(XpEvidence.EVIDENCE_NAME, new Type<>(XpEvidence.class, "XP_E"));
         OutputType<ValidXpConclusion> Valid_Xp_Conclusion = new OutputType<>("VALID_XP_C", new Type<>(ValidXpConclusion.class, "VALID_XP_C"));
         Strategy Valid_Xp_Strategy = new ValidXpStrategy1("VALIDE_XP_STRATEGY");
-        Pattern Valid_Xp_Pattern = new Pattern("VALIDE_XP_PATTERN", "VALIDE_XP_PATTERN", Accuracy_Strategy, Arrays.asList(Log_Evidence,Xp_Evidence), Valid_Xp_Conclusion);
+        Pattern Valid_Xp_Pattern = new Pattern("VALIDE_XP_PATTERN", "VALIDE_XP_PATTERN", Valid_Xp_Strategy, Arrays.asList(Log_Evidence,Xp_Evidence), Valid_Xp_Conclusion);
 
 
         //Top level reproducible experiment pattern

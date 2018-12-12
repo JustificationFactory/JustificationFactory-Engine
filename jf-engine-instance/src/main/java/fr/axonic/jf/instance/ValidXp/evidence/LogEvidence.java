@@ -1,6 +1,6 @@
 package fr.axonic.jf.instance.ValidXp.evidence;
 
-//import fr.axonic.jf.engine.support.evidence.Document;
+import fr.axonic.jf.engine.support.evidence.Document;
 import fr.axonic.jf.engine.support.evidence.Evidence;
 import fr.axonic.jf.instance.ValidXp.documents.LogDocument;
 
