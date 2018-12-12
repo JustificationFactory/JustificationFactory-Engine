@@ -6,12 +6,6 @@ import java.util.List;
 
 public class MetricAnalysis {
 
-    private List metrics;
-
-    public MetricAnalysis(List<Double> metricsList){
-        this.metrics = this.copyList(metricsList);
-    }
-
     private List copyList(List list){
         List result = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
@@ -21,16 +15,16 @@ public class MetricAnalysis {
     }
 
 
-    private boolean isReproducible(List<Double> list){
-        Double median = this.findMedian(list);
-        Double MAD = this.MedianAbsoluteDeviation(list,median);
-        Double standardDeviation = this.StandardDeviation(MAD,1.4826);
-        Double deviationThreshold = this.deviationThreshold(standardDeviation,2.5);
-        return this.numberOfOutliersAcceptable(list,median,deviationThreshold,0.15);
+    public static boolean isReproducible(List <Double> list, Double acceptableThreshold){
+        Double median = findMedian(list);
+        Double MAD = MedianAbsoluteDeviation(list,median);
+        Double standardDeviation = StandardDeviation(MAD,1.4826);
+        Double deviationThreshold = deviationThreshold(standardDeviation,2.5);
+        return numberOfOutliersAcceptable(list,median,deviationThreshold,acceptableThreshold);
     }
 
-    private Double findMedian(List<Double> list){
-        this.sortList(list);
+    private static Double findMedian(List<Double> list){
+        sortList(list);
         double medianPosition = (double)(list.size() - 1) / 2;
         if (list.size() % 2 != 0){
             return list.get((int)medianPosition);
@@ -43,30 +37,30 @@ public class MetricAnalysis {
         return median;
     }
 
-    private List sortList(List list){
+    private static List sortList(List list){
         list.sort(Comparator.naturalOrder());
         return list;
     }
 
-    private Double MedianAbsoluteDeviation(List list, Double median){
+    private static Double MedianAbsoluteDeviation(List list, Double median){
         List<Double> deviations = new ArrayList<>();
         for (int i = 0; i < list.size(); i++){
             Double deviation = Math.abs((Double) list.get(i) - median);
             deviations.add(deviation);
         }
-        return this.findMedian(deviations);
+        return findMedian(deviations);
     }
 
-    private Double StandardDeviation(Double MAD, Double k){
+    private static Double StandardDeviation(Double MAD, Double k){
         return k * MAD;
     }
 
-    private Double deviationThreshold(Double standardDeviation, Double n){
+    private static Double deviationThreshold(Double standardDeviation, Double n){
         return n * standardDeviation;
     }
 
-    private boolean numberOfOutliersAcceptable(List list, Double median, Double deviationThreshold, Double acceptableThreshold){
-        List<Double> outliers = this.findOutliers(list,median,deviationThreshold);
+    private static boolean numberOfOutliersAcceptable(List list, Double median, Double deviationThreshold, Double acceptableThreshold){
+        List<Double> outliers = findOutliers(list,median,deviationThreshold);
         Double outliersProportion = ((double)outliers.size() / list.size());
         if (outliersProportion < acceptableThreshold){
             return true;
@@ -74,9 +68,9 @@ public class MetricAnalysis {
         return false;
     }
 
-    private List<Double> findOutliers(List list, Double median, Double deviationThreshold){
-        List<Double> deviations = this.computeDeviationsWithMedian(list, median);
-        this.printList(deviations);
+    private static List<Double> findOutliers(List list, Double median, Double deviationThreshold){
+        List<Double> deviations = computeDeviationsWithMedian(list, median);
+        //printList(deviations);
         List<Double> outliers = new ArrayList();
         for (int i = 0; i < deviations.size(); i++){
             if (deviationThreshold < deviations.get(i) ) {
@@ -86,7 +80,7 @@ public class MetricAnalysis {
         return outliers;
     }
 
-    private List<Double> computeDeviationsWithMedian(List list, Double median){
+    private static List<Double> computeDeviationsWithMedian(List list, Double median){
         List<Double> deviations = new ArrayList();
         for (int i = 0; i < list.size(); i++){
             Double deviation = Math.abs((Double) list.get(i) - median);
@@ -95,7 +89,7 @@ public class MetricAnalysis {
         return deviations;
     }
 
-    private void printList(List list){
+    private static void printList(List list){
         for (int j = 0; j < list.size(); j++){
             System.out.println(list.get(j));
         }

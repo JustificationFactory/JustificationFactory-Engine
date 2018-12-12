@@ -3,6 +3,7 @@ package fr.axonic.jf.instance.ReproducibleExperiment.strategies;
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.documents.ReproducibleDocument;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence;
 import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
@@ -20,12 +21,13 @@ public class AccuracyMetricStrategy extends ReproducibleExperimentStrategy{
     @Override
     public Conclusion createConclusion(List<Support> supportList) {
         //TODO : Strategy for accuracy metric
-        XpDocument doc = null;
+        ReproducibleDocument doc = null;
         for(int i = 0; i < supportList.size(); i++){
             Support s = supportList.get(i);
             if(s instanceof AccuracyMetricEvidence){
                 AccuracyMetricEvidence accuracyMetricEvidence = (AccuracyMetricEvidence) s;
-                doc = new XpDocument(accuracyMetricEvidence.getElement().getJobId());
+                boolean isReproducible = MetricAnalysis.isReproducible(accuracyMetricEvidence.getElement().getValues(),0.15);
+                doc = new ReproducibleDocument(accuracyMetricEvidence.getElement().getJobId(),isReproducible);
             }
         }
         AccuracyMetricConclusion conclusion = new AccuracyMetricConclusion("ACCURACY_METRIC_CONCLUSION", doc);
