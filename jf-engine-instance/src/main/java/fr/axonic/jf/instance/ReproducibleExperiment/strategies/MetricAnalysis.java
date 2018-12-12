@@ -100,20 +100,4 @@ public class MetricAnalysis {
             System.out.println(list.get(j));
         }
     }
-
-    public static void main(String[] args){
-        List a = new ArrayList();
-        a.add(7.0);
-        a.add(5.0);
-        a.add(6.0);
-        a.add(2.0);
-        a.add(1.0);
-
-
-
-        MetricAnalysis metricAnalysis = new MetricAnalysis(a);
-        List b = metricAnalysis.copyList(a);
-        System.out.println("is Reproducible? : "+metricAnalysis.isReproducible(b));
-    }
-
 }
