@@ -22,6 +22,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * These tests use the known implementation of the Redmine JPD.
@@ -239,6 +240,23 @@ public class StepBuilderTest {
         acknowledge("SWAM_ST_0007", "G");
         acknowledge("SWAM_ST_0007", "H");
         acknowledge("SWAM_ST_0001", "J");
+    }
+
+    @Test
+    public void shouldBuildStepsWithOnlyConclusionsSupports() throws StepBuildingException, IOException {
+        for (int i = 1; i < 14; i++) {
+            StringBuilder numberBuilder = new StringBuilder(Integer.toString(i));
+            while (numberBuilder.length() < 4) {
+                numberBuilder.insert(0, "0");
+            }
+
+            acknowledge("SWAM_ST_" + numberBuilder.toString(), "A");
+        }
+
+        assertTrue(dao.getJustificationSystem("REDMINE")
+                .matrix()
+                .getContent().stream()
+                .anyMatch(i -> i.getStep().getPatternId().equals("SWAM_ST_VALIDATION")));
     }
 
     private void acknowledge(String name, String version) throws StepBuildingException {
