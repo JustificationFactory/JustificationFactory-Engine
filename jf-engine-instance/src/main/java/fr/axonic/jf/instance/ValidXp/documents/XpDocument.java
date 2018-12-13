@@ -25,14 +25,6 @@ public class XpDocument extends Document{
     public XpDocument() {
     }
 
-    @XmlElement
-    public boolean getValid() {
-        return valid;
-    }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
 
     @XmlElement
     public String getJobId() {
@@ -41,6 +33,15 @@ public class XpDocument extends Document{
 
     public void setJobId(String jobId) {
         this.jobId = jobId;
+    }
+
+    @XmlElement
+    public boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
 
@@ -56,5 +57,6 @@ public class XpDocument extends Document{
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), jobId,valid);
+
     }
 }
