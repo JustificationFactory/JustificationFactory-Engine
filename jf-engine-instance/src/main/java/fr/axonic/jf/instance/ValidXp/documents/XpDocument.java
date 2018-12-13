@@ -21,6 +21,7 @@ public class XpDocument extends Document{
         super.init();
     }
 
+
     public XpDocument() {
     }
 

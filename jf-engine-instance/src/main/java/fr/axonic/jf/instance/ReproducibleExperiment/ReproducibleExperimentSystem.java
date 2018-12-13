@@ -75,6 +75,7 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
         Strategy Reproducible_Experiment_Strategy = new ReproducibleExperimentFinalStrategy("REPRODUCIBLE_EXPERIMENT_STRATEGY");
         Pattern Reproducible_Experiment_Pattern = new Pattern("REPRODUCIBLE_EXPERIMENT_PATTERN", "REPRODUCIBLE_EXPERIMENT_PATTERN", Reproducible_Experiment_Strategy, Arrays.asList(Reproducible_Metrics_Pattern.getOutputType().transformToInput(), Valid_Xp_Pattern.getOutputType().transformToInput()), Reproducible_Experiment_Conclusion);
 
+        
         jpd.addStep(Accuracy_Pattern);
         jpd.addStep(Total_Time_Pattern);
         jpd.addStep(Reproducible_Metrics_Pattern);

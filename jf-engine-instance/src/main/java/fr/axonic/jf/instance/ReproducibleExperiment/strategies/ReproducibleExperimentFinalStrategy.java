@@ -41,7 +41,6 @@ public class ReproducibleExperimentFinalStrategy extends ReproducibleExperimentS
 
                     }
                 }
-
             }
         }
         ReproducibleExperimentConclusion conclusion = new ReproducibleExperimentConclusion("REPRODUCIBLE_EXPERIMENT_CONCLUSION",doc);

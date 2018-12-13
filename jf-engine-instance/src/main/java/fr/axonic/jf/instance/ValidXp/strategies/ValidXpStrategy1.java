@@ -38,6 +38,7 @@ public class ValidXpStrategy1 extends ValidXpStrategy {
                 doc = new XpDocument(logEvidence.getElement().getJobId(),isValid);
             }
         }
+
         ValidXpConclusion conclusion = new ValidXpConclusion("VALID_XP_C",doc);
         return conclusion;
     }

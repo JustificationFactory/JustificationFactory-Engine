@@ -6,6 +6,7 @@ import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
 public class ValidXpConclusion extends Conclusion<XpDocument> {
 
+
     public ValidXpConclusion(String name, XpDocument element) {
         super(name, element);
     }
