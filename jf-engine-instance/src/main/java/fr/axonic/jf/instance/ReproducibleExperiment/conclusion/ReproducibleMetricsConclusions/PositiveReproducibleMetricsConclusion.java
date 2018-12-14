@@ -1,8 +1,7 @@
-package fr.axonic.jf.instance.ReproducibleExperiment.conclusion;
+package fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions;
 
-import fr.axonic.jf.engine.support.conclusion.Conclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.documents.ReproducibleDocument;
-import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
 public class PositiveReproducibleMetricsConclusion extends ReproducibleMetricsConclusion<ReproducibleDocument> {
     public PositiveReproducibleMetricsConclusion(String name, ReproducibleDocument element) {
