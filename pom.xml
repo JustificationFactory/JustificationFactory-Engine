@@ -10,10 +10,15 @@
     <name>Justification Factory</name>
 
     <modules>
+        <module>jf-util</module>
+        <module>jf-validation-engine</module>
+        <module>jf-data-core</module>
         <module>jf-engine</module>
         <module>jf-engine-instance</module>
         <module>jf-dao</module>
         <module>jf-webservices</module>
+
+
     </modules>
 
     <properties>
@@ -37,8 +42,9 @@
         <jersey2.version>2.27</jersey2.version>
         <jaxrs.version>2.1.1</jaxrs.version>
         <jackson.version>2.9.6</jackson.version>
-        <!-- TODO Update the version of ASF!-->
-        <asf.version>4.0.0-sprint5</asf.version>
+
+        <mavenCompilerSource>1.8</mavenCompilerSource>
+        <mavenCompilerTarget>1.8</mavenCompilerTarget>
     </properties>
 
     <scm>
@@ -99,6 +105,21 @@
         <dependencies>
             <dependency>
                 <groupId>fr.axonic.jf</groupId>
+                <artifactId>jf-util</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.axonic.jf</groupId>
+                <artifactId>jf-validation-engine</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.axonic.jf</groupId>
+                <artifactId>jf-data-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.axonic.jf</groupId>
                 <artifactId>jf-engine</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -112,6 +133,7 @@
                 <artifactId>jf-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -122,8 +144,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${mavenCompilerSource}</source>
+                    <target>${mavenCompilerTarget}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

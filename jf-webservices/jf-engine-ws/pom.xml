@@ -18,9 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>fr.axonic</groupId>
-            <artifactId>asf-validation-engine</artifactId>
-            <version>${asf.version}</version>
+            <groupId>fr.axonic.jf</groupId>
+            <artifactId>jf-validation-engine</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

@@ -13,14 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>fr.axonic</groupId>
-            <artifactId>asf-data-core</artifactId>
-            <version>${asf.version}</version>
+            <groupId>fr.axonic.jf</groupId>
+            <artifactId>jf-data-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>fr.axonic</groupId>
-            <artifactId>asf-validation-engine</artifactId>
-            <version>${asf.version}</version>
+            <groupId>fr.axonic.jf</groupId>
+            <artifactId>jf-validation-engine</artifactId>
         </dependency>
 
         <!-- JAX-RS -->

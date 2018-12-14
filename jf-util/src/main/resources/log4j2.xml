@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="ASF" packages="">
+
+	<Properties>
+		<Property name="logDirectory">logs</Property>
+		<Property name="appArchiveDirectory">application</Property>
+		<Property name="techArchiveDirectory">technical</Property>
+		<Property name="warnErrArchiveDirectory">technical</Property>
+		<Property name="appFilename">application</Property>
+		<Property name="techFilename">technical</Property>
+		<Property name="commFilename">communication</Property>
+		<Property name="warnErrFilename">problems</Property>
+		<Property name="appCsvFilename">application</Property>
+		<Property name="commentsFilename">comments</Property>
+		<Property name="impedancesFilename">impedances</Property>
+		<Property name="mapsimpedancesFilename">mapsimpedances</Property>
+		<Property name="testFilename">test</Property>
+		<Property name="bleFilename">ble</Property>
+
+		<Property name="technicalPattern"><![CDATA[%d{yyy-MM-dd HH:mm:ss.SSS} %X{AppId} [%t] %-5level %logger{36} - %msg%n]]></Property>
+	</Properties>
+
+	<Appenders>
+
+		<!-- BUSINESS -->
+		<!-- TECHNICAL -->
+
+		<Console name="TechnicalConsole" target="SYSTEM_OUT">
+			<Filters>
+				<MarkerFilter marker="APPLICATION" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<MarkerFilter marker="APPLICATION_CSV" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<MarkerFilter marker="COMMENTS" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+			</Filters>
+			<PatternLayout>
+				<Pattern>%d [%t] %-5level: %msg%n%throwable</Pattern>
+			</PatternLayout>
+		</Console>
+
+		<RollingFile name="TechnicalLog" fileName="${logDirectory}/${techFilename}.log"
+			filePattern="${logDirectory}/${techArchiveDirectory}/$${date:yyyy-MM}/${techFilename}-%d{MM-dd-yyyy}-%i.log.zip"
+			ignoreExceptions="false">
+			<Filters>
+				<MarkerFilter marker="APPLICATION" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<MarkerFilter marker="APPLICATION_CSV" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<MarkerFilter marker="COMMENTS" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+			</Filters>
+			<PatternLayout>
+				<Pattern><![CDATA[%d{yyy-MM-dd HH:mm:ss.SSS} %X{AppId} [%t] %-5level %logger{36} - %msg%n]]></Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="WarningsErrorsLog" fileName="${logDirectory}/${warnErrFilename}.log"
+			filePattern="${logDirectory}/${warnErrArchiveDirectory}/$${date:yyyy-MM}/${warnErrFilename}-%d{MM-dd-yyyy}-%i.log.zip"
+			ignoreExceptions="false">
+			<Filters>
+				<MarkerFilter marker="APPLICATION" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<MarkerFilter marker="APPLICATION_CSV" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<MarkerFilter marker="COMMENTS" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="warn" />
+			</Filters>
+			<PatternLayout>
+				<Pattern><![CDATA[%d{yyy-MM-dd HH:mm:ss.SSS} %X{AppId} [%t] %-5level %logger{36} - %msg%n]]></Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="CommLog" fileName="${logDirectory}/${commFilename}.log"
+			filePattern="${logDirectory}/${techArchiveDirectory}/$${date:yyyy-MM}/${commFilename}-%d{MM-dd-yyyy}-%i.log.zip"
+			ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern><![CDATA[%d{yyy-MM-dd HH:mm:ss.SSS} %X{AppId} [%t] %-5level %m%n]]></Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+		</RollingFile>
+
+	</Appenders>
+	<Loggers>
+
+
+		<!-- END OF THE TEST FINDER/SCANNER -->
+
+		<Root level="info">
+			<AppenderRef ref="TechnicalConsole" />
+			<AppenderRef ref="TechnicalLog" />
+			<AppenderRef ref="WarningsErrorsLog" />
+		</Root>
+
+	</Loggers>
+</Configuration>
