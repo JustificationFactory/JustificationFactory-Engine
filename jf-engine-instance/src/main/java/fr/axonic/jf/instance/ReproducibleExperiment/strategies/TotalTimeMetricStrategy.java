@@ -2,11 +2,11 @@ package fr.axonic.jf.instance.ReproducibleExperiment.strategies;
 
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
-import fr.axonic.jf.engine.support.evidence.Document;
-import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.NegativeTotalTimeMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.PositiveTotalTimeMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.documents.ReproducibleDocument;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence;
-import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
 import java.util.List;
 
@@ -29,9 +29,17 @@ public class TotalTimeMetricStrategy extends ReproducibleExperimentStrategy {
                 TotalTimeMetricEvidence totalTimeMetricEvidence = (TotalTimeMetricEvidence) s;
                 boolean isReproducible = MetricAnalysis.isReproducible(totalTimeMetricEvidence.getElement().getValues(),0.15);
                 doc = new ReproducibleDocument(totalTimeMetricEvidence.getElement().getJobId(), isReproducible);
+                if (isReproducible){
+                    TotalTimeMetricConclusion conclusion = new PositiveTotalTimeMetricConclusion("TOTAL_TIME_METRIC_CONCLUSION",doc);
+                    return conclusion;
+                }
+                else {
+                    TotalTimeMetricConclusion conclusion = new NegativeTotalTimeMetricConclusion("TOTAL_TIME_METRIC_CONCLUSION",doc);
+                    return conclusion;
+                }
             }
         }
-        TotalTimeMetricConclusion conclusion = new TotalTimeMetricConclusion("TOTAL_TIME_METRIC_CONCLUSION",doc);
+        TotalTimeMetricConclusion conclusion = new NegativeTotalTimeMetricConclusion("TOTAL_TIME_METRIC_CONCLUSION",doc);
         return conclusion;
     }
 }

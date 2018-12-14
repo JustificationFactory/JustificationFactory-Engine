@@ -12,7 +12,7 @@ import fr.axonic.jf.engine.strategy.Strategy;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion;
-import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.*;
 import fr.axonic.jf.instance.ReproducibleExperiment.strategies.AccuracyMetricStrategy;
 import fr.axonic.jf.instance.ReproducibleExperiment.strategies.ReproducibleExperimentFinalStrategy;
