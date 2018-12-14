@@ -2,10 +2,11 @@ package fr.axonic.jf.instance.ReproducibleExperiment.strategies;
 
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
-import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.NegativeAccuracyMetricConclusion;
+import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.PositiveAccuracyMetricConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.documents.ReproducibleDocument;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence;
-import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
 import java.util.List;
 
@@ -28,9 +29,17 @@ public class AccuracyMetricStrategy extends ReproducibleExperimentStrategy{
                 AccuracyMetricEvidence accuracyMetricEvidence = (AccuracyMetricEvidence) s;
                 boolean isReproducible = MetricAnalysis.isReproducible(accuracyMetricEvidence.getElement().getValues(),0.15);
                 doc = new ReproducibleDocument(accuracyMetricEvidence.getElement().getJobId(),isReproducible);
+                if (isReproducible){
+                    AccuracyMetricConclusion conclusion = new PositiveAccuracyMetricConclusion("ACCURACY_METRIC_CONCLUSION", doc);
+                    return conclusion;
+                }
+                else {
+                    AccuracyMetricConclusion conclusion = new NegativeAccuracyMetricConclusion("ACCURACY_METRIC_CONCLUSION", doc);
+                    return conclusion;
+                }
             }
         }
-        AccuracyMetricConclusion conclusion = new AccuracyMetricConclusion("ACCURACY_METRIC_CONCLUSION", doc);
+        AccuracyMetricConclusion conclusion = new NegativeAccuracyMetricConclusion("ACCURACY_METRIC_CONCLUSION", doc);
         return conclusion;
     }
 }
