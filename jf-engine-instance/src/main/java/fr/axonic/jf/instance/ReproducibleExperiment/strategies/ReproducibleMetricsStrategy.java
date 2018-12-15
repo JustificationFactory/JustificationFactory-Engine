@@ -46,13 +46,11 @@ public class ReproducibleMetricsStrategy extends ReproducibleExperimentStrategy 
                     }
                     else {
                         conclusion = new NegativeReproducibleMetricsConclusion("REPRODUCIBLE_METRICS_CONCLUSION", null);
-                        return conclusion;
                     }
                 }
             }
             else{
                 conclusion = new NegativeReproducibleMetricsConclusion("REPRODUCIBLE_METRICS_CONCLUSION", null);
-                return conclusion;
             }
         }
         return conclusion;
