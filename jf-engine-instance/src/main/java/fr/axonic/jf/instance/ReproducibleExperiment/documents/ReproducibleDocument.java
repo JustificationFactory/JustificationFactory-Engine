@@ -3,7 +3,9 @@ package fr.axonic.jf.instance.ReproducibleExperiment.documents;
 import fr.axonic.jf.engine.support.evidence.Document;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class ReproducibleDocument extends Document {
 
     private String jobId;

@@ -1,5 +1,7 @@
 package fr.axonic.jf.instance.ReproducibleExperiment.strategies;
 
+import fr.axonic.jf.engine.strategy.Rationale;
+import fr.axonic.jf.engine.strategy.UsageDomain;
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion;
@@ -15,11 +17,11 @@ import java.util.List;
 
 public class AccuracyMetricStrategy extends ReproducibleExperimentStrategy{
     public AccuracyMetricStrategy() {
-        super(null);
+        super(null,null,null);
     }
 
-    public AccuracyMetricStrategy(String name) {
-        super(name);
+    public AccuracyMetricStrategy(String name, Rationale rationale, UsageDomain usageDomain) {
+        super(name, rationale, usageDomain);
     }
 
     @Override

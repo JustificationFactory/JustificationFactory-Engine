@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "c4678f77-4d22-4365-8114-ac97616d45f2",
+		"name": "FullV2 copy",
+		"description": "Requests samples using the stack of Justification Factory (bus & engine webservices).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bus",
+			"item": [
+				{
+					"name": "Send a support",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"supports\": [\n  \t{\n      \"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence\",\n      \"artifacts\": [\n        {\n          \"@type\": \".MetricDocument\",\n          \"jobId\":\"xp1\",\n          \"values\":[2.0,5.0],\n          \"url\": \"http://link-to-our-student-ci.io\",\n          \"path\": null,\n          \"code\": null,\n          \"version\": null\n        }\n      ],\n      \"id\": \"10cfbae43cb744ff933c2968de2055f2\",\n      \"name\": \"TOTAL_TIME_METRIC_EVIDENCE\",\n      \"element\": {\n        \"@type\": \".MetricDocument\",\n        \"jobId\":\"xp1\",\n        \"values\":[2.0,5.0],\n        \"url\": \"http://link-to-our-student-ci.io\",\n        \"path\": null,\n        \"code\": null,\n        \"version\": null\n      }\n    },\n    {\n      \"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence\",\n      \"artifacts\": [\n        {\n          \"@type\": \".MetricDocument\",\n          \"jobId\":\"xp1\",\n          \"values\":[1.0,2.0,20.0,60.0],\n          \"url\": \"http://link-to-our-student-ci.io\",\n          \"path\": null,\n          \"code\": null,\n          \"version\": null\n        }\n      ],\n      \"id\": \"10cfbae43cb744ff933c2968de2055f1\",\n      \"name\": \"ACCURACY_METRIC_EVIDENCE\",\n      \"element\": {\n        \"@type\": \".MetricDocument\",\n        \"jobId\":\"xp1\",\n        \"values\":[1.0,2.0,20.0,60.0],\n        \"url\": \"http://link-to-our-student-ci.io\",\n        \"path\": null,\n        \"code\": null,\n        \"version\": null\n      }\n    },\n    {\n      \"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeReproducibilityThreshold\",\n      \"artifacts\": [\n        {\n          \"@type\": \".ThresholdDocument\",\n          \"url\": \"http://link-to-our-student-ci.io\",\n          \"path\": null,\n          \"code\": null,\n          \"version\": null\n        }\n      ],\n      \"id\": \"10cfbae43cb744ff933c2968de2055f7\",\n      \"name\": \"TOTALTIME_THRESHOLD_EVIDENCE\",\n      \"element\": {\n        \"@type\": \".ThresholdDocument\",\n        \"url\": \"http://link-to-our-student-ci.io\",\n        \"path\": null,\n        \"code\": null,\n        \"version\": null\n      }\n    },\n    {\n      \"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyReproducibilityThreshold\",\n      \"artifacts\": [\n        {\n          \"@type\": \".ThresholdDocument\",\n          \"url\": \"http://link-to-our-student-ci.io\",\n          \"path\": null,\n          \"code\": null,\n          \"version\": null\n        }\n      ],\n      \"id\": \"10cfbae43cb744ff933c2968de2055f8\",\n      \"name\": \"ACCURACY_THRESHOLD_EVIDENCE\",\n      \"element\": {\n        \"@type\": \".ThresholdDocument\",\n        \"url\": \"http://link-to-our-student-ci.io\",\n        \"path\": null,\n        \"code\": null,\n        \"version\": null\n      }\n    },\n    {\n      \"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n      \"artifacts\": [\n        {\n          \"@type\": \".XpDocument\",\n          \"jobId\":\"xp1\",\n          \"url\": \"http://link-to-our-student-ci.io\",\n          \"path\": null,\n          \"code\": null,\n          \"version\": null\n        }\n      ],\n      \"id\": \"10cfbae43cb744ff933c2968de2055f9\",\n      \"name\": \"EXPERIMENT_EVIDENCE\",\n      \"element\": {\n        \"@type\": \".XpDocument\",\n        \"jobId\":\"xp1\",\n        \"url\": \"http://link-to-our-student-ci.io\",\n        \"path\": null,\n        \"code\": null,\n        \"version\": null\n      }\n    },\n    {\n    \t\"@type\": \"fr.axonic.jf.instance.ValidXp.evidence.LogEvidence\",\n    \t\"artifacts\": [\n    \t {\n    \t\t\"@type\":\".LogDocument\",\n    \t\t\"jobId\":\"xp1\",\n    \t\t\"url\":\"http://link-to-our-student-ci.io\",\n    \t\t\"path\": null,\n    \t\t\"code\": null,\n    \t\t\"version\": null\n    \t }\n    \t],\n    \t\"id\":\"10cfbae43cb744ff933c2968de2055f3\",\n    \t\"name\":\"LOG_E\",\n    \t\"element\": {\n    \t\t\"@type\":\".LogDocument\",\n    \t\t\"jobId\":\"xp1\",\n    \t\t\"url\":\"http://link-to-our-student-ci.io\",\n    \t\t\"path\": null,\n    \t\t\"code\": null,\n    \t\t\"version\": null\n\n    \t}\n    },\n    {\n    \t\"@type\":\"fr.axonic.jf.instance.ValidXp.evidence.XpEvidence\",\n    \t\"artifacts\": [\n    \t  { \"@type\": \".XpDocument\",\n    \t    \"jobId\":\"xp1\",\n    \t\t\"url\": \"http://link-to-our-student-ci.io\",\n    \t\t\"path\": null,\n    \t\t\"code\": null,\n    \t\t\"version\": null\n\n    \t  }\n    \t],\n    \t\"id\":\"10cfbae43cb744ff933c2968de2055f4\",\n    \t\"name\": \"XP_E\",\n    \t\"element\": {\n    \t\t\"@type\": \".XpDocument\",\n    \t\t\"jobId\":\"xp1\",\n    \t\t\"url\": \"http://link-to-our-student-ci.io\",\n    \t\t\"path\": null,\n    \t\t\"code\": null,\n    \t\t\"version\": null\n    \t\t}\n    \t}\n  ]\n}\n"
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/bus/rest/bus/supports",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"bus",
+								"rest",
+								"bus",
+								"supports"
+							]
+						},
+						"description": "Send a support to the bus to build new Justification Diagram steps."
+					},
+					"response": []
+				}
+			],
+			"description": "Requests related to the bus.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3bea5e0e-0385-43cd-be48-9a3e04a8b582",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69e75eea-9fa9-4c8b-a1d7-9be3ed4a9eb3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Engine webservices",
+			"item": [
+				{
+					"name": "Create a Justification System",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cec5a5fa-3279-4b90-93d7-1b9c8b0e34cd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "547cddd3-c79b-471a-8dc4-113abb4e9952",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"justificationDiagram\": {\n    \"steps\": []\n  },\n  \"patternsBase\": {\n    \"@type\": \".DiagramPatternsBase\",\n    \"patternsBaseType\": \"PATTERN_DIAGRAM\",\n   \"patterns\": [\n   \t{\n\t\t\t\t\t\t\"supports\":\n\t\t\t\t\t\t   [\n\t\t\t\t\t\t   \t\t{\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_METRIC_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_METRIC_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"name\": \"ACCURACY_METRIC_EVIDENCE\"\n\t\t\t\t\t\t\t\t}, {\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyReproducibilityThreshold\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_THRESHOLD_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyReproducibilityThreshold\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_THRESHOLD_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"name\": \"ACCURACY_THRESHOLD_EVIDENCE\"\n\t\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"EXPERIMENT_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"EXPERIMENT_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"name\": \"EXPERIMENT_EVIDENCE\"\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t   ],\n\t\t\t\t\t\t\"conclusion\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"name\" : \"ACCURACY_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\"strategy\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.strategies.AccuracyMetricStrategy\",\n\t\t\t\t\t\t\t\t\"name\": \"ACCURACY_METRIC_STRATEGY\",\n\t\t\t\t\t\t\t\t\"rationale\": {\"@type\":\".Rationale\",\"project\":{\"@type\":\"fr.axonic.jf.instance.ReproducibleExperiment.strategies.JournalOfExperimentalSocialPsychology\",\"methodology\":\"MEDIAN\",\"target\":\"OUTLIERS\"},\"name\":\"MEDIAN to detect OUTLIERS\"},\n\t\t\t\t\t\t\t\t\"usageDomain\": null\n\t\t\t\t\t\t\t},\n\n\t\t\t\t\t\t\"id\": \"ACCURACY_METRIC_PATTERN\",\n\t\t\t\t\t\t\"name\": \"ACCURACY_METRIC_PATTERN\",\n\t\t\t\t\t\t\"inputTypes\":\n\t\t\t\t\t\t\t[\n                  {\n                  \"artifacts\":\n                    [\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence\",\n                        \"nameType\": \"ACCURACY_METRIC_EVIDENCE\"\n                      }\n                    ],\n                    \"type\":\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyMetricEvidence\",\n                        \"nameType\": \"ACCURACY_METRIC_EVIDENCE\"\n                      },\n                    \"name\": \"ACCURACY_METRIC_EVIDENCE\"\n                }, {\n                  \"artifacts\":\n                    [\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyReproducibilityThreshold\",\n                        \"nameType\": \"ACCURACY_THRESHOLD_EVIDENCE\"\n                      }\n                    ],\n                    \"type\":\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.AccuracyReproducibilityThreshold\",\n                        \"nameType\": \"ACCURACY_THRESHOLD_EVIDENCE\"\n                      },\n                    \"name\": \"ACCURACY_THRESHOLD_EVIDENCE\"\n                },{\n                  \"artifacts\":\n                    [\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n                        \"nameType\": \"EXPERIMENT_EVIDENCE\"\n                      }\n                    ],\n                    \"type\":\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n                        \"nameType\": \"EXPERIMENT_EVIDENCE\"\n                      },\n                    \"name\": \"EXPERIMENT_EVIDENCE\"\n                }\n\t\t\t\t\t\t\t],\n\n\n\t\t\t\t\t\t\"outputType\":\n                {\n                  \"artifacts\":\n                    [\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n                        \"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n                      }\n                    ],\n                  \"type\":\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n                      \"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n                    },\n                  \"name\" : \"ACCURACY_METRIC_CONCLUSION\"\n                }\n}\n,\n{\n\t\t\t\t\t\t\"supports\":\n\t\t\t\t\t\t   [\n\t\t\t\t\t\t   \t\t{\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"TOTAL_TIME_METRIC_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"TOTAL_TIME_METRIC_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"name\": \"TOTAL_TIME_METRIC_EVIDENCE\"\n\t\t\t\t\t\t\t\t},\t\t{\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeReproducibilityThreshold\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"TOTALTIME_THRESHOLD_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeReproducibilityThreshold\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"TOTALTIME_THRESHOLD_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"name\": \"TOTALTIME_THRESHOLD_EVIDENCE\"\n\t\t\t\t\t\t\t\t}, {\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"EXPERIMENT_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"EXPERIMENT_EVIDENCE\"\n\t\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"name\": \"EXPERIMENT_EVIDENCE\"\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t   ],\n\t\t\t\t\t\t\"conclusion\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n\t\t\t\t\t\t\t\t\t\t\"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"name\" : \"TOTAL_TIME_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\"strategy\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.strategies.TotalTimeMetricStrategy\",\n\t\t\t\t\t\t\t\t\"name\": \"TOTAL_TIME_METRIC_STRATEGY\",\n\t\t\t\t\t\t\t\t\"rationale\":{\"@type\":\".Rationale\",\"project\":{\"@type\":\"fr.axonic.jf.instance.ReproducibleExperiment.strategies.JournalOfExperimentalSocialPsychology\",\"methodology\":\"MEDIAN\",\"target\":\"OUTLIERS\"},\"name\":\"MEDIAN to detect OUTLIERS\"} ,\"usageDomain\": null\n\t\t\t\t\t\t\t},\n\n\t\t\t\t\t\t\"id\": \"TOTAL_TIME_METRIC_PATTERN\",\n\t\t\t\t\t\t\"name\": \"TOTAL_TIME_METRIC_PATTERN\",\n\t\t\t\t\t\t\"inputTypes\":\n\t\t\t\t\t\t\t[\n              {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence\",\n                    \"nameType\": \"TOTAL_TIME_METRIC_EVIDENCE\"\n                  }\n                ],\n                \"type\":\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence\",\n                    \"nameType\": \"TOTAL_TIME_METRIC_EVIDENCE\"\n                  },\n                \"name\": \"TOTAL_TIME_METRIC_EVIDENCE\"\n            }, {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeReproducibilityThreshold\",\n                    \"nameType\": \"TOTALTIME_THRESHOLD_EVIDENCE\"\n                  }\n                ],\n                \"type\":\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeReproducibilityThreshold\",\n                    \"nameType\": \"TOTALTIME_THRESHOLD_EVIDENCE\"\n                  },\n                \"name\": \"TOTALTIME_THRESHOLD_EVIDENCE\"\n            },{\n                  \"artifacts\":\n                    [\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n                        \"nameType\": \"EXPERIMENT_EVIDENCE\"\n                      }\n                    ],\n                    \"type\":\n                      {\n                        \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence\",\n                        \"nameType\": \"EXPERIMENT_EVIDENCE\"\n                      },\n                    \"name\": \"EXPERIMENT_EVIDENCE\"\n                }\n\t\t\t\t\t\t\t],\n\n\n\t\t\t\t\t\t\"outputType\":\n            {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n                    \"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n                  }\n                ],\n              \"type\":\n                {\n                  \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n                  \"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n                },\n              \"name\" : \"TOTAL_TIME_METRIC_CONCLUSION\"\n            }\n}\n,\n{\n\t\t\t\t\t\t\"supports\":\n\t\t\t\t\t\t   [\n\t\t\t\t\t\t   \t\t{\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t},\n                {\n                \"artifacts\":\n                  [\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n                      \"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n                    }\n                  ],\n                  \"type\":\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n                      \"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n                    }\n              }\n\t\t\t\t\t\t   ],\n\t\t\t\t\t\t\"conclusion\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n\t\t\t\t\t\t\t\t\t\t\"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\"strategy\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.strategies.ReproducibleMetricsStrategy\",\n\t\t\t\t\t\t\t\t\"name\": \"REPRODUCIBLE_METRICS_STRATEGY\",\n\t\t\t\t\t\t\t\t\"rationale\": null,\n\t\t\t\t\t\t\t\t\"usageDomain\": null\n\t\t\t\t\t\t\t},\n\n\t\t\t\t\t\t\"id\": \"REPRODUCIBLE_METRICS_PATTERN\",\n\t\t\t\t\t\t\"name\": \"REPRODUCIBLE_METRICS_PATTERN\",\n\t\t\t\t\t\t\"inputTypes\":\n\t\t\t\t\t\t\t[\n                      {\n                      \"artifacts\":\n                        [\n                          {\n                            \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n                            \"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n                          }\n                        ],\n                        \"type\":\n                          {\n                            \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion\",\n                            \"nameType\": \"ACCURACY_METRIC_CONCLUSION\"\n                          }\n                    },\n                    {\n                    \"artifacts\":\n                      [\n                        {\n                          \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n                          \"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n                        }\n                      ],\n                      \"type\":\n                        {\n                          \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion\",\n                          \"nameType\": \"TOTAL_TIME_METRIC_CONCLUSION\"\n                        }\n                  }\n\t\t\t\t\t\t\t],\n\n\n\t\t\t\t\t\t\"outputType\":\n            {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n                    \"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n                  }\n                ],\n              \"type\":\n                {\n                  \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n                  \"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n                }\n            }\n\n\t\t\t\t   }\n,\n{\n\t\t\t\t\t\t\"supports\":\n\t\t\t\t\t\t   [\n                {\n                \"artifacts\":\n                  [\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n                      \"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n                    }\n                  ],\n                  \"type\":\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n                      \"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n                    }\n              }\n\t\t\t\t\t\t   ],\n\t\t\t\t\t\t\"conclusion\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"REPRODUCIBLE_EXPERIMENT_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion\",\n\t\t\t\t\t\t\t\t\t\t\"nameType\": \"REPRODUCIBLE_EXPERIMENT_CONCLUSION\"\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\"strategy\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"@type\": \"fr.axonic.jf.instance.ReproducibleExperiment.strategies.ReproducibleExperimentFinalStrategy\",\n\t\t\t\t\t\t\t\t\"name\": \"REPRODUCIBLE_EXPERIMENT_STRATEGY\",\n\t\t\t\t\t\t\t\t\"rationale\": null,\n\t\t\t\t\t\t\t\t\"usageDomain\": null\n\t\t\t\t\t\t\t},\n\n\t\t\t\t\t\t\"id\": \"REPRODUCIBLE_EXPERIMENT_PATTERN\",\n\t\t\t\t\t\t\"name\": \"REPRODUCIBLE_EXPERIMENT_PATTERN\",\n\t\t\t\t\t\t\"inputTypes\":\n\t\t\t\t\t\t\t[\n                      {\n                      \"artifacts\":\n                        [\n                          {\n                            \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n                            \"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n                          }\n                        ],\n                        \"type\":\n                          {\n                            \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion\",\n                            \"nameType\": \"REPRODUCIBLE_METRICS_CONCLUSION\"\n                          }\n                    },     {\n                      \"artifacts\":\n                        [\n                          {\n                            \"classType\": \"fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion\",\n                            \"nameType\": \"VALID_XP_C\"\n                          }\n                        ],\n                        \"type\":\n                          {\n                            \"classType\": \"fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion\",\n                            \"nameType\": \"VALID_XP_C\"\n                          }\n                    }\n\t\t\t\t\t\t\t],\n\n\n\t\t\t\t\t\t\"outputType\":\n            {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion\",\n                    \"nameType\": \"REPRODUCIBLE_EXPERIMENT_CONCLUSION\"\n                  }\n                ],\n              \"type\":\n                {\n                  \"classType\": \"fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion\",\n                  \"nameType\": \"REPRODUCIBLE_EXPERIMENT_CONCLUSION\"\n                }\n            }\n\n\t\t\t\t   }\n\t\t\t\t   ,\n\t\t\t\t   {\n\t\t\t\t\t\t\"supports\":\n\t\t\t\t\t\t   [\n\t\t\t\t\t\t   \t\t{\n\t\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.LogEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"LOG_E\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.LogEvidence\",\n\t\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"LOG_E\"\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t},\n                {\n                \"artifacts\":\n                  [\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.XpEvidence\",\n                      \"nameType\": \"XP_E\"\n                    }\n                  ],\n                  \"type\":\n                    {\n                      \"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.XpEvidence\",\n                      \"nameType\": \"XP_E\"\n                    }\n              }\n\t\t\t\t\t\t   ],\n\t\t\t\t\t\t\"conclusion\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"artifacts\":\n\t\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion\",\n\t\t\t\t\t\t\t\t\t\t\t\"nameType\": \"VALID_XP_C\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\"type\":\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"classType\": \"fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion\",\n\t\t\t\t\t\t\t\t\t\t\"nameType\": \"VALID_XP_C\"\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\"strategy\":\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"@type\": \"fr.axonic.jf.instance.ValidXp.strategies.ValidXpStrategy1\",\n\t\t\t\t\t\t\t\t\"name\": \"VALIDE_XP_STRATEGY\",\n\t\t\t\t\t\t\t\t\"rationale\": null,\n\t\t\t\t\t\t\t\t\"usageDomain\": null\n\t\t\t\t\t\t\t},\n\n\t\t\t\t\t\t\"id\": \"VALIDE_XP_PATTERN\",\n\t\t\t\t\t\t\"name\": \"VALIDE_XP_PATTERN\",\n\t\t\t\t\t\t\"inputTypes\":\n\t\t\t\t\t\t\t[\n              {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.LogEvidence\",\n                    \"nameType\": \"LOG_E\"\n                  }\n                ],\n                \"type\":\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.LogEvidence\",\n                    \"nameType\": \"LOG_E\"\n                  }\n            },\n            {\n            \"artifacts\":\n              [\n                {\n                  \"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.XpEvidence\",\n                  \"nameType\": \"XP_E\"\n                }\n              ],\n              \"type\":\n                {\n                  \"classType\": \"fr.axonic.jf.instance.ValidXp.evidence.XpEvidence\",\n                  \"nameType\": \"XP_E\"\n                }\n          }\n\t\t\t\t\t\t\t],\n\n\n\t\t\t\t\t\t\"outputType\":\n            {\n              \"artifacts\":\n                [\n                  {\n                    \"classType\": \"fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion\",\n                    \"nameType\": \"VALID_XP_C\"\n                  }\n                ],\n              \"type\":\n                {\n                  \"classType\": \"fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion\",\n                  \"nameType\": \"VALID_XP_C\"\n                }\n            }\n\n\t\t\t\t   }\n\n\n\n\n\n\n   ]},\n   \"autoSupportFillEnable\": true,\n   \"versioningEnable\": false\n   }\n"
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"system",
+								"{{justificationSystemName}}"
+							]
+						},
+						"description": "Add a Justification System to the Justification Factory."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a Justification System",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"system",
+								"{{justificationSystemName}}"
+							]
+						},
+						"description": "Fetch a Justification System from the Justification Diagram."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+									"host": [
+										"{{stackHostName}}"
+									],
+									"port": "{{stackHostPort}}",
+									"path": [
+										"engine",
+										"rest",
+										"justification",
+										"system",
+										"{{justificationSystemName}}"
+									]
+								},
+								"description": "Fetch a Justification System from the Justification Diagram."
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Remove a Justification System",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/system/{{justificationSystemName}}",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"system",
+								"{{justificationSystemName}}"
+							]
+						},
+						"description": "Delete a Justification System of the Justification Factory."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve the names of known Justification Systems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{stackHostName}}:{{stackHostPort}}/engine/rest/justification/systems",
+							"host": [
+								"{{stackHostName}}"
+							],
+							"port": "{{stackHostPort}}",
+							"path": [
+								"engine",
+								"rest",
+								"justification",
+								"systems"
+							]
+						},
+						"description": "Fetch only the names of the known Justification Systems instances in the Justification Factory."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "863fbda3-2491-427e-a929-e79be571ab9c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a9784701-4606-4472-8db1-efcd5c496299",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5c545f3e-0518-415b-8f92-67df3cbdc275",
+			"key": "stackHostName",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "88415505-e488-4dca-8776-84c8a769aa89",
+			"key": "stackHostPort",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"id": "93b7cdf1-fffd-4d7d-8612-3bcb1916ce51",
+			"key": "justificationSystemName",
+			"value": "REPRODUCIBLE_EXPERIMENT",
+			"type": "string"
+		}
+	]
+}

@@ -8,16 +8,15 @@ import fr.axonic.jf.engine.pattern.Pattern;
 import fr.axonic.jf.engine.pattern.type.InputType;
 import fr.axonic.jf.engine.pattern.type.OutputType;
 import fr.axonic.jf.engine.pattern.type.Type;
+import fr.axonic.jf.engine.strategy.Project;
+import fr.axonic.jf.engine.strategy.Rationale;
 import fr.axonic.jf.engine.strategy.Strategy;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleExperimentConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.ReproducibleMetricsConclusions.ReproducibleMetricsConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.TotalTimeMetricConclusions.TotalTimeMetricConclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.*;
-import fr.axonic.jf.instance.ReproducibleExperiment.strategies.AccuracyMetricStrategy;
-import fr.axonic.jf.instance.ReproducibleExperiment.strategies.ReproducibleExperimentFinalStrategy;
-import fr.axonic.jf.instance.ReproducibleExperiment.strategies.ReproducibleMetricsStrategy;
-import fr.axonic.jf.instance.ReproducibleExperiment.strategies.TotalTimeMetricStrategy;
+import fr.axonic.jf.instance.ReproducibleExperiment.strategies.*;
 import fr.axonic.jf.instance.ValidXp.conclusion.ValidXpConclusion;
 import fr.axonic.jf.instance.ValidXp.evidence.LogEvidence;
 import fr.axonic.jf.instance.ValidXp.evidence.XpEvidence;
@@ -47,19 +46,20 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
         InputType<AccuracyReproducibilityThreshold> Accuracy_Threshold_Evidence = new InputType <>(AccuracyReproducibilityThreshold.EVIDENCE_NAME, new Type<>(AccuracyReproducibilityThreshold.class,"ACCURACY_THRESHOLD_EVIDENCE"));
         OutputType<AccuracyMetricConclusion> Accuracy_Conclusion = new OutputType<>("ACCURACY_METRIC_CONCLUSION", new Type<>(AccuracyMetricConclusion.class, "ACCURACY_METRIC_CONCLUSION"));
 
-        Strategy Accuracy_Strategy = new AccuracyMetricStrategy("ACCURACY_METRIC_STRATEGY");
+        JournalOfExperimentalSocialPsychology project = new JournalOfExperimentalSocialPsychology(Methodology.MEDIAN,Target.OUTLIERS);
+        Strategy Accuracy_Strategy = new AccuracyMetricStrategy("ACCURACY_METRIC_STRATEGY",new Rationale<>(project),null);
         Pattern Accuracy_Pattern = new Pattern("ACCURACY_METRIC_PATTERN", "ACCURACY_METRIC_PATTERN", Accuracy_Strategy, Arrays.asList(Accuracy_Evidence,Experiment_Evidence,Accuracy_Threshold_Evidence), Accuracy_Conclusion);
 
         //Total time metric pattern
         InputType<TotalTimeMetricEvidence> Total_Time_Evidence = new InputType <>(TotalTimeMetricEvidence.EVIDENCE_NAME, new Type<>(TotalTimeMetricEvidence.class, "TOTAL_TIME_METRIC_EVIDENCE"));
         InputType<TotalTimeReproducibilityThreshold> TotalTime_Threshold_Evidence = new InputType <>(TotalTimeReproducibilityThreshold.EVIDENCE_NAME, new Type<>(TotalTimeReproducibilityThreshold.class,"TOTALTIME_THRESHOLD_EVIDENCE"));
         OutputType<TotalTimeMetricConclusion> Total_Time_Conclusion = new OutputType<>("TOTAL_TIME_METRIC_CONCLUSION", new Type<>(TotalTimeMetricConclusion.class, "TOTAL_TIME_METRIC_CONCLUSION"));
-        Strategy Total_Time_Strategy = new TotalTimeMetricStrategy("TOTAL_TIME_METRIC_STRATEGY");
+        Strategy Total_Time_Strategy = new TotalTimeMetricStrategy("TOTAL_TIME_METRIC_STRATEGY",new Rationale<>(project),null);
         Pattern Total_Time_Pattern = new Pattern("TOTAL_TIME_METRIC_PATTERN", "TOTAL_TIME_METRIC_PATTERN", Total_Time_Strategy, Arrays.asList(Total_Time_Evidence,Experiment_Evidence,TotalTime_Threshold_Evidence), Total_Time_Conclusion);
 
         //Reproducible metrics pattern
         OutputType<ReproducibleMetricsConclusion> Reproducible_Metrics_Conclusion = new OutputType<>("REPRODUCIBLE_METRICS_CONCLUSION", new Type<>(ReproducibleMetricsConclusion.class, "REPRODUCIBLE_METRICS_CONCLUSION"));
-        Strategy Reproducible_Metrics_Strategy = new ReproducibleMetricsStrategy("REPRODUCIBLE_METRICS_STRATEGY");
+        Strategy Reproducible_Metrics_Strategy = new ReproducibleMetricsStrategy("REPRODUCIBLE_METRICS_STRATEGY",null,null);
         Pattern Reproducible_Metrics_Pattern = new Pattern("REPRODUCIBLE_METRICS_PATTERN", "REPRODUCIBLE_METRICS_PATTERN", Reproducible_Metrics_Strategy, Arrays.asList(Accuracy_Pattern.getOutputType().transformToInput(), Total_Time_Pattern.getOutputType().transformToInput()), Reproducible_Metrics_Conclusion);
 
         //Valid experiment pattern
@@ -72,7 +72,7 @@ public class ReproducibleExperimentSystem extends JustificationSystem<DiagramPat
 
         //Top level reproducible experiment pattern
         OutputType<ReproducibleExperimentConclusion> Reproducible_Experiment_Conclusion = new OutputType<>("REPRODUCIBLE_EXPERIMENT_CONCLUSION", new Type<>(ReproducibleExperimentConclusion.class, "REPRODUCIBLE_EXPERIMENT_CONCLUSION"));
-        Strategy Reproducible_Experiment_Strategy = new ReproducibleExperimentFinalStrategy("REPRODUCIBLE_EXPERIMENT_STRATEGY");
+        Strategy Reproducible_Experiment_Strategy = new ReproducibleExperimentFinalStrategy("REPRODUCIBLE_EXPERIMENT_STRATEGY",null,null);
         Pattern Reproducible_Experiment_Pattern = new Pattern("REPRODUCIBLE_EXPERIMENT_PATTERN", "REPRODUCIBLE_EXPERIMENT_PATTERN", Reproducible_Experiment_Strategy, Arrays.asList(Reproducible_Metrics_Pattern.getOutputType().transformToInput(), Valid_Xp_Pattern.getOutputType().transformToInput()), Reproducible_Experiment_Conclusion);
 
         

@@ -1,5 +1,7 @@
 package fr.axonic.jf.instance.ReproducibleExperiment.strategies;
 
+import fr.axonic.jf.engine.strategy.Rationale;
+import fr.axonic.jf.engine.strategy.UsageDomain;
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.*;
@@ -17,8 +19,8 @@ public class ReproducibleExperimentFinalStrategy extends ReproducibleExperimentS
     public ReproducibleExperimentFinalStrategy() {
     }
 
-    public ReproducibleExperimentFinalStrategy(String name) {
-        super(name);
+    public ReproducibleExperimentFinalStrategy(String name, Rationale rationale, UsageDomain usageDomain) {
+        super(name,rationale,usageDomain);
     }
 
     @Override

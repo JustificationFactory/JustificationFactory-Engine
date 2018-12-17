@@ -1,5 +1,7 @@
 package fr.axonic.jf.instance.ReproducibleExperiment.strategies;
 
+import fr.axonic.jf.engine.strategy.Rationale;
+import fr.axonic.jf.engine.strategy.UsageDomain;
 import fr.axonic.jf.engine.support.Support;
 import fr.axonic.jf.engine.support.conclusion.Conclusion;
 import fr.axonic.jf.instance.ReproducibleExperiment.conclusion.AccuracyMetricConclusions.AccuracyMetricConclusion;
@@ -14,14 +16,18 @@ import fr.axonic.jf.instance.ReproducibleExperiment.evidences.ExperimentEvidence
 import fr.axonic.jf.instance.ReproducibleExperiment.evidences.TotalTimeMetricEvidence;
 import fr.axonic.jf.instance.ValidXp.documents.XpDocument;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.List;
+
 
 public class TotalTimeMetricStrategy extends ReproducibleExperimentStrategy {
     public TotalTimeMetricStrategy() {
+        this(null,null,null);
     }
 
-    public TotalTimeMetricStrategy(String name) {
-        super(name);
+    public TotalTimeMetricStrategy(String name, Rationale<JournalOfExperimentalSocialPsychology> rationale, UsageDomain usageDomain) {
+        super(name,rationale,usageDomain);
     }
 
     @Override
